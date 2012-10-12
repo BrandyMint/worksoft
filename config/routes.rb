@@ -1,4 +1,15 @@
 Worksoft::Application.routes.draw do
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :users, :controllers=> {
+    :registrations => "users/registrations",
+    :sessions => "users/sessions",
+    :omniauth_callbacks => "users/omniauth_callbacks"
+  }
+  get "profile", :to => "users#profile"
+
+  root :to => 'bundles#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -11,7 +22,7 @@ Worksoft::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  resources :bundles
 
   # Sample resource route with options:
   #   resources :products do
@@ -48,7 +59,6 @@ Worksoft::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 

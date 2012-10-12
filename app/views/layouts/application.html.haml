@@ -1,0 +1,35 @@
+!!!
+%html
+  = render 'layouts/head'
+  = stylesheet_link_tag "application", :media => "all"
+  = javascript_include_tag "application"
+  %body
+
+    %header.navbar.navbar-fixed-top
+      %nav.navbar-inner
+        .container
+          = render 'layouts/navigation'
+
+    #main{:role => "main"}
+      .container
+        .content
+          .row
+            .span12
+              = render 'layouts/messages'
+          - if content_for? :page_header
+            .row
+              .span12
+                = yield :page_header
+          .row
+            - if content_for? :sidebar
+              .span3
+                = yield :sidebar
+              .span9
+                = yield
+            - else
+              .span12
+                = yield
+
+    %footer.footer
+      .container
+        = render 'layouts/footer'

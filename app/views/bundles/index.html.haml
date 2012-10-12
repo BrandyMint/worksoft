@@ -1,0 +1,21 @@
+%h1 Пакеты
+
+%table.table
+  %tr
+    %th Пакет
+    %th Версия 1С
+    %th Версия конфигурации
+    %th Название конфигурации
+
+  - @bundles.each do |bundle|
+    %tr
+      %td
+        = link_to bundle.file.url do
+          = bundle.name
+          = "(#{bundle.version})"
+      %td= bundle.version1c
+      %td= bundle.versionconf
+      %td= bundle.nameconf
+
+%br
+= link_to 'пример', bundles_path( :q=>{:client_id=>'123', :version1c=>'1.2.3', :versionconf=>'1.2.3', :name=>'Бухгалтерия'} )

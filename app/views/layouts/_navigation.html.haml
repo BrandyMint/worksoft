@@ -1,0 +1,17 @@
+= link_to root_url, :class => 'brand' do
+  -# = render 'layouts/logo'
+  = 'WORKSOFT'
+
+.nav-collapse
+  = bootstrap_navigation :type=>'' do |nav|
+    - nav.link_to "Пакеты", root_path, :active_nav => controller.is_a?(BundlesController)
+    - nav.link_to 'Админка', admin_dashboard_path
+
+  %ul.nav.pull-right
+    - if false and user_signed_in?
+      %li
+        = link_to current_user, "/profile"
+      %li
+        = link_to 'выход', destroy_user_session_path, :method => :delete
+    - else
+      -# %li= link_to 'вход', new_user_session_path
