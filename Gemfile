@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
+gem 'versionomy'
+
 gem 'inherited_resources'
 
 # Bundle edge Rails instead:
