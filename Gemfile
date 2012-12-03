@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
+gem 'versionub'
 gem 'versionomy'
 
 gem 'inherited_resources'
@@ -76,6 +77,5 @@ group :development do
    gem 'capistrano'
    gem 'capistrano-recipes0', '>= 1.1.0', :git => 'git://github.com/BrandyMint/capistrano-recipes0.git'
    gem 'rvm-capistrano'
+  gem 'debugger'
 end
-
-

@@ -1,7 +1,8 @@
 class Bundle < ActiveRecord::Base
   attr_protected :secret
 
-  mount_uploader :file, FileUploader
+  mount_uploader :source_file, FileUploader
+  mount_uploader :bundle_file, BundleUploader
 
   validates :name, :presence => true, :uniqueness => { :scope => :version }
   validates :version1c, :presence => true
