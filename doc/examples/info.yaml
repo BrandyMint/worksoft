@@ -1,9 +1,9 @@
 app:
-  id: d341d355-b3b1-11dc-a100-0011d85708ff
+  uuid: d341d355-b3b1-11dc-a100-0011d85708ff
   name: Анализ Авансов по документам
   kind: epf
 bundle:
-  id: d341d355-b3b1-11dc-a100-0011d85708123
+  uuid: d341d355-b3b1-11dc-a100-0011d85708123
   version: '0.1'
 compatilibity:
   kernel_versions:

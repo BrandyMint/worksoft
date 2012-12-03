@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 
 gem 'versionub'
-gem 'versionomy'
+# gem 'versionomy'
 
 gem 'inherited_resources'
 
@@ -11,6 +11,14 @@ gem 'inherited_resources'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+
+# gem 'rubyzip'
+
+gem 'archive-zip'
+
+gem 'uuid'
+
+gem 'russian'
 
 gem 'draper'
 gem 'cells'

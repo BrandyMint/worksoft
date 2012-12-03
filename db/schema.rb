@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203163909) do
+ActiveRecord::Schema.define(:version => 20121203172004) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -47,22 +47,24 @@ ActiveRecord::Schema.define(:version => 20121203163909) do
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
   create_table "bundles", :force => true do |t|
-    t.string   "name",        :null => false
+    t.string   "name",                                                            :null => false
     t.text     "desc"
-    t.string   "version1c",   :null => false
-    t.string   "nameconf",    :null => false
-    t.string   "versionconf", :null => false
-    t.string   "version",     :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "version1c",                                                       :null => false
+    t.string   "nameconf",                                                        :null => false
+    t.string   "versionconf",                                                     :null => false
+    t.string   "version",                                                         :null => false
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
     t.string   "source_file"
     t.string   "bundle_file"
     t.string   "icon"
     t.string   "state"
+    t.string   "uuid",        :default => "7112ded0-1f9b-0130-60de-746d04736cf8", :null => false
   end
 
   add_index "bundles", ["name"], :name => "index_bundles_on_name", :unique => true
   add_index "bundles", ["state"], :name => "index_bundles_on_state"
+  add_index "bundles", ["uuid"], :name => "index_bundles_on_uuid", :unique => true
 
   create_table "configurations", :force => true do |t|
     t.string   "name",       :null => false

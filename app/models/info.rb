@@ -1,0 +1,3 @@
+class Info < OpenStruct
+
+end

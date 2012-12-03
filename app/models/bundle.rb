@@ -20,4 +20,54 @@ class Bundle < ActiveRecord::Base
     state :updating
     state :ready
   end
+
+  before_validation do
+    self.uuid = UUID.new.generate
+  end
+
+  after_create :generate_bundle
+
+  def generate_bundle
+    BundlePacker.new(self).generate
+  end
+
+  def kind
+    'epf'
+  end
+
+  def ext
+    File.extname source_file.file.file
+  end
+
+  def spec
+    {
+      :app => {
+        :uuid => uuid,
+        :name => name,
+        :kind => kind
+      },
+      :bundle => {
+        :uuid => uuid,
+        :version => version
+      },
+      :compatibility => {
+        :kernel_versions => kernel_versions,
+        :configurations => configurations
+      }
+    }
+  end
+
+  def bundle_file_name
+    uuid
+  end
+
+  private
+
+  def kernel_versions
+    []
+  end
+
+  def configurations
+    []
+  end
 end

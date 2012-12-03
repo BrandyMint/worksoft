@@ -2,10 +2,20 @@
 ActiveAdmin.register Bundle do
   # decorate_with BundleDecorator
   #
-  FIELDS = [:name, :version, :version1c, :versionconf, :nameconf, :icon ]
+  FIELDS = [:name, :version, :version1c, :versionconf, :nameconf ]
 
   filter :name
   filter :state, :as => :select, :collection => Bundle.state_machine.states.map( &:value )
+
+  member_action :generate do
+    bundle = Bundle.find params[:id]
+    bundle.generate_bundle
+    redirect_to admin_bundle_url(bundle)
+  end
+
+  action_item :only => [:show, :edit] do
+    link_to('Пересоздать пакет', generate_admin_bundle_path(bundle))
+  end
 
   index do
     FIELDS.each do |a|
@@ -54,6 +64,7 @@ ActiveAdmin.register Bundle do
       end
 
       row :desc
+      row :uuid
     end
 
     active_admin_comments
