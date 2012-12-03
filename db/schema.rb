@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121012122105) do
+ActiveRecord::Schema.define(:version => 20121203163909) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -55,10 +55,14 @@ ActiveRecord::Schema.define(:version => 20121012122105) do
     t.string   "version",     :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.string   "file"
+    t.string   "source_file"
+    t.string   "bundle_file"
+    t.string   "icon"
+    t.string   "state"
   end
 
   add_index "bundles", ["name"], :name => "index_bundles_on_name", :unique => true
+  add_index "bundles", ["state"], :name => "index_bundles_on_state"
 
   create_table "configurations", :force => true do |t|
     t.string   "name",       :null => false

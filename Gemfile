@@ -13,7 +13,15 @@ gem 'inherited_resources'
 gem 'pg'
 
 gem 'draper'
+gem 'cells'
+gem 'inherited_resources'
 
+gem 'state_machine'
+
+gem 'select2-rails'
+gem 'kaminari'
+gem 'kaminari-bootstrap'
+gem 'bootstrap-datepicker-rails'
 gem 'twitter-bootstrap-markup-rails', :git => 'git://github.com/BrandyMint/twitter-bootstrap-markup-rails.git'
 gem 'twitter_bootstrap_helpers'
 gem 'simple-navigation'
@@ -67,6 +75,8 @@ gem "devise", ">= 2.1.2"
 gem "cancan", ">= 1.6.8"
 gem "rolify", ">= 3.2.0"
 gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
+gem "rails_config"
+gem 'mini_magick'
 
 gem 'airbrake'
 

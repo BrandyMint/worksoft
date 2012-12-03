@@ -7,10 +7,10 @@
     %th Версия конфигурации
     %th Название конфигурации
 
-  - @bundles.each do |bundle|
+  - @bundles.ready.each do |bundle|
     %tr
       %td
-        = link_to bundle.file.url do
+        = link_to bundle.bundle_file.url do
           = bundle.name
           = "(#{bundle.version})"
       %td= bundle.version1c
