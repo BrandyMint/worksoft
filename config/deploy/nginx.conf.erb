@@ -1,13 +1,17 @@
+<% if rails_env == 'production' %>
 server {
-   <% if rails_env == 'production' %>
    server_name www.xn--h1aeehkjp.xn--p1ai;
    rewrite ^(.*)$ http://xn--h1aeehkjp.xn--p1ai$1 permanent;
-   <% end %>
 }
+server {
+   server_name www.qikup.ru;
+   rewrite ^(.*)$ http://qikup.ru permanent;
+}
+<% end %>
 
 server {
    <% if rails_env == 'production' %>
-   server_name  xn--h1aeehkjp.xn--p1ai;
+   server_name  xn--h1aeehkjp.xn--p1ai qikup.ru;
    <% else %>
    server_name  stage.xn--h1aeehkjp.xn--p1ai;
    <% end %>
