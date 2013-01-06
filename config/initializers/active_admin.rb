@@ -5,7 +5,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Worksoft"
+  config.site_title = Settings.application.title
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -55,8 +55,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # within the controller.
-  config.authentication_method = false
-  #:authenticate_admin_user!
+  config.authentication_method = :authenticate_admin_user!
 
 
   # == Current User
@@ -66,8 +65,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # to return the currently logged in user.
-  config.current_user_method = false
-  #:current_admin_user
+  config.current_user_method = :current_user
 
 
   # == Logging Out
@@ -80,7 +78,7 @@ ActiveAdmin.setup do |config|
   # will call the method to return the path.
   #
   # Default:
-  config.logout_link_path = false
+  config.logout_link_path = :logout_path
   #:destroy_admin_user_session_path
 
   # This setting changes the http method used when rendering the

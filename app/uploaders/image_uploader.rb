@@ -10,12 +10,9 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  # Сюда в случае фалбака удобно ставить gravatar-овский url
-  #def default_url
-    ## TODO Разные картинки для разных версий
-    #'/assets/iconic/black/user_18x24.png'
-    ##   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  #end
+  def default_url
+    "/images/fallback/#{version_name}.png"
+  end
 
   # Create different versions of your uploaded files:
   version :thumb_48 do

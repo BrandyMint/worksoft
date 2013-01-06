@@ -10,6 +10,8 @@
   - @bundles.ready.each do |bundle|
     %tr
       %td
+        = image_tag bundle.icon.thumb_24.url
+      %td
         = link_to bundle.bundle_file.url do
           = bundle.name
           = "(#{bundle.version})"

@@ -3,9 +3,17 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def authenticate_admin_user!
+    if logged_in? && current_user.has_role?( :admin )
+      return true
+    else
+      authenticate!
+    end
+  end
+
   def authenticate!
-    # before_filter :require_login
-    require_login_from_http_basic
+    require_login
+    # require_login_from_http_basic unless logged_in?
   end
 
   def realm_name_by_controller
