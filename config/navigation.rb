@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
-    primary.item :bundles, 'Пакеты', bundles_path
     primary.item :dashboard, 'Панель разработчика', developer_dashboard_path
 
     if logged_in?

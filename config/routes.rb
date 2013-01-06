@@ -18,5 +18,5 @@ Worksoft::Application.routes.draw do
   resources :users
   get "profile", :to => "users#profile"
     
-  resources :bundles
+  resources :bundles, :only => [:index, :show]
 end

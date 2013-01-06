@@ -8,6 +8,7 @@ class Bundle < ActiveRecord::Base
   scope :ready, where(:state=>:ready)
 
   validates :name, :presence => true, :uniqueness => { :scope => :version }
+
   validates :version1c, :presence => true
   validates :versionconf, :presence => true
   validates :nameconf, :presence => true
@@ -29,6 +30,10 @@ class Bundle < ActiveRecord::Base
 
   def generate_bundle
     BundlePacker.new(self).generate
+  end
+
+  def to_s
+    name
   end
 
   def kind
