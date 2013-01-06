@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 
 gem 'omniauth-identity'
-gem 'sorcery'
-
 gem 'versionub'
 # gem 'versionomy'
 
@@ -18,6 +16,8 @@ gem 'pg'
 # gem 'rubyzip'
 
 gem 'archive-zip'
+
+gem 'sorcery', :git => 'git://github.com/NoamB/sorcery.git'
 
 gem 'uuid'
 

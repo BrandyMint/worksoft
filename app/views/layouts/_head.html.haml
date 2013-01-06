@@ -1,10 +1,10 @@
-%title= content_for?(:title) ? yield(:title) : 'WORKSOFT'
+%title= content_for?(:title) ? yield(:title) : Settings.application.title
 
 %meta{:charset => "utf-8"}
 %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
 %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
--# %meta{:content => Settings.application.description, :name => "description"}
--# %meta{:content => Settings.application.author, :name => "author"}
+%meta{:content => Settings.application.description, :name => "description"}
+%meta{:content => Settings.application.author, :name => "author"}
 
 -# %link{:rel => :canonical, :href => canonical_url }
 -# http://en.wikipedia.org/wiki/Favicon#HTML5_recommendation_for_icons_in_multiple_sizes

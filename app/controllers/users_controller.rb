@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_login_from_http_basic
-  # before_filter :require_login
+  before_filter :authenticate!
 
   def profile
   end
