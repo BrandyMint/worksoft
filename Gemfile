@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
+gem 'omniauth-identity'
+gem 'sorcery'
+
 gem 'versionub'
 # gem 'versionomy'
 
@@ -26,6 +29,9 @@ gem 'inherited_resources'
 
 gem 'state_machine'
 
+gem 'redcarpet', :git => 'git://github.com/vmg/redcarpet.git'
+
+gem 'sunspot_rails'
 gem 'select2-rails'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
@@ -33,6 +39,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'twitter-bootstrap-markup-rails', :git => 'git://github.com/BrandyMint/twitter-bootstrap-markup-rails.git'
 gem 'twitter_bootstrap_helpers'
 gem 'simple-navigation'
+gem 'simple-navigation-bootstrap'
 
 gem 'activeadmin'
 
@@ -79,7 +86,6 @@ gem "database_cleaner", ">= 0.8.0", :group => :test
 gem "launchy", ">= 2.1.2", :group => :test
 gem "factory_girl_rails", ">= 4.0.0", :group => [:development, :test]
 gem "bootstrap-sass", ">= 2.1.0.0"
-gem "devise", ">= 2.1.2"
 gem "cancan", ">= 1.6.8"
 gem "rolify", ">= 3.2.0"
 gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
