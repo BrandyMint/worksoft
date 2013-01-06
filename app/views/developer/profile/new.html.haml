@@ -1,0 +1,9 @@
+.page-header
+  %h1 Профиль разработчика
+
+= simple_form_for @profile, :url => developer_profile_path, :method => :post do |f|
+  = f.error_notification
+  = f.input :name
+  = f.input :avatar, :as => :file
+  .actions
+    = f.button :submit, :class => 'btn btn-primary'

@@ -1,15 +1,17 @@
 Worksoft::Application.routes.draw do
-  get "user_sessions/new"
-  get "user_sessions/create"
-  get "user_sessions/destroy"
-
   ActiveAdmin.routes(self)
+
+  root :to => 'apps#index'
 
   namespace :developer do
     get :dashboard, :to => 'dashboard#show'
+    resource :profile, :controller => :profile
+    resources :apps do
+      resources :bundles
+    end
   end
 
-  root :to => 'bundles#index'
+  resources :developers, :only => [:index, :show]
 
   resources :user_sessions
   match 'login' => 'user_sessions#new', :as => :login
@@ -17,6 +19,8 @@ Worksoft::Application.routes.draw do
 
   resources :users
   get "profile", :to => "users#profile"
+
+  resources :apps, :only => [:index, :show]
     
-  resources :bundles, :only => [:index, :show]
+  # resources :bundles, :only => [:index, :show]
 end

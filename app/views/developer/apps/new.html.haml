@@ -1,0 +1,9 @@
+.page-header
+  %h1 Новое приложение
+
+= simple_form_for @app, :url => developer_apps_path, :html => { :class => 'form-vertical', :method=>:post } do |f|
+  = f.error_notification
+  = f.input :name
+  .actions
+    = f.button :submit, :class => 'btn btn-primary'
+

@@ -19,4 +19,9 @@ class ApplicationController < ActionController::Base
   def realm_name_by_controller
     Settings.application.realm
   end
+
+  def not_authenticated
+    # TODO 403?
+    redirect_to login_path
+  end
 end

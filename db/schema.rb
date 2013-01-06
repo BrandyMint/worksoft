@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106074007) do
+ActiveRecord::Schema.define(:version => 20130106102410) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -28,8 +28,17 @@ ActiveRecord::Schema.define(:version => 20130106074007) do
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
+  create_table "apps", :force => true do |t|
+    t.string   "name",                                    :null => false
+    t.string   "state",                :default => "new", :null => false
+    t.integer  "developer_profile_id",                    :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+  end
+
+  add_index "apps", ["name"], :name => "index_apps_on_name", :unique => true
+
   create_table "bundles", :force => true do |t|
-    t.string   "name",                                                            :null => false
     t.text     "desc"
     t.string   "version1c",                                                       :null => false
     t.string   "nameconf",                                                        :null => false
@@ -42,9 +51,11 @@ ActiveRecord::Schema.define(:version => 20130106074007) do
     t.string   "icon"
     t.string   "state"
     t.string   "uuid",        :default => "7112ded0-1f9b-0130-60de-746d04736cf8", :null => false
+    t.integer  "app_id",                                                          :null => false
   end
 
-  add_index "bundles", ["name"], :name => "index_bundles_on_name", :unique => true
+  add_index "bundles", ["app_id", "version"], :name => "index_bundles_on_app_id_and_version", :unique => true
+  add_index "bundles", ["app_id"], :name => "index_bundles_on_app_id"
   add_index "bundles", ["state"], :name => "index_bundles_on_state"
   add_index "bundles", ["uuid"], :name => "index_bundles_on_uuid", :unique => true
 
@@ -53,6 +64,17 @@ ActiveRecord::Schema.define(:version => 20130106074007) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "developer_profiles", :force => true do |t|
+    t.string   "name",                      :null => false
+    t.string   "avatar"
+    t.integer  "apps_count", :default => 0, :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "developer_profiles", ["apps_count"], :name => "index_developer_profiles_on_apps_count"
+  add_index "developer_profiles", ["name"], :name => "index_developer_profiles_on_name", :unique => true
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -66,14 +88,15 @@ ActiveRecord::Schema.define(:version => 20130106074007) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "users", :force => true do |t|
-    t.string   "email",            :null => false
+    t.string   "email",                :null => false
     t.string   "crypted_password"
     t.string   "salt"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-    t.string   "name"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "developer_profile_id"
   end
 
+  add_index "users", ["developer_profile_id"], :name => "index_users_on_developer_profile_id"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
   create_table "users_roles", :id => false, :force => true do |t|

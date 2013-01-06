@@ -3,11 +3,12 @@ class Bundle < ActiveRecord::Base
 
   mount_uploader :source_file, FileUploader
   mount_uploader :bundle_file, FileUploader
-  mount_uploader :icon, ImageUploader
 
   scope :ready, where(:state=>:ready)
 
-  validates :name, :presence => true, :uniqueness => { :scope => :version }
+  belongs_to :app
+
+  validates :app, :presence => true
 
   validates :version1c, :presence => true
   validates :versionconf, :presence => true
@@ -15,6 +16,8 @@ class Bundle < ActiveRecord::Base
 
   validates :version, :presence => true
   validates :source_file, :presence => true
+
+  delegate :name, :developer, :to => :app
 
   state_machine :state, :initial => :new do
     state :new
