@@ -36,8 +36,12 @@ gem 'select2-rails'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'bootstrap-datepicker-rails'
+
 gem 'twitter-bootstrap-markup-rails', :git => 'git://github.com/BrandyMint/twitter-bootstrap-markup-rails.git'
 gem 'twitter_bootstrap_helpers'
+
+gem "simple_form", ">= 2.0.4"
+
 gem 'simple-navigation'
 gem 'simple-navigation-bootstrap'
 

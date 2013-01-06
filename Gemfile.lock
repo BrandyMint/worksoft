@@ -308,6 +308,9 @@ GEM
       activesupport (>= 2.3.2)
     simple-navigation-bootstrap (0.0.4)
       simple-navigation (>= 3.7.0)
+    simple_form (2.0.4)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     sorcery (0.7.13)
       bcrypt-ruby (~> 3.0.0)
       oauth (~> 0.4.4)
@@ -399,6 +402,7 @@ DEPENDENCIES
   select2-rails
   simple-navigation
   simple-navigation-bootstrap
+  simple_form (>= 2.0.4)
   sorcery
   state_machine
   sunspot_rails

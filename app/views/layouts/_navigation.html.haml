@@ -3,16 +3,17 @@
   = 'WORKSOFT'
 
 .nav-collapse
-  = bootstrap_navigation :type=>'' do |nav|
-    - nav.link_to "Пакеты", root_path, :active_nav => controller.is_a?(BundlesController)
-    - nav.link_to 'Панель разработчика', developer_dashboard_path
-    - nav.link_to 'Админка', admin_dashboard_path
+  = render_navigation  :expand_all => true, :renderer => :bootstrap
+  -#= bootstrap_navigation :type=>'' do |nav|
+    -#- nav.link_to "Пакеты", root_path, :active_nav => controller.is_a?(BundlesController)
+    -#- nav.link_to 'Панель разработчика', developer_dashboard_path
+    -#- nav.link_to 'Админка', admin_dashboard_path
 
-  %ul.nav.pull-right
-    - if logged_in?
-      %li
-        = link_to current_user, "/profile"
-      %li
-        = link_to 'выход', logout_path, :method => :delete
-    - else
-      -# %li= link_to 'вход', new_user_session_path
+  -#%ul.nav.pull-right
+    -#- if logged_in?
+      -#%li
+        -#= link_to current_user, "/profile"
+      -#%li
+        -#= link_to 'выход', logout_path, :method => :delete
+    -#- else
+      -#-# %li= link_to 'вход', new_user_session_path
