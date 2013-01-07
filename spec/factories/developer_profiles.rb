@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :developer_profile do
     name "MyString"
-    avatar "MyString"
+    user
   end
 end

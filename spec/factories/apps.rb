@@ -3,7 +3,6 @@
 FactoryGirl.define do
   factory :app do
     name "MyString"
-    author_id 1
-    last_bundle_id 1
+    developer_profile
   end
 end

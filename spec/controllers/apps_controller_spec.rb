@@ -11,7 +11,8 @@ describe AppsController do
 
   describe "GET 'show'" do
     it "returns http success" do
-      get 'show'
+      app = FactoryGirl.create :app
+      get 'show', :id => app.id
       response.should be_success
     end
   end

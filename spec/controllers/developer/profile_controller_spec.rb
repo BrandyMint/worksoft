@@ -2,17 +2,16 @@ require 'spec_helper'
 
 describe Developer::ProfileController do
 
-  describe "GET 'show'" do
-    it "returns http success" do
-      get 'show'
-      response.should be_success
-    end
+  let!(:user) { FactoryGirl.create :user }
+
+  before(:each) do
+    controller.stub!(:current_user).and_return user
   end
 
   describe "GET 'create'" do
     it "returns http success" do
-      get 'create'
-      response.should be_success
+      get 'create', :developer_profile => { :name => 'Name' }
+      response.should be_redirect
     end
   end
 
@@ -26,12 +25,13 @@ describe Developer::ProfileController do
   describe "GET 'update'" do
     it "returns http success" do
       get 'update'
-      response.should be_success
+      response.should be_redirect
     end
   end
 
   describe "GET 'edit'" do
     it "returns http success" do
+      FactoryGirl.create :developer_profile, :user => user
       get 'edit'
       response.should be_success
     end

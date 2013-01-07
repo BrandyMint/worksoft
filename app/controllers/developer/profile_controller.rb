@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-class Developer::ProfileController < ApplicationController
+class Developer::ProfileController < Developer::BaseController
   skip_before_filter :require_developer, :only => [:create, :new]
   before_filter :require_login, :only => [:create, :new]
   before_filter :require_no_profile, :only => [:create, :new]
-  
-  def show
-  end
 
   def create
     if @profile = current_user.create_developer_profile( params[:developer_profile] )
