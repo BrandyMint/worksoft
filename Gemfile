@@ -69,6 +69,7 @@ gem 'rvm'
 gem 'unicorn'
 
 group :development do
+  gem 'rb-inotify'
   gem "haml-rails", ">= 0.3.5"
   gem "hpricot", ">= 0.8.6"
   gem "ruby_parser", ">= 2.3.1"
