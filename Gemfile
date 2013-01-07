@@ -8,25 +8,18 @@ gem 'versionub'
 
 gem 'inherited_resources'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'pg'
 
 # gem 'rubyzip'
-
 gem 'archive-zip'
 
 gem 'sorcery', :git => 'git://github.com/NoamB/sorcery.git'
 
 gem 'uuid'
-
 gem 'russian'
 
 gem 'draper'
 gem 'cells'
-gem 'inherited_resources'
-
 gem 'state_machine'
 
 gem 'redcarpet', :git => 'git://github.com/vmg/redcarpet.git'
@@ -63,36 +56,10 @@ end
 
 gem 'jquery-rails'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
-
 gem "haml", ">= 3.1.7"
-gem "haml-rails", ">= 0.3.5", :group => :development
-gem "hpricot", ">= 0.8.6", :group => :development
-gem "ruby_parser", ">= 2.3.1", :group => :development
-gem "rspec-rails", ">= 2.11.0", :group => [:development, :test]
-gem "capybara", ">= 1.1.2", :group => :test
-gem "email_spec", ">= 1.2.1", :group => :test
-gem "cucumber-rails", ">= 1.3.0", :group => :test, :require => false
-gem "database_cleaner", ">= 0.8.0", :group => :test
-gem "launchy", ">= 2.1.2", :group => :test
-gem "factory_girl_rails", ">= 4.0.0", :group => [:development, :test]
 gem "bootstrap-sass", ">= 2.1.0.0"
 gem 'authority'
 gem "rolify", ">= 3.2.0"
-gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
 gem "rails_config"
 gem 'mini_magick'
 
@@ -102,8 +69,31 @@ gem 'rvm'
 gem 'unicorn'
 
 group :development do
-   gem 'capistrano'
-   gem 'capistrano-recipes0', '>= 1.1.0', :git => 'git://github.com/BrandyMint/capistrano-recipes0.git'
-   gem 'rvm-capistrano'
-  gem 'debugger'
+  gem "haml-rails", ">= 0.3.5"
+  gem "hpricot", ">= 0.8.6"
+  gem "ruby_parser", ">= 2.3.1"
+  gem 'capistrano'
+  gem 'capistrano-recipes0', '>= 1.1.0', :git => 'git://github.com/BrandyMint/capistrano-recipes0.git'
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem 'rvm-capistrano'
+  gem 'debugger' unless `whoami`=~/jenkins/
+  gem "rspec-rails", ">= 2.11.0"
+  gem "factory_girl_rails", ">= 4.0.0"
+end
+
+group :test do
+  gem "rspec-rails", ">= 2.11.0"
+  gem 'poltergeist'
+  gem "email_spec", ">= 1.2.1"
+  gem "cucumber-rails", ">= 1.3.0", :require => false
+  gem 'guard'
+  # gem 'guard-spork'
+  gem 'guard-rspec'
+  gem 'guard-rails'
+  gem 'guard-bundler'
+  gem 'guard-ctags-bundler'
+  gem "database_cleaner"
+  gem "launchy", ">= 2.1.2"
+  gem "factory_girl_rails", ">= 4.0.0"
 end
