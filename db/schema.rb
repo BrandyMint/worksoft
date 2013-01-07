@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106102410) do
+ActiveRecord::Schema.define(:version => 20130107135419) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -34,12 +34,14 @@ ActiveRecord::Schema.define(:version => 20130106102410) do
     t.integer  "developer_profile_id",                    :null => false
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
+    t.text     "desc"
+    t.string   "icon"
   end
 
   add_index "apps", ["name"], :name => "index_apps_on_name", :unique => true
 
   create_table "bundles", :force => true do |t|
-    t.text     "desc"
+    t.text     "changelog"
     t.string   "version1c",                                                       :null => false
     t.string   "nameconf",                                                        :null => false
     t.string   "versionconf",                                                     :null => false
@@ -48,7 +50,6 @@ ActiveRecord::Schema.define(:version => 20130106102410) do
     t.datetime "updated_at",                                                      :null => false
     t.string   "source_file"
     t.string   "bundle_file"
-    t.string   "icon"
     t.string   "state"
     t.string   "uuid",        :default => "7112ded0-1f9b-0130-60de-746d04736cf8", :null => false
     t.integer  "app_id",                                                          :null => false

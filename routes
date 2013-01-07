@@ -1,5 +1,3 @@
-                       apps_index GET    /apps/index(.:format)                              apps#index
-                        apps_show GET    /apps/show(.:format)                               apps#show
                        admin_root        /admin(.:format)                                   admin/dashboard#index
                   admin_dashboard        /admin/dashboard(.:format)                         admin/dashboard#index
 batch_action_admin_configurations POST   /admin/configurations/batch_action(.:format)       admin/configurations#batch_action
@@ -23,7 +21,14 @@ batch_action_admin_configurations POST   /admin/configurations/batch_action(.:fo
                    admin_comments GET    /admin/comments(.:format)                          admin/comments#index
                                   POST   /admin/comments(.:format)                          admin/comments#create
                     admin_comment GET    /admin/comments/:id(.:format)                      admin/comments#show
+                             root        /                                                  apps#index
               developer_dashboard GET    /developer/dashboard(.:format)                     developer/dashboard#show
+                developer_profile POST   /developer/profile(.:format)                       developer/profile#create
+            new_developer_profile GET    /developer/profile/new(.:format)                   developer/profile#new
+           edit_developer_profile GET    /developer/profile/edit(.:format)                  developer/profile#edit
+                                  GET    /developer/profile(.:format)                       developer/profile#show
+                                  PUT    /developer/profile(.:format)                       developer/profile#update
+                                  DELETE /developer/profile(.:format)                       developer/profile#destroy
             developer_app_bundles GET    /developer/apps/:app_id/bundles(.:format)          developer/bundles#index
                                   POST   /developer/apps/:app_id/bundles(.:format)          developer/bundles#create
          new_developer_app_bundle GET    /developer/apps/:app_id/bundles/new(.:format)      developer/bundles#new
@@ -38,7 +43,8 @@ batch_action_admin_configurations POST   /admin/configurations/batch_action(.:fo
                     developer_app GET    /developer/apps/:id(.:format)                      developer/apps#show
                                   PUT    /developer/apps/:id(.:format)                      developer/apps#update
                                   DELETE /developer/apps/:id(.:format)                      developer/apps#destroy
-                             root        /                                                  apps#index
+                       developers GET    /developers(.:format)                              developers#index
+                        developer GET    /developers/:id(.:format)                          developers#show
                     user_sessions GET    /user_sessions(.:format)                           user_sessions#index
                                   POST   /user_sessions(.:format)                           user_sessions#create
                  new_user_session GET    /user_sessions/new(.:format)                       user_sessions#new

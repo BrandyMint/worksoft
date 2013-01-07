@@ -21,15 +21,23 @@ class Developer::ProfileController < ApplicationController
   end
 
   def update
+    @profile = developer_profile
+
+    if @profile.update_attributes params[:developer_profile]
+      redirect_to developer_dashboard_path, :notice => 'Профиль обновлен!'
+    else
+      render :action => :edit
+    end
   end
 
   def edit
+    @profile ||= current_user.developer_profile
   end
 
   private
 
   def require_no_profile
-    if current_user.developer_profile.present?
+    if developer_profile.present?
       redirect_to developer_dashboard_url
     end
   end

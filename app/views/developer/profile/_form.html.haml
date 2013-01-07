@@ -1,0 +1,6 @@
+= simple_form_for @profile, :url => developer_profile_path, :method => @profile.persisted? ? :put : :post do |f|
+  = f.error_notification
+  = f.input :name
+  = f.input :avatar, :as => :file
+  .actions
+    = f.button :submit, :class => 'btn btn-primary'

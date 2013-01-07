@@ -5,6 +5,10 @@ class Developer::BaseController < ApplicationController
 
   private
 
+  def developer_profile
+    current_user.developer_profile
+  end
+
   def require_developer
     require_login
 
