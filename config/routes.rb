@@ -17,7 +17,7 @@ Worksoft::Application.routes.draw do
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
 
-  resources :users
+  resources :users, :only => [:new, :create]
   get "profile", :to => "users#profile"
 
   resources :apps, :only => [:index, :show]

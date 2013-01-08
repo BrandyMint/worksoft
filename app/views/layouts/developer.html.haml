@@ -1,11 +1,4 @@
 - content_for :page_header do
   - if developer_profile.present?
-    .page-header
-      .pull-right= image_tag developer_profile.avatar.thumb_48.url
-      %h1 Панель разработчика
-      %small
-        = developer_profile.name
-        = link_to edit_developer_profile_path do
-          %i.icon-edit
-          изменить
+    = render 'developer_header'
 = render :template => 'layouts/application'

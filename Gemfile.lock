@@ -43,6 +43,7 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
+    active_link_to (1.0.0)
     activeadmin (0.5.1)
       arbre (>= 1.0.1)
       bourbon (>= 1.0.0)
@@ -413,6 +414,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_link_to
   activeadmin
   airbrake
   archive-zip

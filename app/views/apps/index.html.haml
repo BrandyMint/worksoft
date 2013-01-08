@@ -1,2 +1,4 @@
-%h1 Apps#index
-%p Find me in app/views/apps/index.html.haml
+.page-header
+  %h1 Доступные приложения
+  
+=render 'apps', :apps => @apps

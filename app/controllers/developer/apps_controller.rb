@@ -4,6 +4,10 @@ class Developer::AppsController < Developer::BaseController
     @app ||= App.new
   end
 
+  def index
+    @apps = developer_profile.apps
+  end
+
   def create
     @app = developer_profile.apps.build params[:app]
 

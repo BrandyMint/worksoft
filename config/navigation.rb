@@ -10,6 +10,7 @@ SimpleNavigation::Configuration.run do |navigation|
       primary.item :logout, 'Выйти', logout_path, :method=>'delete'
     else
       primary.item :login, 'Войти', login_path
+      primary.item :signup, 'Регистрация', new_user_path
     end
     primary.dom_class = 'nav pull-right'
   end

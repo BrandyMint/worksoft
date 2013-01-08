@@ -11,7 +11,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    "/images/fallback/#{version_name}.png"
+    "/assets/fallback/#{version_name}.png"
   end
 
   # Create different versions of your uploaded files:

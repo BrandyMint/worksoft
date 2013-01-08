@@ -1,0 +1,14 @@
+.page-header
+  .pull-right= image_tag developer_profile.avatar.thumb_48.url
+  %h1 Панель разработчика
+  %small
+    = developer_profile.name
+    = link_to edit_developer_profile_path do
+      %i.icon-edit
+      изменить
+
+.nav.nav-pills
+  = active_link_to 'Приложения', developer_apps_path, :wrap_tag => :li, :active => :exclusive
+  = active_link_to 'Загрузка нового приложения', new_developer_app_path, :wrap_tag => :li
+  = active_link_to 'Профиль разработчика', edit_developer_profile_path, :wrap_tag => :li
+
