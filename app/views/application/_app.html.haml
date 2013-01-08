@@ -1,6 +1,7 @@
-.media
-  = link_to '#', :class => 'pull-left' do
-    = image_tag app.icon.thumb_64.url, :class => 'media-object'
-  .media-body
-    %h4.media-heading= app.name
-    = simple_format app.desc
+.span6
+  .media
+    = link_to '#', :class => 'pull-left' do
+      = image_tag app.icon.thumb_64.url, :class => 'media-object'
+    .media-body
+      %h4.media-heading= app.name
+      = simple_format app.desc

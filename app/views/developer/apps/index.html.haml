@@ -1,1 +1,11 @@
-= render 'apps', :apps => @apps
+%table.table.table-condensed
+  - @apps.each do |app|
+    %tr
+      %td
+        = image_tag app.icon.thumb_48.url
+        = app.name
+      %td= app.human_state_name
+      %td
+        = link_to new_developer_app_bundle_path(app), :class => 'btn btn-success' do
+          Загрузить новую версию
+

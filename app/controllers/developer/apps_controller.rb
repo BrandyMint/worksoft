@@ -4,6 +4,11 @@ class Developer::AppsController < Developer::BaseController
     @app ||= App.new
   end
 
+  def show
+    @app = App.find params[:id]
+    redirect_to developer_apps_path
+  end
+
   def index
     @apps = developer_profile.apps
   end

@@ -1,12 +1,17 @@
 = simple_form_for [:developer, @app, @bundle] do |f|
-  = f.error_notification
-  = f.input :version
-  %fieldset
-    = f.input :version1c
-    = f.input :nameconf
-    = f.input :versionconf
-  = f.input :source_file, :as => :file
-  %fieldset
-    = f.input :changelog
-  .actions
-    = f.button :submit, :class => 'btn btn-primary'
+  .row
+    .span6
+      = f.error_notification
+      = f.input :version
+      = f.input :source_file, :as => :file
+    %fieldset
+      = f.input :version1c
+      = f.input :nameconf
+      = f.input :versionconf
+  .row
+    .span12
+      = f.input :changelog, :input_html => { :cols => 140, :rows => 10, :style => 'width: 100%' }
+  .row
+    .span12
+      .actions
+        = f.button :submit, :class => 'btn btn-primary'
