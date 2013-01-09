@@ -1,5 +1,5 @@
 class Bundle < ActiveRecord::Base
-  attr_protected :secret
+  attr_accessible :source_file, :version, :app, :app_id, :changelog
 
   mount_uploader :source_file, FileUploader
   mount_uploader :bundle_file, FileUploader
@@ -9,15 +9,15 @@ class Bundle < ActiveRecord::Base
   belongs_to :app
 
   validates :app, :presence => true
-
-  validates :version1c, :presence => true
-  validates :versionconf, :presence => true
-  validates :nameconf, :presence => true
-
   validates :version, :presence => true
   validates :source_file, :presence => true
 
-  delegate :name, :developer, :to => :app
+  #validates :version1c, :presence => true
+  #validates :versionconf, :presence => true
+  #validates :nameconf, :presence => true
+
+  composed_of :supported_configurations
+  delegate :name, :desc, :to => :app
 
   state_machine :state, :initial => :new do
     state :new
@@ -26,6 +26,7 @@ class Bundle < ActiveRecord::Base
   end
 
   before_validation do
+    self.supported_configurations ||= SupportedConfigurations.new
     self.uuid = UUID.new.generate
   end
 
@@ -50,9 +51,9 @@ class Bundle < ActiveRecord::Base
   def spec
     {
       :app => {
-        :uuid => uuid,
-        :name => name,
-        :kind => kind
+        :uuid => app.uuid,
+        :name => app.name,
+        :kind => app.kind
       },
       :bundle => {
         :uuid => uuid,

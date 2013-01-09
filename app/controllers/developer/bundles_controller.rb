@@ -1,8 +1,22 @@
+# -*- coding: utf-8 -*-
 class Developer::BundlesController < Developer::BaseController
   before_filter :app
 
+  def index
+    redirect_to developer_app_path(@app)
+  end
+
   def new
     @bundle ||= Bundle.new :version => app.next_version
+  end
+
+  def create
+    @bundle = app.bundles.build( params[:bundle] )
+    if @bundle.save
+      redirect_to developer_app_path(@app), :notice => "Загружена новая версия #{@bundle.version} приложения #{app}"
+    else
+      render :new
+    end
   end
 
   private

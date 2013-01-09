@@ -3,9 +3,7 @@
   %h1 Панель разработчика
   %small
     = developer_profile.name
-    = link_to edit_developer_profile_path do
-      %i.icon-edit
-      изменить
+    -#= edit_link_to edit_developer_profile_path
 
 .nav.nav-pills
   = active_link_to 'Приложения', developer_apps_path, :wrap_tag => :li, :active => :exclusive

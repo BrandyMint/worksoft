@@ -22,6 +22,10 @@ gem 'draper'
 gem 'cells'
 gem 'state_machine'
 
+#gem 'activerecord-postgres-hstore'
+#gem 'activerecord-postgres-array'
+gem 'postgres_ext'
+
 gem 'redcarpet', :git => 'git://github.com/vmg/redcarpet.git'
 
 gem 'sunspot_rails'

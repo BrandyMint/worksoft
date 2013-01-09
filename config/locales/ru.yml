@@ -1,0 +1,15 @@
+ru:
+  simple_form:
+    labels:
+      bundle:
+        version: Номер версии
+        source_file: Файл
+        changelog: Описание изменений
+    hints:
+      bundle:
+    placeholders:
+      bundle:
+  helpers:
+    submit:
+      bundle:
+        create: Загрузить

@@ -1,5 +1,8 @@
 .page-header
-  %h2 Загрузка новой версии приложения
-  %small= link_to @app, developer_app_path(@app)
+  .pull-right
+    = image_tag @app.icon.thumb_64.url
+  %h2
+    = link_to @app, developer_app_path(@app)
+  %small Загрузка новой версии приложения
 
 = render 'form'
