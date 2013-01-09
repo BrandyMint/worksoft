@@ -16,6 +16,7 @@ class Bundle < ActiveRecord::Base
   #validates :versionconf, :presence => true
   #validates :nameconf, :presence => true
 
+  composed_of :version
   composed_of :supported_configurations
   delegate :name, :desc, :to => :app
 

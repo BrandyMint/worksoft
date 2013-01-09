@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '>= 3.2.8'
 
 gem 'omniauth-identity'
-gem 'versionub'
+# gem 'versionub'
 # gem 'versionomy'
 
 gem 'inherited_resources'
@@ -75,6 +75,7 @@ gem 'rvm'
 gem 'unicorn'
 
 group :development do
+  gem 'commands'
   gem 'rb-inotify'
   gem "haml-rails", ">= 0.3.5"
   gem "hpricot", ">= 0.8.6"

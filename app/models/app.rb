@@ -3,6 +3,7 @@ class App < ActiveRecord::Base
   attr_accessible :name, :icon, :desc
 
   belongs_to :developer_profile, :counter_cache => true
+  belongs_to :active_bundle, :class_name => 'Bundle'
   has_many :bundles
 
   mount_uploader :icon, ImageUploader
@@ -14,6 +15,8 @@ class App < ActiveRecord::Base
     #state :updating
     state :ready, :human_name => 'Обубликован'
   end
+
+  delegate :version, :to => :active_bundle, :allow_nil => true
 
   def kind
     'epf'
@@ -28,6 +31,10 @@ class App < ActiveRecord::Base
   end
 
   def next_version
-    '0.1.0'
+    if version.present?
+      version.next
+    else
+      Version.new '0.1'
+    end
   end
 end
