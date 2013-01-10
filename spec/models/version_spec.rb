@@ -29,5 +29,10 @@ describe Version do
       v = Version.new '0.1.0'
       v.to_s.should == '0.1'
     end
+
+    it 'арифметика с версией' do
+      v = Version.new '0.1.0'
+      v.change(1,2,3).should == '1.3.3'
+    end
   end
 end

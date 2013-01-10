@@ -16,9 +16,14 @@ class App < ActiveRecord::Base
     state :ready, :human_name => 'Обубликован'
   end
 
-  delegate :version, :to => :active_bundle, :allow_nil => true
+  delegate :version, :to => :last_bundle, :allow_nil => true
+
+  def last_bundle
+    bundles.order_by_version.last
+  end
 
   def kind
+    # epr
     'epf'
   end
 

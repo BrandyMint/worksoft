@@ -2,7 +2,7 @@ class AddActiveBundleIdToApps < ActiveRecord::Migration
   def up
     add_column :apps, :active_bundle_id, :integer
     remove_column :bundles, :version
-    add_column :bundles, :version, :integer, :limit => 8, :null => false, :default => Versionub.parse('0.1.0').to_numeric
+    add_column :bundles, :version, :integer, :limit => 8, :null => false, :default => Version.new('0.1.0').to_i
     add_index :bundles, [:app_id, :version], :unique => true
   end
 

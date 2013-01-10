@@ -3,8 +3,10 @@ ru:
     labels:
       bundle:
         version: Номер версии
+        version_str: Номер версии
         source_file: Файл
         changelog: Описание изменений
+        supported_kernel_versions: Поддерживаемые версии 1С
     hints:
       bundle:
     placeholders:

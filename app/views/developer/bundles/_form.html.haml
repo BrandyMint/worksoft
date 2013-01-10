@@ -2,9 +2,10 @@
   .row
     .span6
       = f.error_notification
-      = f.input :version
+      = f.input :version_str, :as => :version
       = f.input :source_file, :as => :file
     %fieldset
+      = f.input :supported_kernel_versions, :as => :string
       -#= f.input :version1c
       -#= f.input :nameconf
       -#= f.input :versionconf

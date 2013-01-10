@@ -12,6 +12,11 @@ class Version
       from_str value
     elsif value.is_a? Fixnum
       from_fixnum value
+    elsif value.is_a? Version
+      self.major = value.major
+      self.minor = value.minor
+      self.patch = value.patch
+    #elsif value.is_a? NilClass
     else
       raise "Unknown type #{value.class} of #{value}"
     end
@@ -26,17 +31,27 @@ class Version
     anOther.to_i == to_i
   end
 
-  # Сериализация в базу
-  def version
-    to_numeric
-  end
-
   def to_s
     [major, minor, patch==0 ? nil : patch].compact.join('.')
   end
 
+  # Сериализация
+  def version
+    to_i
+  end
+
   def to_i
     major*Precision*Precision + minor*Precision + patch
+  end
+
+  # Возвращает новый Version с изменениями из параметров
+  #
+  def change mjd, mid=0, pd=0
+    Version.new [major+mjd, minor+mid, pd]
+  end
+
+  def next
+    change 0, 1
   end
 
   private

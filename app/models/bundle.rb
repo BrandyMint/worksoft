@@ -1,10 +1,13 @@
 class Bundle < ActiveRecord::Base
-  attr_accessible :source_file, :version, :app, :app_id, :changelog
+  attr_accessible :source_file, :version, :app, :app_id, :changelog, :version_str
 
   mount_uploader :source_file, FileUploader
   mount_uploader :bundle_file, FileUploader
 
+  # serialize :supported_kernel_versions, Hash
+
   scope :ready, where(:state=>:ready)
+  scope :order_by_version, order(:version)
 
   belongs_to :app
 
@@ -15,9 +18,10 @@ class Bundle < ActiveRecord::Base
   #validates :version1c, :presence => true
   #validates :versionconf, :presence => true
   #validates :nameconf, :presence => true
+  #
 
-  composed_of :version
-  composed_of :supported_configurations
+  composed_of :version, :allow_nil => true
+  # composed_of :supported_configurations
   delegate :name, :desc, :to => :app
 
   state_machine :state, :initial => :new do
@@ -71,7 +75,27 @@ class Bundle < ActiveRecord::Base
     uuid
   end
 
+  def version_str
+    #@version_str ||= version.to_s
+    version.to_s
+  end
+
+  def version_str= value
+    #@version_str = value
+    self.version = Version.new value
+  rescue
+    self.version = nil
+  end
+
   private
+
+  def set_version
+    return unless @version_str.present?
+
+    self.version = Version.new @version_str
+  rescue
+    errors.add(:version, :broken)
+  end
 
   def kernel_versions
     []
