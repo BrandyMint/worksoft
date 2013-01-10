@@ -7,7 +7,10 @@ class Bundle < ActiveRecord::Base
   # serialize :supported_kernel_versions, Hash
 
   scope :ready, where(:state=>:ready)
+  scope :active, where('state != ?', :destroy)
+  scope :destroyed, where(:state=>:destroy)
   scope :order_by_version, order(:version)
+  scope :reverse_order_by_version, order("version DESC")
 
   belongs_to :app
 
@@ -28,6 +31,11 @@ class Bundle < ActiveRecord::Base
     state :new
     state :updating
     state :ready
+    state :destroy
+
+    event :set_destroy do
+      transition all => :destroy    
+    end
   end
 
   before_validation do
