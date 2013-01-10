@@ -28,17 +28,30 @@ class Bundle < ActiveRecord::Base
     state :new
     state :updating
     state :ready
+
+    event :publish do
+      transition :new => :ready
+    end
+
+    after_transition :new => :ready, :do => :set_app_bundle
   end
+
+  
 
   before_validation do
     self.supported_configurations ||= SupportedConfigurations.new
     self.uuid = UUID.new.generate
   end
 
-  after_create :generate_bundle
+  after_create :generate_bundle, :set_app_bundle
+  after_destroy :set_app_bundle
 
   def generate_bundle
     BundlePacker.new(self).generate
+  end
+
+  def set_app_bundle
+    self.app.set_last_bundle
   end
 
   def to_s
@@ -86,7 +99,7 @@ class Bundle < ActiveRecord::Base
   rescue
     self.version = nil
   end
-
+    
   private
 
   def set_version
