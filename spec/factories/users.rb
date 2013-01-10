@@ -5,8 +5,8 @@ FactoryGirl.define do
 
   factory :user do
     email
-    password 'please'
-    # password_confirmation 'please'
+    password '123456'
+    password_confirmation '123456'
     # avatar  { Rack::Test::UploadedFile.new('spec/fixtures/goaway.jpeg', 'image/jpg') }
   end
 end
