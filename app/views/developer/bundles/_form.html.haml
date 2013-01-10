@@ -1,7 +1,9 @@
 = simple_form_for [:developer, @app, @bundle] do |f|
   .row
-    .span6
+    .span12
       = f.error_notification
+  .row
+    .span6
       = f.input :version_str, :as => :version
       = f.input :source_file, :as => :file
     %fieldset

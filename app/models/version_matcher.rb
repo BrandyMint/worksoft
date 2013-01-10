@@ -10,6 +10,7 @@ class VersionMatcher
   attr_accessor :version1, :version2, :matcher
 
   def self.parse str
+    str.strip!
     if /^(=|>|>=|!|)([0-9\.]+)$/.match str
       new $1, $2
     elsif /([0-9\.]+)\-([0-9\.]+)/.match str
@@ -28,6 +29,16 @@ class VersionMatcher
       @version2 = Version.new version2
 
       raise "Second version must be more than first" unless version2>version1
+    end
+  end
+
+  def to_s
+    if matcher == '='
+      version1.to_s
+    elsif matcher == '-'
+      version1.to_s + '-' + version2.to_s
+    else
+      matcher + version1.to_s
     end
   end
 

@@ -18,13 +18,9 @@ class Bundle < ActiveRecord::Base
   validates :version, :presence => true
   validates :source_file, :presence => true
 
-  #validates :version1c, :presence => true
-  #validates :versionconf, :presence => true
-  #validates :nameconf, :presence => true
-  #
+  validates :supported_kernel_versions, :presence => true, :versions => true
 
   composed_of :version, :allow_nil => true
-  # composed_of :supported_configurations
   delegate :name, :desc, :to => :app
 
   state_machine :state, :initial => :new do
