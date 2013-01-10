@@ -1,11 +1,11 @@
 {
   "built_on": "master",
-  "duration": 35.984,
-  "full_display_name": "worksoft #31",
-  "id": "2013-01-10_16-41-37",
-  "number": 31,
-  "result": "FAILURE",
+  "duration": 420.373,
+  "full_display_name": "ges #880",
+  "id": "2013-01-10_16-36-00",
+  "number": 880,
+  "result": "SUCCESS",
   "status_message": "?",
-  "time": "2013-01-10 15:41:37 +0300",
-  "url": "job/worksoft/31/"
+  "time": "2013-01-10 15:36:00 +0300",
+  "url": "job/ges/880/"
 }
