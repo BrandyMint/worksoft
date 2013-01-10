@@ -1,0 +1,9 @@
+= simple_form_for @app, :url => @app.persisted? ? developer_app_path(@app) : developer_apps_path, :html => { :class => 'form-vertical', :method=>@app.persisted? ? :put : :post } do |f|
+  = f.error_notification
+  = f.input :name
+  = f.input :icon, :as => :file
+  = f.input :desc
+  .actions
+    = f.button :submit, :class => 'btn btn-primary'
+
+

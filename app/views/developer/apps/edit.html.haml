@@ -1,0 +1,8 @@
+.page-header
+  %h2 Редактируем приложение #{@app.id}
+  %small
+    Статус приложения:
+    = state_label @app
+
+= render 'form'
+
