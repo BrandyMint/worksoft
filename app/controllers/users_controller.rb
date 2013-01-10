@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new params[:user]
     if @user.save
       auto_login @user
-      redirect_to root_url, :notice => 'Спасибо за регистрацию!'
+      redirect_to root_url, :notice => t('notice.registred')
     else
       render :new
     end
