@@ -101,6 +101,9 @@ group :test do
   gem 'guard-bundler'
   gem 'guard-ctags-bundler'
   gem "database_cleaner"
+  gem "capybara"
+  gem 'capybara-screenshot'
+  gem 'poltergeist'
   gem "launchy", ">= 2.1.2"
   gem "factory_girl_rails", ">= 4.0.0"
 end
