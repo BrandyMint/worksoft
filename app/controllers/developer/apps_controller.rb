@@ -20,7 +20,7 @@ class Developer::AppsController < Developer::BaseController
   end
 
   def show
-    redirect_to developer_apps_path
+    @app = App.find params[:id]
   end
 
   def index

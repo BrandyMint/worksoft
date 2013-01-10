@@ -19,6 +19,12 @@ class Developer::BundlesController < Developer::BaseController
     end
   end
 
+  def destroy
+    bundle = Bundle.find params[:id]
+    bundle.set_destroy
+    redirect_to developer_app_path(bundle.app)    
+  end
+
   private
 
   def app
