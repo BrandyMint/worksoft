@@ -11,7 +11,15 @@ ru:
       bundle:
     placeholders:
       bundle:
+    buttons:
+      login: Войти
+      registration: Зарегистрироваться
   helpers:
     submit:
       bundle:
         create: Загрузить
+  notice:
+    logged_in: Вы успешно авторизовались.
+    logged_out: Вы вышли из системы.
+    registred: Вы успешно зарегистрировались.
+    auth_failed: Неверная пара логин/пароль.
