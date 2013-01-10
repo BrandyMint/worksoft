@@ -1,5 +1,5 @@
 class Bundle < ActiveRecord::Base
-  attr_accessible :source_file, :version, :app, :app_id, :changelog, :version_str
+  attr_accessible :source_file, :version, :app, :app_id, :changelog, :version_str, :supported_kernel_versions
 
   mount_uploader :source_file, FileUploader
   mount_uploader :bundle_file, FileUploader
