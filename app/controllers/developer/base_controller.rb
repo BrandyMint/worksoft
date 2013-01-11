@@ -13,7 +13,7 @@ class Developer::BaseController < ApplicationController
     require_login
 
     if logged_in? && ! current_user.developer_profile.present?
-      redirect_to new_developer_profile_path, :notice => 'Для управления профилем разработчика его необходимо сначала создать.'
+      redirect_to new_developer_profile_path, :notice => t('notice.you_need_to_be_developer')
     end
   end
 end
