@@ -9,6 +9,7 @@ ru:
         supported_kernel_versions: Поддерживаемые версии 1С
     hints:
       bundle:
+        supported_kernel_versions: "Например: 7.1, >7.5, 7.0-8.0, !7.2"
       registration:
         new: Зарегистрируйтесь.
     placeholders:

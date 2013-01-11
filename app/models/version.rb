@@ -51,7 +51,7 @@ class Version
   end
 
   def next
-    change 0, 1
+    change 0, 0, 1
   end
 
   private
