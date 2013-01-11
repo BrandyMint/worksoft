@@ -59,11 +59,11 @@ class App < ActiveRecord::Base
 
   def set_last_bundle
     if last_active_bundle
-      self.active_bundle = last_active_bundle
-      self.publish
+      update_attribute :active_bundle, last_active_bundle
+      publish
     else
       update_attribute :active_bundle, nil
-      self.idle
+      idle
     end
   end
 end
