@@ -1,11 +1,11 @@
 {
   "built_on": "master",
-  "duration": 146.446,
-  "full_display_name": "worksoft #47",
-  "id": "2013-01-11_09-57-38",
-  "number": 47,
-  "result": "SUCCESS",
+  "duration": 122.718,
+  "full_display_name": "Potee #208",
+  "id": "2013-01-11_09-57-59",
+  "number": 208,
+  "result": "FAILURE",
   "status_message": "?",
-  "time": "2013-01-11 08:57:38 +0300",
-  "url": "job/worksoft/47/"
+  "time": "2013-01-11 08:57:59 +0300",
+  "url": "job/Potee/208/"
 }
