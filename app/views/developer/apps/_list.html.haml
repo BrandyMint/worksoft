@@ -5,6 +5,7 @@
       %th Приложение
       %th Статус
       %th Версии
+      %th Активный билд
       %th Действия
   - @apps.each do |app|
     %tr
@@ -22,6 +23,8 @@
       %td
         - app.bundles.each do |bundle|
           = link_to bundle.version, developer_app_path(app, :anchor => "bundle_#{bundle.id}")
+      %td
+        = link_to "скачать", app.active_bundle.bundle_file.to_s if app.active_bundle
 
       %td
         = link_to new_developer_app_bundle_path(app), :class => 'btn btn-small btn-success' do
