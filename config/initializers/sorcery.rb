@@ -3,7 +3,7 @@
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
 #Rails.application.config.sorcery.submodules = [:core, :external, :http_basic_auth, :reset_password, :remember_me]
-Rails.application.config.sorcery.submodules = [:core, :http_basic_auth]
+Rails.application.config.sorcery.submodules = [:core, :http_basic_auth, :user_activation]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -217,7 +217,7 @@ Rails.application.config.sorcery.configure do |config|
     # your mailer class. Required.
     # Default: `nil`
     #
-    # user.user_activation_mailer =
+    user.user_activation_mailer = UserMailer
 
 
     # when true sorcery will not automatically
@@ -243,7 +243,7 @@ Rails.application.config.sorcery.configure do |config|
     # do you want to prevent or allow users that did not activate by email to login?
     # Default: `true`
     #
-    # user.prevent_non_active_users_to_login =
+    user.prevent_non_active_users_to_login = false
 
 
     # -- reset_password --

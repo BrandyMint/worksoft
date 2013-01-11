@@ -1,4 +1,6 @@
 Worksoft::Application.routes.draw do
+  self.default_url_options Settings.default_url_options.to_hash
+
   ActiveAdmin.routes(self)
 
   root :to => 'apps#index'
@@ -18,10 +20,14 @@ Worksoft::Application.routes.draw do
   resources :developers, :only => [:index, :show]
 
   resources :user_sessions
+
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
+  match 'users/activate/:token' => 'users#activate', :as => :activate_user
+  match 'users/resend_activation' => 'users#resend_activation', :as => :resend_activation
 
   resources :users, :only => [:new, :create]
+
   get "profile", :to => "users#profile"
 
   resources :apps, :only => [:index, :show]
