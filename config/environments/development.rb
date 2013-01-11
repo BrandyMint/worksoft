@@ -14,8 +14,14 @@ Worksoft::Application.configure do
   config.action_controller.perform_caching = false
   config.serve_static_assets = true
 
-  # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  # ActionMailer Config
+  config.action_mailer.default_url_options = Settings.default_url_options.to_hash
+  config.action_mailer.smtp_settings = Settings.smtp_settings.to_hash
+  config.action_mailer.delivery_method = :smtp
+  # change to true to allow email to be sent during development
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log

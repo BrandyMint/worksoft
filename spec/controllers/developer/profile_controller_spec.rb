@@ -24,6 +24,7 @@ describe Developer::ProfileController do
 
   describe "GET 'update'" do
     it "returns http success" do
+      user.activate!
       get 'update'
       response.should be_redirect
     end
@@ -31,6 +32,7 @@ describe Developer::ProfileController do
 
   describe "GET 'edit'" do
     it "returns http success" do
+      user.activate!
       FactoryGirl.create :developer_profile, :user => user
       get 'edit'
       response.should be_success
