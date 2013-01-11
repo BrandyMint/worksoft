@@ -5,8 +5,8 @@ feature 'Login', :js => true do
   before do
     @user = FactoryGirl.create(:user)
   end  
-    
-  scenario 'user should login' do
+
+  scenario 'developer should login' do
    capybara_sign_in_user @user
    page.body.should have_content I18n.t('notice.logged_in')
   end
