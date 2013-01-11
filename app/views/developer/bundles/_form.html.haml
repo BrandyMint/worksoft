@@ -1,10 +1,13 @@
 = simple_form_for [:developer, @app, @bundle] do |f|
   .row
-    .span6
+    .span12
       = f.error_notification
-      = f.input :version
+  .row
+    .span6
+      = f.input :version_str
       = f.input :source_file, :as => :file
     %fieldset
+      = f.input :supported_kernel_versions, :as => :string
       -#= f.input :version1c
       -#= f.input :nameconf
       -#= f.input :versionconf

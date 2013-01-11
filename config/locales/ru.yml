@@ -3,13 +3,29 @@ ru:
     labels:
       bundle:
         version: Номер версии
+        version_str: Номер версии
         source_file: Файл
         changelog: Описание изменений
+        supported_kernel_versions: Поддерживаемые версии 1С
     hints:
       bundle:
+      registration:
+        new: Зарегистрируйтесь.
     placeholders:
       bundle:
+    buttons:
+      login: Войти
+      registration: Зарегистрироваться
+      save: Сохранить
   helpers:
     submit:
       bundle:
         create: Загрузить
+  notice:
+    logged_in: Вы успешно авторизовались.
+    logged_out: Вы вышли из системы.
+    registred: Вы успешно зарегистрировались.
+    auth_failed: Неверная пара логин/пароль.
+    you_need_to_be_developer: Для управления профилем разработчика его необходимо сначала создать.
+  developer:
+    dashboard: Профиль разработчика

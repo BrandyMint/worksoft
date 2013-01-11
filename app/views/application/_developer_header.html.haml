@@ -1,9 +1,7 @@
 .page-header
   .pull-right= image_tag developer_profile.avatar.thumb_48.url
-  %h1 Панель разработчика
-  %small
-    = developer_profile.name
-    -#= edit_link_to edit_developer_profile_path
+  %h1= developer_profile.name
+  %small Панель разработчика
 
 .nav.nav-pills
   = active_link_to 'Приложения', developer_apps_path, :wrap_tag => :li, :active => :exclusive

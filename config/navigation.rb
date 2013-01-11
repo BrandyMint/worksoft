@@ -3,7 +3,9 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     primary.item :apps, 'Приложения', apps_path
     primary.item :developers, 'Разработчики', developers_path
-    primary.item :dashboard, 'Панель разработчика', developer_dashboard_path
+    primary.item :dashboard, 'Панель разработчика',
+      developer_dashboard_path,
+      :highlights_on => Proc.new { controller.is_a? Developer::BaseController }
 
     if logged_in?
       primary.item :profile, current_user, profile_path

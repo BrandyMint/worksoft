@@ -11,9 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108135301) do
-
-  add_extension "hstore"
+ActiveRecord::Schema.define(:version => 20130109115449) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -38,22 +36,23 @@ ActiveRecord::Schema.define(:version => 20130108135301) do
     t.datetime "updated_at",                              :null => false
     t.text     "desc"
     t.string   "icon"
+    t.integer  "active_bundle_id"
   end
 
   add_index "apps", ["name"], :name => "index_apps_on_name", :unique => true
 
   create_table "bundles", :force => true do |t|
     t.text     "changelog"
-    t.string   "version",                                                                       :null => false
-    t.datetime "created_at",                                                                    :null => false
-    t.datetime "updated_at",                                                                    :null => false
+    t.datetime "created_at",                                                                                 :null => false
+    t.datetime "updated_at",                                                                                 :null => false
     t.string   "source_file"
     t.string   "bundle_file"
     t.string   "state"
-    t.string   "uuid",                      :default => "7112ded0-1f9b-0130-60de-746d04736cf8", :null => false
-    t.integer  "app_id",                                                                        :null => false
+    t.string   "uuid",                                   :default => "7112ded0-1f9b-0130-60de-746d04736cf8", :null => false
+    t.integer  "app_id",                                                                                     :null => false
     t.text     "supported_configurations"
     t.text     "supported_kernel_versions"
+    t.integer  "version",                   :limit => 8, :default => 10000,                                  :null => false
   end
 
   add_index "bundles", ["app_id", "version"], :name => "index_bundles_on_app_id_and_version", :unique => true

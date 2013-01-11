@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '>= 3.2.8'
 
 gem 'omniauth-identity'
-gem 'versionub'
+# gem 'versionub'
 # gem 'versionomy'
 
 gem 'inherited_resources'
@@ -75,6 +75,7 @@ gem 'rvm'
 gem 'unicorn'
 
 group :development do
+  gem 'commands'
   gem 'rb-inotify'
   gem "haml-rails", ">= 0.3.5"
   gem "hpricot", ">= 0.8.6"
@@ -91,16 +92,19 @@ end
 
 group :test do
   gem "rspec-rails", ">= 2.11.0"
-  gem 'poltergeist'
   gem "email_spec", ">= 1.2.1"
   gem "cucumber-rails", ">= 1.3.0", :require => false
   gem 'guard'
-  # gem 'guard-spork'
+  gem 'debugger' unless `whoami`=~/jenkins/
+  gem 'guard-spork'
   gem 'guard-rspec'
   gem 'guard-rails'
   gem 'guard-bundler'
   gem 'guard-ctags-bundler'
   gem "database_cleaner"
+  gem "capybara"
+  gem 'capybara-screenshot'
+  gem 'poltergeist', :git => 'git://github.com/mjtko/poltergeist.git', :branch => 'fix/upload-file-path-should-be-string'
   gem "launchy", ">= 2.1.2"
   gem "factory_girl_rails", ">= 4.0.0"
 end

@@ -1,12 +1,26 @@
 # -*- coding: utf-8 -*-
 class Developer::AppsController < Developer::BaseController
+
+  before_filter :app, :only => [:edit, :show, :update]
+
   def new
     @app ||= App.new
   end
 
+  def edit
+  end
+
+  def update
+    if app.update_attributes params[:app]
+      redirect_to new_developer_app_bundle_path(app), :notice => 'Приложение обновлено'
+    else
+      render :action => :edit
+    end
+
+  end
+
   def show
     @app = App.find params[:id]
-    redirect_to developer_apps_path
   end
 
   def index
@@ -21,5 +35,10 @@ class Developer::AppsController < Developer::BaseController
     else
       render :action => :new
     end
+  end
+
+  private
+  def app
+    @app = developer_profile.apps.find params[:id]
   end
 end

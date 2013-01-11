@@ -1,0 +1,37 @@
+%table.table.table-condensed
+  %thead
+    %tr
+      %th
+      %th Приложение
+      %th Статус
+      %th Версии
+      %th Активный билд
+      %th Действия
+  - @apps.each do |app|
+    %tr
+      %td.span1
+        = link_to developer_app_path(app) do
+          = image_tag app.icon.thumb_48.url, :class => 'img-rounded'
+      %td
+        = "##{app.id}"
+        = link_to developer_app_path(app) do
+          = app.name
+        %br
+        %small.muted= app.kind
+      %td
+        =state_label app
+      %td
+        - app.bundles.each do |bundle|
+          = link_to bundle.version, developer_app_path(app, :anchor => "bundle_#{bundle.id}")
+      %td
+        = link_to "скачать", app.active_bundle.bundle_file.to_s if app.active_bundle
+
+      %td
+        = link_to new_developer_app_bundle_path(app), :class => 'btn btn-small btn-success' do
+          %i.icon.icon-white.icon-hdd
+          Загрузить новую версию
+        = link_to edit_developer_app_path(app), :class => "btn btn-small" do
+          %i.icon.icon-edit
+          Настройка 
+
+
