@@ -22,6 +22,18 @@ GIT
       oauth2 (~> 0.8.0)
 
 GIT
+  remote: git://github.com/mjtko/poltergeist.git
+  revision: 3c94b462c448fe14052a2df647078bb15653dfff
+  branch: fix/upload-file-path-should-be-string
+  specs:
+    poltergeist (1.0.2)
+      capybara (~> 1.1)
+      childprocess (~> 0.3)
+      faye-websocket (~> 0.4, >= 0.4.4)
+      http_parser.rb (~> 0.5.3)
+      multi_json (~> 1.0)
+
+GIT
   remote: git://github.com/vmg/redcarpet.git
   revision: 6f515c21d2854778e1355a75a310f3b6d20acb35
   specs:
@@ -195,6 +207,10 @@ GEM
     guard-rspec (2.3.3)
       guard (>= 1.1)
       rspec (~> 2.11)
+    guard-spork (1.4.1)
+      childprocess (>= 0.2.3)
+      guard (>= 1.1)
+      spork (>= 0.8.4)
     haml (3.1.7)
     haml-rails (0.3.5)
       actionpack (>= 3.1, < 4.1)
@@ -275,12 +291,6 @@ GEM
     orm_adapter (0.4.0)
     pg (0.14.1)
     pg_array_parser (0.0.8)
-    poltergeist (1.0.2)
-      capybara (~> 1.1)
-      childprocess (~> 0.3)
-      faye-websocket (~> 0.4, >= 0.4.4)
-      http_parser.rb (~> 0.5.3)
-      multi_json (~> 1.0)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -374,6 +384,7 @@ GEM
       actionpack (~> 3.0)
       activemodel (~> 3.0)
     slop (3.3.3)
+    spork (0.9.2)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -445,6 +456,7 @@ DEPENDENCIES
   guard-ctags-bundler
   guard-rails
   guard-rspec
+  guard-spork
   haml (>= 3.1.7)
   haml-rails (>= 0.3.5)
   hpricot (>= 0.8.6)
@@ -456,7 +468,7 @@ DEPENDENCIES
   mini_magick
   omniauth-identity
   pg
-  poltergeist
+  poltergeist!
   postgres_ext
   rails (>= 3.2.8)
   rails_config
