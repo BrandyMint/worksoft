@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class App < ActiveRecord::Base
-  attr_accessible :name, :icon, :desc, :active_bundle_id
+  attr_accessible :name, :icon, :desc
 
   belongs_to :developer_profile, :counter_cache => true
   belongs_to :active_bundle, :class_name => 'Bundle'

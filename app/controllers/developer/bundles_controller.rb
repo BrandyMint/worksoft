@@ -21,7 +21,7 @@ class Developer::BundlesController < Developer::BaseController
 
   def destroy
     bundle = Bundle.find params[:id]
-    bundle.set_destroy
+    bundle.destroy
     redirect_to developer_app_path(bundle.app)    
   end
 

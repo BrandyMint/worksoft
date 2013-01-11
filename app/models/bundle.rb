@@ -103,6 +103,10 @@ class Bundle < ActiveRecord::Base
   rescue
     self.version = nil
   end
+
+  def destroy
+    set_destroy
+  end
     
   private
 
