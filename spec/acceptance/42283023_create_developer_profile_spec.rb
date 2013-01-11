@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 require 'acceptance/acceptance_helper'
-feature 'Registration', %q{
+feature 'Регистрация разработчика (создание профиля)', %q{
   На гланвную страницу заходит пользователь, не имеющий профиля разработчика.
   Идет на страницу /developer/ 
   Так как он не имеет профиля, его кидает на страницу регистрации разработчика.
@@ -24,6 +24,7 @@ feature 'Registration', %q{
     
     fill_in 'developer_profile_name', :with => 'developer_username'
     #TODO разобраться с загрузкой изображения https://github.com/jonleighton/poltergeist/issues/115
+    debugger
     #attach_file('developer_profile_avatar', Rails.root + 'spec/fixtures/upic.gif')
     find('.btn-primary').click
     page.body.should have_content "developer_username"
