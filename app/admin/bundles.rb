@@ -2,7 +2,7 @@
 ActiveAdmin.register Bundle do
   # decorate_with BundleDecorator
   #
-  FIELDS = [:name, :version, :version1c, :versionconf, :nameconf ]
+  FIELDS = [:name, :version, :supported_kernel_versions ]
 
   filter :name
   filter :state, :as => :select, :collection => Bundle.state_machine.states.map( &:value )
@@ -18,6 +18,9 @@ ActiveAdmin.register Bundle do
   end
 
   index do
+    column :app do |bundle|
+      link_to bundle.app, admin_app_path(bundle.app)
+    end
     FIELDS.each do |a|
       column a
     end
@@ -29,19 +32,15 @@ ActiveAdmin.register Bundle do
     f.inputs do
       f.input :name
       f.input :state, :collection => Bundle.state_machine.states.map( &:value )
-      f.input :version
+      f.input :version_str
       f.input :source_file, :as => :file
       f.input :icon, :as => :file
     end
 
     f.inputs 'Ограничения' do
-      f.input :version1c
-      f.input :versionconf
-      f.input :nameconf
-    end
-
-    f.inputs do
-      f.input :desc
+      f.input :supported_kernel_versions
+      #f.input :versionconf
+      #f.input :nameconf
     end
 
     f.buttons
