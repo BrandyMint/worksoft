@@ -13,6 +13,8 @@
 
 ActiveRecord::Schema.define(:version => 20130109115449) do
 
+  add_extension "hstore"
+
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
     t.string   "resource_type", :null => false
@@ -94,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20130109115449) do
     t.string   "salt"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+    t.string   "name"
     t.integer  "developer_profile_id"
   end
 

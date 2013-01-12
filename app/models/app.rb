@@ -26,7 +26,7 @@ class App < ActiveRecord::Base
     end
   end
 
-  delegate :version, :to => :last_bundle, :allow_nil => true
+  delegate :version, :to => :active_bundle, :allow_nil => true
 
   def last_bundle
     bundles.order_by_version.last
@@ -46,8 +46,8 @@ class App < ActiveRecord::Base
   end
 
   def next_version
-    if version.present?
-      version.next
+    if last_bundle.present?
+      last_bundle.version.next
     else
       Version.new '0.1'
     end

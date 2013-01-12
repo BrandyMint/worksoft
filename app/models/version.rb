@@ -47,7 +47,7 @@ class Version
   # Возвращает новый Version с изменениями из параметров
   #
   def change mjd, mid=0, pd=0
-    Version.new [major+mjd, minor+mid, pd]
+    Version.new [major+mjd, minor+mid, patch+pd]
   end
 
   def next
