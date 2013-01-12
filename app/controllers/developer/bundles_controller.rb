@@ -7,7 +7,7 @@ class Developer::BundlesController < Developer::BaseController
   end
 
   def new
-    @bundle ||= Bundle.new :version => app.next_version
+    @bundle ||= app.bundles.build
   end
 
   def create

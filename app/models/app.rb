@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+require 'app_bundle_defaults_extenstion'
 class App < ActiveRecord::Base
   attr_accessible :name, :icon, :desc
 
   belongs_to :developer_profile, :counter_cache => true
   belongs_to :active_bundle, :class_name => 'Bundle'
-  has_many :bundles
+  has_many :bundles, :extend => AppBundleDefaultsExtension
 
   mount_uploader :icon, ImageUploader
 
@@ -43,14 +44,6 @@ class App < ActiveRecord::Base
 
   def to_s
     name
-  end
-
-  def next_version
-    if last_bundle.present?
-      last_bundle.version.next
-    else
-      Version.new '0.1'
-    end
   end
 
   def last_active_bundle

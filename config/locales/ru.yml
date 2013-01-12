@@ -14,6 +14,7 @@ ru:
         new: Зарегистрируйтесь.
     placeholders:
       bundle:
+        supported_kernel_versions: ">=7.0"
     buttons:
       login: Войти
       registration: Зарегистрироваться
