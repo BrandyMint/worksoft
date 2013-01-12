@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #Конфик мультистейджа. Должен быть в начале.
 #Стейдж нельзя называть 'stage', поэтому зовем его 'staging'
 set :stages, %w(production staging)
@@ -45,3 +46,21 @@ require "recipes0/nginx"
 require "recipes0/init_d/unicorn"
 #require "recipes0/init_d/delayed_job"
 
+namespace :app do
+  desc "Загружает uploads с удаленного сервера на локальный"
+  task :pull_uploads, roles => :web, :except => { :no_release => true } do
+    server = find_servers_for_task(current_task).first
+
+    ssh_port = server.port || ssh_options[:port] || 22
+    ssh_user = fetch(:user)
+    ssh_server = ssh_user ? "#{ssh_user}@#{server.host}" : server.host
+
+    run_locally("rsync -az --stats --delete --rsh='ssh -p #{ssh_port}' #{ssh_server}:#{current_path}/public/uploads/ public/uploads/")
+  end
+
+  desc "Загружает базу и uploads с удаленного серевра на локальный"
+  task :pull do
+    db.pull
+    app.pull_uploads
+  end
+end

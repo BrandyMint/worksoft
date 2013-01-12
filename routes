@@ -1,66 +1,84 @@
-                       admin_root        /admin(.:format)                                   admin/dashboard#index
-                  admin_dashboard        /admin/dashboard(.:format)                         admin/dashboard#index
-batch_action_admin_configurations POST   /admin/configurations/batch_action(.:format)       admin/configurations#batch_action
-             admin_configurations GET    /admin/configurations(.:format)                    admin/configurations#index
-                                  POST   /admin/configurations(.:format)                    admin/configurations#create
-          new_admin_configuration GET    /admin/configurations/new(.:format)                admin/configurations#new
-         edit_admin_configuration GET    /admin/configurations/:id/edit(.:format)           admin/configurations#edit
-              admin_configuration GET    /admin/configurations/:id(.:format)                admin/configurations#show
-                                  PUT    /admin/configurations/:id(.:format)                admin/configurations#update
-                                  DELETE /admin/configurations/:id(.:format)                admin/configurations#destroy
-            generate_admin_bundle GET    /admin/bundles/:id/generate(.:format)              admin/bundles#generate
-       batch_action_admin_bundles POST   /admin/bundles/batch_action(.:format)              admin/bundles#batch_action
-                    admin_bundles GET    /admin/bundles(.:format)                           admin/bundles#index
-                                  POST   /admin/bundles(.:format)                           admin/bundles#create
-                 new_admin_bundle GET    /admin/bundles/new(.:format)                       admin/bundles#new
-                edit_admin_bundle GET    /admin/bundles/:id/edit(.:format)                  admin/bundles#edit
-                     admin_bundle GET    /admin/bundles/:id(.:format)                       admin/bundles#show
-                                  PUT    /admin/bundles/:id(.:format)                       admin/bundles#update
-                                  DELETE /admin/bundles/:id(.:format)                       admin/bundles#destroy
-      batch_action_admin_comments POST   /admin/comments/batch_action(.:format)             admin/comments#batch_action
-                   admin_comments GET    /admin/comments(.:format)                          admin/comments#index
-                                  POST   /admin/comments(.:format)                          admin/comments#create
-                    admin_comment GET    /admin/comments/:id(.:format)                      admin/comments#show
-                             root        /                                                  apps#index
-              developer_dashboard GET    /developer/dashboard(.:format)                     developer/dashboard#show
-                developer_profile POST   /developer/profile(.:format)                       developer/profile#create
-            new_developer_profile GET    /developer/profile/new(.:format)                   developer/profile#new
-           edit_developer_profile GET    /developer/profile/edit(.:format)                  developer/profile#edit
-                                  GET    /developer/profile(.:format)                       developer/profile#show
-                                  PUT    /developer/profile(.:format)                       developer/profile#update
-                                  DELETE /developer/profile(.:format)                       developer/profile#destroy
-            developer_app_bundles GET    /developer/apps/:app_id/bundles(.:format)          developer/bundles#index
-                                  POST   /developer/apps/:app_id/bundles(.:format)          developer/bundles#create
-         new_developer_app_bundle GET    /developer/apps/:app_id/bundles/new(.:format)      developer/bundles#new
-        edit_developer_app_bundle GET    /developer/apps/:app_id/bundles/:id/edit(.:format) developer/bundles#edit
-             developer_app_bundle GET    /developer/apps/:app_id/bundles/:id(.:format)      developer/bundles#show
-                                  PUT    /developer/apps/:app_id/bundles/:id(.:format)      developer/bundles#update
-                                  DELETE /developer/apps/:app_id/bundles/:id(.:format)      developer/bundles#destroy
-                   developer_apps GET    /developer/apps(.:format)                          developer/apps#index
-                                  POST   /developer/apps(.:format)                          developer/apps#create
-                new_developer_app GET    /developer/apps/new(.:format)                      developer/apps#new
-               edit_developer_app GET    /developer/apps/:id/edit(.:format)                 developer/apps#edit
-                    developer_app GET    /developer/apps/:id(.:format)                      developer/apps#show
-                                  PUT    /developer/apps/:id(.:format)                      developer/apps#update
-                                  DELETE /developer/apps/:id(.:format)                      developer/apps#destroy
-                       developers GET    /developers(.:format)                              developers#index
-                        developer GET    /developers/:id(.:format)                          developers#show
-                    user_sessions GET    /user_sessions(.:format)                           user_sessions#index
-                                  POST   /user_sessions(.:format)                           user_sessions#create
-                 new_user_session GET    /user_sessions/new(.:format)                       user_sessions#new
-                edit_user_session GET    /user_sessions/:id/edit(.:format)                  user_sessions#edit
-                     user_session GET    /user_sessions/:id(.:format)                       user_sessions#show
-                                  PUT    /user_sessions/:id(.:format)                       user_sessions#update
-                                  DELETE /user_sessions/:id(.:format)                       user_sessions#destroy
-                            login        /login(.:format)                                   user_sessions#new
-                           logout        /logout(.:format)                                  user_sessions#destroy
-                            users GET    /users(.:format)                                   users#index
-                                  POST   /users(.:format)                                   users#create
-                         new_user GET    /users/new(.:format)                               users#new
-                        edit_user GET    /users/:id/edit(.:format)                          users#edit
-                             user GET    /users/:id(.:format)                               users#show
-                                  PUT    /users/:id(.:format)                               users#update
-                                  DELETE /users/:id(.:format)                               users#destroy
-                          profile GET    /profile(.:format)                                 users#profile
-                             apps GET    /apps(.:format)                                    apps#index
-                              app GET    /apps/:id(.:format)                                apps#show
+                           admin_root        /admin(.:format)                                      admin/dashboard#index
+batch_action_admin_developer_profiles POST   /admin/developer_profiles/batch_action(.:format)      admin/developer_profiles#batch_action
+             admin_developer_profiles GET    /admin/developer_profiles(.:format)                   admin/developer_profiles#index
+                                      POST   /admin/developer_profiles(.:format)                   admin/developer_profiles#create
+          new_admin_developer_profile GET    /admin/developer_profiles/new(.:format)               admin/developer_profiles#new
+         edit_admin_developer_profile GET    /admin/developer_profiles/:id/edit(.:format)          admin/developer_profiles#edit
+              admin_developer_profile GET    /admin/developer_profiles/:id(.:format)               admin/developer_profiles#show
+                                      PUT    /admin/developer_profiles/:id(.:format)               admin/developer_profiles#update
+                                      DELETE /admin/developer_profiles/:id(.:format)               admin/developer_profiles#destroy
+              batch_action_admin_apps POST   /admin/apps/batch_action(.:format)                    admin/apps#batch_action
+                           admin_apps GET    /admin/apps(.:format)                                 admin/apps#index
+                                      POST   /admin/apps(.:format)                                 admin/apps#create
+                        new_admin_app GET    /admin/apps/new(.:format)                             admin/apps#new
+                       edit_admin_app GET    /admin/apps/:id/edit(.:format)                        admin/apps#edit
+                            admin_app GET    /admin/apps/:id(.:format)                             admin/apps#show
+                                      PUT    /admin/apps/:id(.:format)                             admin/apps#update
+                                      DELETE /admin/apps/:id(.:format)                             admin/apps#destroy
+             batch_action_admin_users POST   /admin/users/batch_action(.:format)                   admin/users#batch_action
+                          admin_users GET    /admin/users(.:format)                                admin/users#index
+                                      POST   /admin/users(.:format)                                admin/users#create
+                       new_admin_user GET    /admin/users/new(.:format)                            admin/users#new
+                      edit_admin_user GET    /admin/users/:id/edit(.:format)                       admin/users#edit
+                           admin_user GET    /admin/users/:id(.:format)                            admin/users#show
+                                      PUT    /admin/users/:id(.:format)                            admin/users#update
+                                      DELETE /admin/users/:id(.:format)                            admin/users#destroy
+                      admin_dashboard        /admin/dashboard(.:format)                            admin/dashboard#index
+    batch_action_admin_configurations POST   /admin/configurations/batch_action(.:format)          admin/configurations#batch_action
+                 admin_configurations GET    /admin/configurations(.:format)                       admin/configurations#index
+                                      POST   /admin/configurations(.:format)                       admin/configurations#create
+              new_admin_configuration GET    /admin/configurations/new(.:format)                   admin/configurations#new
+             edit_admin_configuration GET    /admin/configurations/:id/edit(.:format)              admin/configurations#edit
+                  admin_configuration GET    /admin/configurations/:id(.:format)                   admin/configurations#show
+                                      PUT    /admin/configurations/:id(.:format)                   admin/configurations#update
+                                      DELETE /admin/configurations/:id(.:format)                   admin/configurations#destroy
+                generate_admin_bundle GET    /admin/bundles/:id/generate(.:format)                 admin/bundles#generate
+           batch_action_admin_bundles POST   /admin/bundles/batch_action(.:format)                 admin/bundles#batch_action
+                        admin_bundles GET    /admin/bundles(.:format)                              admin/bundles#index
+                                      POST   /admin/bundles(.:format)                              admin/bundles#create
+                     new_admin_bundle GET    /admin/bundles/new(.:format)                          admin/bundles#new
+                    edit_admin_bundle GET    /admin/bundles/:id/edit(.:format)                     admin/bundles#edit
+                         admin_bundle GET    /admin/bundles/:id(.:format)                          admin/bundles#show
+                                      PUT    /admin/bundles/:id(.:format)                          admin/bundles#update
+                                      DELETE /admin/bundles/:id(.:format)                          admin/bundles#destroy
+          batch_action_admin_comments POST   /admin/comments/batch_action(.:format)                admin/comments#batch_action
+                       admin_comments GET    /admin/comments(.:format)                             admin/comments#index
+                                      POST   /admin/comments(.:format)                             admin/comments#create
+                        admin_comment GET    /admin/comments/:id(.:format)                         admin/comments#show
+                                 root        /                                                     apps#index
+                  developer_dashboard GET    /developer/dashboard(.:format)                        developer/dashboard#show
+                    developer_profile POST   /developer/profile(.:format)                          developer/profile#create
+                new_developer_profile GET    /developer/profile/new(.:format)                      developer/profile#new
+               edit_developer_profile GET    /developer/profile/edit(.:format)                     developer/profile#edit
+                                      PUT    /developer/profile(.:format)                          developer/profile#update
+         restore_developer_app_bundle GET    /developer/apps/:app_id/bundles/:id/restore(.:format) developer/bundles#restore
+                developer_app_bundles GET    /developer/apps/:app_id/bundles(.:format)             developer/bundles#index
+                                      POST   /developer/apps/:app_id/bundles(.:format)             developer/bundles#create
+             new_developer_app_bundle GET    /developer/apps/:app_id/bundles/new(.:format)         developer/bundles#new
+            edit_developer_app_bundle GET    /developer/apps/:app_id/bundles/:id/edit(.:format)    developer/bundles#edit
+                 developer_app_bundle GET    /developer/apps/:app_id/bundles/:id(.:format)         developer/bundles#show
+                                      PUT    /developer/apps/:app_id/bundles/:id(.:format)         developer/bundles#update
+                                      DELETE /developer/apps/:app_id/bundles/:id(.:format)         developer/bundles#destroy
+                       developer_apps GET    /developer/apps(.:format)                             developer/apps#index
+                                      POST   /developer/apps(.:format)                             developer/apps#create
+                    new_developer_app GET    /developer/apps/new(.:format)                         developer/apps#new
+                   edit_developer_app GET    /developer/apps/:id/edit(.:format)                    developer/apps#edit
+                        developer_app GET    /developer/apps/:id(.:format)                         developer/apps#show
+                                      PUT    /developer/apps/:id(.:format)                         developer/apps#update
+                                      DELETE /developer/apps/:id(.:format)                         developer/apps#destroy
+                           developers GET    /developers(.:format)                                 developers#index
+                            developer GET    /developers/:id(.:format)                             developers#show
+                        user_sessions GET    /user_sessions(.:format)                              user_sessions#index
+                                      POST   /user_sessions(.:format)                              user_sessions#create
+                     new_user_session GET    /user_sessions/new(.:format)                          user_sessions#new
+                    edit_user_session GET    /user_sessions/:id/edit(.:format)                     user_sessions#edit
+                         user_session GET    /user_sessions/:id(.:format)                          user_sessions#show
+                                      PUT    /user_sessions/:id(.:format)                          user_sessions#update
+                                      DELETE /user_sessions/:id(.:format)                          user_sessions#destroy
+                                login        /login(.:format)                                      user_sessions#new
+                               logout        /logout(.:format)                                     user_sessions#destroy
+                                users POST   /users(.:format)                                      users#create
+                             new_user GET    /users/new(.:format)                                  users#new
+                              profile GET    /profile(.:format)                                    users#profile
+                                 apps GET    /apps(.:format)                                       apps#index
+                                  app GET    /apps/:id(.:format)                                   apps#show

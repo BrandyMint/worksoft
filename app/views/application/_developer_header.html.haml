@@ -4,7 +4,9 @@
   %small Панель разработчика
 
 .nav.nav-pills
-  = active_link_to 'Приложения', developer_apps_path, :wrap_tag => :li, :active => :exclusive
+  = active_link_to developer_apps_path, :wrap_tag => :li, :active => :exclusive do
+    Приложения
+    = counter developer_profile.apps.count
   = active_link_to 'Загрузка нового приложения', new_developer_app_path, :wrap_tag => :li
   = active_link_to 'Профиль разработчика', edit_developer_profile_path, :wrap_tag => :li
 

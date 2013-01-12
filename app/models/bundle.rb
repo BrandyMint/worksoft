@@ -30,17 +30,19 @@ class Bundle < ActiveRecord::Base
     state :destroy
 
     event :set_destroy do
-      transition all => :destroy    
+      transition all => :destroy
     end
 
     event :publish do
       transition :new => :ready
     end
 
+    event :restore do
+      transition [:new, :destroy] => :ready
+    end
+
     after_transition :new => :ready, :do => :set_app_bundle
   end
-
-  
 
   before_validation do
     self.supported_configurations ||= SupportedConfigurations.new
@@ -59,7 +61,7 @@ class Bundle < ActiveRecord::Base
   end
 
   def to_s
-    name
+    "#{name} #{version}"
   end
 
   def kind
@@ -107,7 +109,7 @@ class Bundle < ActiveRecord::Base
   def destroy
     set_destroy
   end
-    
+
   private
 
   def set_version

@@ -28,11 +28,7 @@
         = link_to "скачать", app.active_bundle.bundle_file.to_s if app.active_bundle
 
       %td
-        = link_to new_developer_app_bundle_path(app), :class => 'btn btn-small btn-success' do
-          %i.icon.icon-white.icon-hdd
-          Загрузить новую версию
-        = link_to edit_developer_app_path(app), :class => "btn btn-small" do
-          %i.icon.icon-edit
-          Настройка 
+        = upload_bundle_link app
+        = edit_app_link app
 
 

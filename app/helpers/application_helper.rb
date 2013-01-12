@@ -2,16 +2,22 @@
 module ApplicationHelper
   include BootstrapHelper
 
+  def span text
+    content_tag :span, text
+  end
+
+  def icon *classes
+    css = classes.map{|c| "icon-#{c}"}.join(' ')
+    content_tag :i, '', :class => "icon #{css}"
+  end
+
+  def counter count
+    count>0 ? "(#{count})" : ''
+  end
+
   def state_label object
     k = {'new' =>  'label-warning'}
     content_tag :span, object.human_state_name, :class => "label #{k[object.state]}"
-  end
-
-  def edit_link_to url
-    link_to url, :class => 'action-link' do
-      content_tag( :i, '', :class => 'icon icon-edit' ) <<
-      content_tag( :span, ' изменить' )
-    end
   end
 
   def developer_profile

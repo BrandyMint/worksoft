@@ -1,8 +1,2 @@
-.page-header
-  %h2 Редактируем приложение #{@app.id}
-  %small
-    Статус приложения:
-    = state_label @app
-
+= render 'app_header', :subtitle => 'Редактируем приложение'
 = render 'form'
-

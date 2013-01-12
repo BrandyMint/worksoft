@@ -1,0 +1,15 @@
+.page-header
+  .pull-right
+    = image_tag @app.icon.thumb_48.url, :class => 'img-rounded'
+  %h1
+    = @app.name
+    - disabled = (controller.is_a? Developer::AppsController and action_name == 'edit')
+    = edit_app_link @app, disabled ? :disabled : ''
+  %p= state_label @app
+
+-#.page-header
+  -#%h2
+    -#Редактируем приложение #{@app.id}
+  -#%small
+    -#Статус приложения:
+    -#= state_label @app

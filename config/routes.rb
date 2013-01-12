@@ -7,7 +7,11 @@ Worksoft::Application.routes.draw do
     get :dashboard, :to => 'dashboard#show'
     resource :profile, :controller => :profile, :only => [:new, :create, :edit, :update]
     resources :apps do
-      resources :bundles
+      resources :bundles do 
+        member do
+          get :restore
+        end
+      end
     end
   end
 

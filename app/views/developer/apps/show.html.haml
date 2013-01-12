@@ -1,47 +1,12 @@
-%h1= @app.name
-%p= state_label @app
-%p= image_tag @app.icon.thumb_48.url, :class => 'img-rounded'
-
+= render 'app_header', :subtitle => 'Редактируем приложение'
+%p.pull-right
+  = upload_bundle_link @app
 
 - unless @app.bundles.active.empty?
-  %h3= "Активные билды"
-  %table.table.table-condensed
-    %thead
-      %tr
-        %th Версия
-        %th Статус
-        %th Поддерживаются версии
-        %th Файл
-        %th Описание
-        %th
-      - @app.bundles.active.reverse_order_by_version.each do |bundle|
-        %tr
-          %td= bundle.version
-          %td= "bundle.status"
-          %td= bundle.supported_kernel_versions
-          %td= link_to "скачать", bundle.bundle_file.to_s
-          %td= bundle.changelog
-          %td= link_to "удалить", developer_app_bundle_path(@app, bundle), :method => :delete
+  %h3= "Активные версии"
+  = render 'bundles', :bundles => @app.bundles.active.reverse_order_by_version
 
 - unless @app.bundles.destroyed.empty?
-  %h3= "Неактивные билды"
-  %table.table.table-condensed
-    %thead
-      %tr
-        %th Версия
-        %th Статус
-        %th Поддерживаются версии
-        %th Описание
-      - @app.bundles.destroyed.reverse_order_by_version.each do |bundle|
-        %tr
-          %td= bundle.version
-          %td= "bundle.status"
-          %td= bundle.supported_kernel_versions
-          %td= bundle.changelog
-
-
-%p
-  = link_to new_developer_app_bundle_path(@app), :class => 'btn btn-small btn-success' do
-    %i.icon.icon-white.icon-hdd
-    Загрузить новую версию
+  %h3= "Неактивные версии"
+  = render 'bundles', :bundles => @app.bundles.destroyed.reverse_order_by_version
 

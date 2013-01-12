@@ -2,7 +2,7 @@ class VersionMatchers
   attr_accessor :list
 
   def initialize str
-    @list = str.split(',').map { |s| VersionMatcher.parse s }
+    @list = str.to_s.split(',').map { |s| VersionMatcher.parse s }
   end
 
   def to_s

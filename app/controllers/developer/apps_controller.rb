@@ -20,7 +20,6 @@ class Developer::AppsController < Developer::BaseController
   end
 
   def show
-    @app = App.find params[:id]
   end
 
   def index
@@ -38,6 +37,7 @@ class Developer::AppsController < Developer::BaseController
   end
 
   private
+
   def app
     @app = developer_profile.apps.find params[:id]
   end

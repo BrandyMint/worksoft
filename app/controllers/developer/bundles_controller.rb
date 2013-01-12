@@ -20,12 +20,20 @@ class Developer::BundlesController < Developer::BaseController
   end
 
   def destroy
-    bundle = Bundle.find params[:id]
     bundle.destroy
-    redirect_to developer_app_path(bundle.app)    
+    redirect_to developer_app_path(bundle.app), :notice => "Версия #{bundle} дезактивирована"
+  end
+
+  def restore
+    bundle.restore
+    redirect_to developer_app_path(bundle.app), :notice => "Версия #{bundle} активирована"
   end
 
   private
+
+  def bundle
+    app.bundles.find params[:id]
+  end
 
   def app
     @app ||= developer_profile.apps.find params[:app_id]
