@@ -1,3 +1,12 @@
+default_url_options:
+  host: worksoft.ru
+  port: 80
+
+smtp_settings:
+  host: worksoft.ru
+  port: 1025
+
+noreply_email: noreply@worksoft.ru
 
 application:
   title: WORKSOFT
