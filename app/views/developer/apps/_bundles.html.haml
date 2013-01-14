@@ -8,12 +8,12 @@
       %th Изменения
       %th
     - bundles.each do |bundle|
+      - db = BundleDecorator.new bundle
       %tr
         %td= bundle.version
-        %td= state_label bundle
-        %td= bundle.supported_kernel_versions
-        %td
-          = download_link bundle
+        %td= db.state
+        %td= db.support
+        %td= download_link bundle
         %td= bundle.changelog
         %td
           - if bundle.destroy?

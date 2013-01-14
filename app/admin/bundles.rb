@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 ActiveAdmin.register Bundle do
-  # decorate_with BundleDecorator
-  #
-  FIELDS = [:name, :version, :supported_kernel_versions ]
+  decorate_with BundleDecorator
 
   filter :name
   filter :state, :as => :select, :collection => Bundle.state_machine.states.map( &:value )
@@ -21,26 +19,25 @@ ActiveAdmin.register Bundle do
     column :app do |bundle|
       link_to bundle.app, admin_app_path(bundle.app)
     end
-    FIELDS.each do |a|
-      column a
-    end
+    column :source_file_link, :order => :source_file
+    column :bundle_file_link, :order => :bundle_file
+    column :version, :order => :version_number
+    column :support
 
     default_actions
   end
 
   form :html => { :multipart => true } do |f|
     f.inputs do
-      f.input :name
       f.input :state, :collection => Bundle.state_machine.states.map( &:value )
-      f.input :version_str
+      f.input :version
       f.input :source_file, :as => :file
       f.input :icon, :as => :file
+      f.input :changelog
     end
 
     f.inputs 'Ограничения' do
       f.input :supported_kernel_versions
-      #f.input :versionconf
-      #f.input :nameconf
     end
 
     f.buttons
@@ -49,7 +46,8 @@ ActiveAdmin.register Bundle do
   show do |bundle|
     h1 bundle.name
     attributes_table do
-      FIELDS.map { |f| row f}
+      row :version
+      row :support
       row :icon do
         image_tag bundle.icon.url if bundle.icon?
       end

@@ -2,7 +2,35 @@ class BundleDecorator < Draper::Base
   decorates :bundle
 
   def file
-    link_to bundle.name, bundle.file
+    link_to bundle.name, bundle.bundle_file
+  end
+
+  def source_file_link
+    h.link_to bundle.source_file.file.filename, bundle.source_file.url
+  end
+
+  def bundle_file_link
+    h.link_to bundle.bundle_file.file.filename, bundle.bundle_file.url
+  end
+
+  def state
+    h.state_label bundle
+  end
+
+  def supported_kernel_version
+    content_tag(:div, bundle.supported_kernel_versions)
+  end
+
+  def support
+    (supported_kernel_versions.to_s << supported_configurations.to_s).html_safe
+  end
+
+  def supported_configurations
+    h.content_tag :div do
+      h.content_tag :small, :class => :muted do
+        bundle.supported_configurations.map(&:configuration).join(', ')
+      end
+    end
   end
 
   # Accessing Helpers

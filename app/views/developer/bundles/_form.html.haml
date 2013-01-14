@@ -1,16 +1,26 @@
-= simple_form_for [:developer, @app, @bundle] do |f|
+= simple_nested_form_for [:developer, @app, @bundle] do |f|
   .row
     .span12
       = f.error_notification
   .row
     .span6
-      = f.input :version_str
+      = f.input :version
       = f.input :source_file, :as => :file
+      = f.input :source_file_cache, :as => :hidden
     %fieldset
       = f.input :supported_kernel_versions, :as => :string
-      -#= f.input :version1c
-      -#= f.input :nameconf
-      -#= f.input :versionconf
+      %hr
+      = f.fields_for :supported_configurations, :class => :sc do |sc|
+        %div.supported_configurations.row
+          .span4
+            -#= sc.error :'supported_configurations.configuration_id'
+            = sc.association :configuration, :label => '', :include_blank => false
+          .span2
+            = sc.link_to_remove :class => 'btn btn-danger btn-small' do
+              = icon 'minus-sign', :white
+      = f.link_to_add :supported_configurations, :class => 'btn btn-success btn-small' do
+        = icon :plus, :white
+        Добавить конфигурацию
   .row
     .span12
       = f.input :changelog, :input_html => { :cols => 140, :rows => 10, :style => 'width: 100%' }
