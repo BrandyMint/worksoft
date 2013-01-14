@@ -8,6 +8,7 @@ class Developer::BundlesController < Developer::BaseController
 
   def new
     @bundle ||= app.bundles.build
+    # @bundle.supported_configurations.build
   end
 
   def create

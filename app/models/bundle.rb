@@ -1,5 +1,7 @@
 class Bundle < ActiveRecord::Base
-  attr_accessible :source_file, :version, :app, :app_id, :changelog, :version_str, :supported_kernel_versions
+  attr_accessible :source_file, :version, :app, :app_id, :changelog,
+    :supported_kernel_versions, :supported_configurations_attributes,
+    :source_file_cache
 
   mount_uploader :source_file, FileUploader
   mount_uploader :bundle_file, FileUploader
@@ -9,18 +11,21 @@ class Bundle < ActiveRecord::Base
   scope :ready, where(:state=>:ready)
   scope :active, where('state != ?', :destroy)
   scope :destroyed, where(:state=>:destroy)
-  scope :order_by_version, order(:version)
-  scope :reverse_order_by_version, order("version DESC")
+  scope :order_by_version, order(:version_number)
+  scope :reverse_order_by_version, order("version_number DESC")
 
   belongs_to :app
+  has_many :supported_configurations
 
+  accepts_nested_attributes_for :supported_configurations, :allow_destroy => true
+  
   validates :app, :presence => true
-  validates :version, :presence => true
+  validates :version_number, :presence => true, :uniqueness => { :scope => :app_id }
   validates :source_file, :presence => true
 
   validates :supported_kernel_versions, :presence => true, :versions => true
 
-  composed_of :version, :allow_nil => true
+  # composed_of :version, :allow_nil => true
   delegate :name, :desc, :to => :app
 
   state_machine :state, :initial => :new do
@@ -48,7 +53,7 @@ class Bundle < ActiveRecord::Base
     self.supported_configurations ||= SupportedConfigurations.new
     self.uuid = UUID.new.generate
   end
-
+  
   after_create :generate_bundle, :set_app_bundle
   after_destroy :set_app_bundle
 
@@ -94,16 +99,13 @@ class Bundle < ActiveRecord::Base
     uuid
   end
 
-  def version_str
-    #@version_str ||= version.to_s
-    version.to_s
+  def version
+    Version.new version_number
   end
 
-  def version_str= value
-    #@version_str = value
-    self.version = Version.new value
-  rescue
-    self.version = nil
+  def version= value
+    value = Version.new value unless value.is_a? Version
+    self.version_number = value.to_i
   end
 
   def destroy
@@ -112,13 +114,13 @@ class Bundle < ActiveRecord::Base
 
   private
 
-  def set_version
-    return unless @version_str.present?
+  #def set_version
+    #return unless @version_str.present?
 
-    self.version = Version.new @version_str
-  rescue
-    errors.add(:version, :broken)
-  end
+    #self.version = Version.new @version_str
+  #rescue
+    #errors.add(:version, :broken)
+  #end
 
   def kernel_versions
     []

@@ -11,7 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130114113443) do
+ActiveRecord::Schema.define(:version => 20130114143702) do
+
+  add_extension "hstore"
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -50,12 +52,11 @@ ActiveRecord::Schema.define(:version => 20130114113443) do
     t.string   "state"
     t.string   "uuid",                                   :default => "7112ded0-1f9b-0130-60de-746d04736cf8", :null => false
     t.integer  "app_id",                                                                                     :null => false
-    t.text     "supported_configurations"
     t.text     "supported_kernel_versions"
-    t.integer  "version",                   :limit => 8, :default => 10000,                                  :null => false
+    t.integer  "version_number",            :limit => 8, :default => 10000,                                  :null => false
   end
 
-  add_index "bundles", ["app_id", "version"], :name => "index_bundles_on_app_id_and_version", :unique => true
+  add_index "bundles", ["app_id", "version_number"], :name => "index_bundles_on_app_id_and_version", :unique => true
   add_index "bundles", ["app_id"], :name => "index_bundles_on_app_id"
   add_index "bundles", ["state"], :name => "index_bundles_on_state"
   add_index "bundles", ["uuid"], :name => "index_bundles_on_uuid", :unique => true
@@ -88,12 +89,23 @@ ActiveRecord::Schema.define(:version => 20130114113443) do
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
+  create_table "supported_configurations", :force => true do |t|
+    t.integer  "bundle_id",        :null => false
+    t.integer  "configuration_id", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "supported_configurations", ["bundle_id"], :name => "sc_idx2"
+  add_index "supported_configurations", ["configuration_id", "bundle_id"], :name => "sc_idx"
+
   create_table "users", :force => true do |t|
     t.string   "email",                       :null => false
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.string   "name"
     t.integer  "developer_profile_id"
     t.string   "activation_state"
     t.string   "activation_token"
