@@ -6,8 +6,13 @@ class User < ActiveRecord::Base
   include Authority::UserAbilities
 
   belongs_to :developer_profile, :class_name => 'DeveloperProfile'
+  validates :email, :presence => true, :uniqueness => true
 
   def to_s
     email
+  end
+
+  def activated?
+    activation_state == 'active'
   end
 end
