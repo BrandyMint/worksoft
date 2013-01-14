@@ -77,6 +77,8 @@ batch_action_admin_developer_profiles POST   /admin/developer_profiles/batch_act
                                       DELETE /user_sessions/:id(.:format)                          user_sessions#destroy
                                 login        /login(.:format)                                      user_sessions#new
                                logout        /logout(.:format)                                     user_sessions#destroy
+                        activate_user GET    /users/:id/activate(.:format)                         users#activate
+               resend_activation_user GET    /users/:id/resend_activation(.:format)                users#resend_activation
                                 users POST   /users(.:format)                                      users#create
                              new_user GET    /users/new(.:format)                                  users#new
                               profile GET    /profile(.:format)                                    users#profile

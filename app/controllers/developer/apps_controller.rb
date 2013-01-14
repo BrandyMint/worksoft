@@ -12,7 +12,7 @@ class Developer::AppsController < Developer::BaseController
 
   def update
     if app.update_attributes params[:app]
-      redirect_to new_developer_app_bundle_path(app), :notice => 'Приложение обновлено'
+      redirect_to new_developer_app_bundle_path(app), :notice => 'Приложение обновлено.'
     else
       render :action => :edit
     end
@@ -30,7 +30,7 @@ class Developer::AppsController < Developer::BaseController
     @app = developer_profile.apps.build params[:app]
 
     if @app.save
-      redirect_to new_developer_app_bundle_path(@app), :notice => 'Приложение добавлено'
+      redirect_to new_developer_app_bundle_path(@app), :notice => 'Приложение добавлено.'
     else
       render :action => :new
     end
