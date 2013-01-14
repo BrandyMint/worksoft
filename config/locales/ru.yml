@@ -3,10 +3,11 @@ ru:
     labels:
       bundle:
         version: Номер версии
-        version_str: Номер версии
         source_file: Файл
         changelog: Описание изменений
         supported_kernel_versions: Поддерживаемые версии 1С
+        supported_configurations: Поддерживаемые конфигурации
+        configuration: Поддерживаемые конфигурации
     hints:
       bundle:
         supported_kernel_versions: "Например: 7.1, >7.5, 7.0-8.0, !7.2"

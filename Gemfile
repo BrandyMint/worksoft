@@ -8,6 +8,8 @@ gem 'omniauth-identity'
 
 gem 'inherited_resources'
 
+gem "nested_form"
+
 gem 'pg'
 
 # gem 'rubyzip'
