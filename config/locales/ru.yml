@@ -8,6 +8,12 @@ ru:
         supported_kernel_versions: Поддерживаемые версии 1С
         supported_configurations: Поддерживаемые конфигурации
         configuration: Поддерживаемые конфигурации
+      user:
+        email: Адрес электронной почты
+        password: Новый пароль
+        password_confirmation: Подтверждение пароля
+        current_password: Текущий пароль
+        change_password: Для смены пароля вам необходмо задать новый и ввести текущий пароль.
     hints:
       bundle:
         supported_kernel_versions: "Например: 7.1, >7.5, 7.0-8.0, !7.2"
@@ -20,6 +26,7 @@ ru:
       login: Войти
       registration: Зарегистрироваться
       save: Сохранить
+      change_password: Сменить пароль
   helpers:
     submit:
       bundle:
@@ -35,6 +42,10 @@ ru:
     registred: Вы успешно зарегистрировались.
     auth_failed: Неверная пара логин/пароль.
     you_need_to_be_developer: Для управления профилем разработчика его необходимо сначала создать.
+    profile_updated: Ваш профиль успешно обновлен.
+    password_changed: Пароль успешно изменен.
+    current_password_wrong: Неправильно указан текущий пароль.
+    passwords_mistmach: Новый пароль и подтверждение не совпадают.
   developer:
     dashboard: Профиль разработчика
   email:

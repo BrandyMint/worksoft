@@ -34,4 +34,47 @@ class UsersController < ApplicationController
     end
   end
 
+  def profile
+    @user = current_user
+  end
+
+  def edit_profile
+    @user = current_user
+  end
+
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update_attributes(params[:user]) 
+      flash[:notice] = t('notice.profile_updated')
+      redirect_to profile_path
+    else
+      render 'edit_profile'
+    end  
+  end
+
+  def update_password
+    @user = current_user
+
+    if can_change_password?
+      # для работы этого метода, подключен модуль :reset_password, проведена миграция
+      # чтобы полностью подключить функционал, надо сделать по мануалу https://github.com/NoamB/sorcery/wiki/Reset-password
+      @user.change_password!(params[:user][:password])
+      flash[:notice] = t('notice.password_changed')
+      redirect_to profile_path
+    else
+      if User.authenticate(@user.email, params[:current_password])
+        flash[:alert] = t('notice.passwords_mistmach')
+      else
+        flash[:alert] = t('notice.current_password_wrong')
+      end
+      render 'edit_profile'
+    end
+  end
+
+private
+  def can_change_password?
+    !params[:user][:password].empty? && params[:user][:password] == params[:user][:password_confirmation] && current_user == User.authenticate(@user.email, params[:current_password])
+  end
+
 end
