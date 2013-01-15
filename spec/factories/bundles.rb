@@ -9,7 +9,7 @@ FactoryGirl.define do
     supported_kernel_versions "7,8"
     changelog 'new cool features'
     version
-    source_file {Rack::Test::UploadedFile.new('spec/fixtures/upic.gif', 'image/gif')}
+    source_file {Rack::Test::UploadedFile.new('spec/fixtures/proceed.epf', 'file/epf')}
     association :app, factory: :app
   end
 end

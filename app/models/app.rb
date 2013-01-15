@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 require 'app_bundle_defaults_extenstion'
 class App < ActiveRecord::Base
-  attr_accessible :name, :icon, :desc
+  attr_accessible :name, :icon, :desc, :kind_id
 
   belongs_to :developer_profile, :counter_cache => true
   belongs_to :active_bundle, :class_name => 'Bundle'
+  belongs_to :kind
   has_many :bundles, :extend => AppBundleDefaultsExtension
 
   mount_uploader :icon, ImageUploader
 
   validates :name, :presence => true
+  validates :kind, :presence => true
 
   scope :ready, where(:state=>:ready)
 
@@ -31,11 +33,6 @@ class App < ActiveRecord::Base
 
   def last_bundle
     bundles.order_by_version.last
-  end
-
-  def kind
-    # epr
-    'epf'
   end
 
   def uuid

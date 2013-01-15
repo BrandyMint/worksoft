@@ -4,5 +4,6 @@
       = image_tag app.icon.thumb_64.url, :class => 'media-object'
     .media-body
       %h4.media-heading= app.name
-      %p= link_to "скачать последний билд", app.active_bundle.bundle_file.to_s if app.active_bundle 
+      %small.muted= "#{app.kind.title} (.#{app.kind.ext})"
+      %small= link_to "скачать последний билд", app.active_bundle.bundle_file.to_s if app.active_bundle 
       = simple_format app.desc

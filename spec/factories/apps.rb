@@ -8,5 +8,6 @@ FactoryGirl.define do
   factory :app do
     name
     developer_profile
+    association :kind, factory: :kind
   end
 end
