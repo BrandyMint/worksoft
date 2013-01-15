@@ -5,6 +5,7 @@
     = @app.name
     - disabled = (controller.is_a? Developer::AppsController and action_name == 'edit')
     = edit_app_link @app, disabled ? :disabled : ''
+  %small.muted= "#{@app.kind.title} (.#{@app.kind.ext})"
   %p= state_label @app
 
 -#.page-header

@@ -21,7 +21,7 @@ class Bundle < ActiveRecord::Base
   
   validates :app, :presence => true
   validates :version_number, :presence => true, :uniqueness => { :scope => :app_id }
-  validates :source_file, :presence => true
+  validates :source_file, :presence => true, :app_kind_extension => true
 
   validates :supported_kernel_versions, :presence => true, :versions => true
 

@@ -17,7 +17,7 @@
         = link_to developer_app_path(app) do
           = app.name
         %br
-        %small.muted= app.kind
+        %small.muted= "#{app.kind.title} (.#{app.kind.ext})"
       %td
         =state_label app
       %td

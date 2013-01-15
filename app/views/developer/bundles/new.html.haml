@@ -3,6 +3,7 @@
     = image_tag @app.icon.thumb_64.url
   %h2
     = link_to @app, developer_app_path(@app)
+  %p.small.muted= "#{@app.kind.title} (.#{@app.kind.ext})"
   %small Загрузка новой версии приложения
 
 = render 'form'
