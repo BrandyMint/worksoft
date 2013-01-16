@@ -112,6 +112,10 @@ class Bundle < ActiveRecord::Base
     set_destroy
   end
 
+  def kernel_version_matchers
+    VersionMatchers.new supported_kernel_versions
+  end
+
   private
 
   #def set_version
