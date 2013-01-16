@@ -1,0 +1,6 @@
+= simple_form_for @search_query, :method => :get do |f|
+  = f.input :query, :placeholder => "Название приложения"
+  = f.input :kind_id, :collection => Kind.all, :prompt => "Тип приложения"
+  = f.input :kernel_version, :placeholder => "Версия 1С (>7, >=7.1, 8.1)"
+  .actions
+    = submit_tag t('simple_form.buttons.search'), :class => 'btn btn-primary'
