@@ -20,6 +20,7 @@ ru:
       login: Войти
       registration: Зарегистрироваться
       save: Сохранить
+      search: Поиск
   helpers:
     submit:
       bundle:
