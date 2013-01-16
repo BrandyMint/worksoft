@@ -25,6 +25,8 @@ module Worksoft
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/lib/validators)
+    config.autoload_paths += %W(#{config.root}/lib/forms)
+    config.autoload_paths += %W(#{config.root}/lib/searchers)
 
 
     # Only load the plugins named here, in the order given (default is alphabetical).

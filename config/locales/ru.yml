@@ -26,6 +26,7 @@ ru:
       registration: Зарегистрироваться
       save: Сохранить
       create: Создать
+      search: Поиск
   helpers:
     submit:
       bundle:

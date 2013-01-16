@@ -1,6 +1,7 @@
 class AppsController < ApplicationController
   def index
-    @apps = App.ready
+     @search_query = BundleSearchQuery.new
+     @apps = App.ready
   end
 
   def show

@@ -31,6 +31,8 @@ Worksoft::Application.routes.draw do
   get "profile", :to => "users#profile"
 
   resources :apps, :only => [:index, :show]
+  get "search", :to => "search#new", :as => :search
+  get "search/bundles", :to => "search#search_bundles", :as => :bundle_search_queries
     
   # resources :bundles, :only => [:index, :show]
 end
