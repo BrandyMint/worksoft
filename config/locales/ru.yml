@@ -1,6 +1,11 @@
 ru:
   simple_form:
     labels:
+      app:
+        name: Название приложения
+        kind_id: Тип
+        desc: Описание
+        icon: Логотип
       bundle:
         version: Номер версии
         source_file: Файл
@@ -20,6 +25,7 @@ ru:
       login: Войти
       registration: Зарегистрироваться
       save: Сохранить
+      create: Создать
   helpers:
     submit:
       bundle:
