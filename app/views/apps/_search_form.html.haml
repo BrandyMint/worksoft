@@ -1,0 +1,6 @@
+= form_tag apps_search_path, :method => :get do
+  = search_field_tag :query, params[:query], :placeholder => "Название приложения"
+  = select_tag :kind_id, options_from_collection_for_select(Kind.all, "id", "title", params[:kind_id]), :prompt => "Тип приложения"
+  = text_field_tag :kernel_version, params[:kernel_version], :placeholder => "Версия 1С (>7, >=7.1, 8.1)"
+  .actions
+    = submit_tag t('simple_form.buttons.search'), :class => 'btn btn-primary'

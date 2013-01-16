@@ -15,6 +15,12 @@ class App < ActiveRecord::Base
 
   scope :ready, where(:state=>:ready)
 
+  searchable do
+    text :name
+    integer :kind_id
+    string :state
+  end
+
   state_machine :state, :initial => :new do
     state :new, :human_name => 'Готовится'
     #state :updating
@@ -55,5 +61,10 @@ class App < ActiveRecord::Base
       update_attribute :active_bundle, nil
       idle
     end
+  end
+
+  def have_bundle_with_kernel_version? kernel_version
+    bundles.each {|bundle| return true if bundle.active? && (bundle.kernel_version_matchers.match kernel_version)}
+    false
   end
 end
