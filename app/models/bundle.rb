@@ -33,7 +33,7 @@ class Bundle < ActiveRecord::Base
   validates :supported_kernel_versions, :presence => true, :versions => true
   
   # composed_of :version, :allow_nil => true
-  delegate :name, :desc, :kind_id, :icon, :to => :app
+  delegate :name, :desc, :kind_id, :kind, :icon, :to => :app
 
   state_machine :state, :initial => :new do
     state :new, :human_name => 'Новый'
@@ -77,28 +77,24 @@ class Bundle < ActiveRecord::Base
     "#{name} #{version}"
   end
 
-  def kind
-    'epf'
-  end
-
   def ext
     File.extname source_file.file.file
   end
 
   def spec
     {
-      :app => {
-        :uuid => app.uuid,
-        :name => app.name,
-        :kind => app.kind
+      'app' => {
+        'uuid' => app.uuid,
+        'name' => app.name,
+        'kind' => ext
       },
-      :bundle => {
-        :uuid => uuid,
-        :version => version
+      'bundle' => {
+        'uuid' => uuid,
+        'version' => version.to_s
       },
-      :compatibility => {
-        :kernel_versions => kernel_versions,
-        :configurations => configurations
+      'compatibility' => {
+        'kernel_versions' => kernel_versions,
+        'configurations' => configurations
       }
     }
   end
@@ -131,10 +127,12 @@ class Bundle < ActiveRecord::Base
   private
 
   def kernel_versions
-    []
+    supported_kernel_versions
   end
 
   def configurations
-    []
+    confs = []
+    supported_configurations.each{|sc| confs << sc.configuration.name}
+    confs.join(", ")
   end
 end
