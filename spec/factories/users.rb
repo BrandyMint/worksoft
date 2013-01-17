@@ -14,4 +14,15 @@ FactoryGirl.define do
       user.save!
     end
   end
+
+  factory :developer, class: User do
+    email
+    password '123456'
+    association :developer_profile, factory: :developer_profile
+    after(:create) do |user, evaluator|
+      user.send :setup_activation
+      user.save!
+      user.activate!
+    end
+  end
 end

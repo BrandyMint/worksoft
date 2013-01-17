@@ -7,7 +7,7 @@ module LinksHelper
   end
 
   def destroy_bundle_link bundle
-    link_to developer_app_bundle_path(bundle.app, bundle), :method => :delete, :class => 'btn btn-small btn-danger' do
+    link_to developer_app_bundle_path(bundle.app, bundle), :method => :delete, :class => 'btn btn-small btn-danger download_bundle' do
       icon(:trash, :white) << ' Удалить'
     end
   end
