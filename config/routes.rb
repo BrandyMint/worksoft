@@ -26,9 +26,11 @@ Worksoft::Application.routes.draw do
   match 'users/activate/:token' => 'users#activate', :as => :activate_user
   match 'users/resend_activation' => 'users#resend_activation', :as => :resend_activation
 
-  resources :users, :only => [:new, :create]
+  resources :users, :only => [:new, :create, :update]
 
   get "profile", :to => "users#profile"
+  get "profile/edit", :to => "users#edit_profile", :as => :user_edit_profile
+  put "profile/update_password", :to => "users#update_password", :as => :user_update_password
 
   resources :apps, :only => [:index, :show]
     

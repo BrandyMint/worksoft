@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   include Authority::UserAbilities
 
   belongs_to :developer_profile, :class_name => 'DeveloperProfile'
+  #TODO валидатор адреса электронной почты
   validates :email, :presence => true, :uniqueness => true
 
   def to_s
