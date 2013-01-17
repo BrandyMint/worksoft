@@ -1,20 +1,4 @@
                            admin_root        /admin(.:format)                                      admin/dashboard#index
-batch_action_admin_developer_profiles POST   /admin/developer_profiles/batch_action(.:format)      admin/developer_profiles#batch_action
-             admin_developer_profiles GET    /admin/developer_profiles(.:format)                   admin/developer_profiles#index
-                                      POST   /admin/developer_profiles(.:format)                   admin/developer_profiles#create
-          new_admin_developer_profile GET    /admin/developer_profiles/new(.:format)               admin/developer_profiles#new
-         edit_admin_developer_profile GET    /admin/developer_profiles/:id/edit(.:format)          admin/developer_profiles#edit
-              admin_developer_profile GET    /admin/developer_profiles/:id(.:format)               admin/developer_profiles#show
-                                      PUT    /admin/developer_profiles/:id(.:format)               admin/developer_profiles#update
-                                      DELETE /admin/developer_profiles/:id(.:format)               admin/developer_profiles#destroy
-              batch_action_admin_apps POST   /admin/apps/batch_action(.:format)                    admin/apps#batch_action
-                           admin_apps GET    /admin/apps(.:format)                                 admin/apps#index
-                                      POST   /admin/apps(.:format)                                 admin/apps#create
-                        new_admin_app GET    /admin/apps/new(.:format)                             admin/apps#new
-                       edit_admin_app GET    /admin/apps/:id/edit(.:format)                        admin/apps#edit
-                            admin_app GET    /admin/apps/:id(.:format)                             admin/apps#show
-                                      PUT    /admin/apps/:id(.:format)                             admin/apps#update
-                                      DELETE /admin/apps/:id(.:format)                             admin/apps#destroy
              batch_action_admin_users POST   /admin/users/batch_action(.:format)                   admin/users#batch_action
                           admin_users GET    /admin/users(.:format)                                admin/users#index
                                       POST   /admin/users(.:format)                                admin/users#create
@@ -23,7 +7,23 @@ batch_action_admin_developer_profiles POST   /admin/developer_profiles/batch_act
                            admin_user GET    /admin/users/:id(.:format)                            admin/users#show
                                       PUT    /admin/users/:id(.:format)                            admin/users#update
                                       DELETE /admin/users/:id(.:format)                            admin/users#destroy
+batch_action_admin_developer_profiles POST   /admin/developer_profiles/batch_action(.:format)      admin/developer_profiles#batch_action
+             admin_developer_profiles GET    /admin/developer_profiles(.:format)                   admin/developer_profiles#index
+                                      POST   /admin/developer_profiles(.:format)                   admin/developer_profiles#create
+          new_admin_developer_profile GET    /admin/developer_profiles/new(.:format)               admin/developer_profiles#new
+         edit_admin_developer_profile GET    /admin/developer_profiles/:id/edit(.:format)          admin/developer_profiles#edit
+              admin_developer_profile GET    /admin/developer_profiles/:id(.:format)               admin/developer_profiles#show
+                                      PUT    /admin/developer_profiles/:id(.:format)               admin/developer_profiles#update
+                                      DELETE /admin/developer_profiles/:id(.:format)               admin/developer_profiles#destroy
                       admin_dashboard        /admin/dashboard(.:format)                            admin/dashboard#index
+              batch_action_admin_apps POST   /admin/apps/batch_action(.:format)                    admin/apps#batch_action
+                           admin_apps GET    /admin/apps(.:format)                                 admin/apps#index
+                                      POST   /admin/apps(.:format)                                 admin/apps#create
+                        new_admin_app GET    /admin/apps/new(.:format)                             admin/apps#new
+                       edit_admin_app GET    /admin/apps/:id/edit(.:format)                        admin/apps#edit
+                            admin_app GET    /admin/apps/:id(.:format)                             admin/apps#show
+                                      PUT    /admin/apps/:id(.:format)                             admin/apps#update
+                                      DELETE /admin/apps/:id(.:format)                             admin/apps#destroy
     batch_action_admin_configurations POST   /admin/configurations/batch_action(.:format)          admin/configurations#batch_action
                  admin_configurations GET    /admin/configurations(.:format)                       admin/configurations#index
                                       POST   /admin/configurations(.:format)                       admin/configurations#create
@@ -77,10 +77,13 @@ batch_action_admin_developer_profiles POST   /admin/developer_profiles/batch_act
                                       DELETE /user_sessions/:id(.:format)                          user_sessions#destroy
                                 login        /login(.:format)                                      user_sessions#new
                                logout        /logout(.:format)                                     user_sessions#destroy
-                        activate_user GET    /users/:id/activate(.:format)                         users#activate
-               resend_activation_user GET    /users/:id/resend_activation(.:format)                users#resend_activation
+                        activate_user        /users/activate/:token(.:format)                      users#activate
+                    resend_activation        /users/resend_activation(.:format)                    users#resend_activation
                                 users POST   /users(.:format)                                      users#create
                              new_user GET    /users/new(.:format)                                  users#new
+                                 user PUT    /users/:id(.:format)                                  users#update
                               profile GET    /profile(.:format)                                    users#profile
+                    user_edit_profile GET    /profile/edit(.:format)                               users#edit_profile
+                 user_update_password PUT    /profile/update_password(.:format)                    users#update_password
                                  apps GET    /apps(.:format)                                       apps#index
                                   app GET    /apps/:id(.:format)                                   apps#show
