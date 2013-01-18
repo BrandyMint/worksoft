@@ -87,3 +87,4 @@ batch_action_admin_developer_profiles POST   /admin/developer_profiles/batch_act
                  user_update_password PUT    /profile/update_password(.:format)                    users#update_password
                                  apps GET    /apps(.:format)                                       apps#index
                                   app GET    /apps/:id(.:format)                                   apps#show
+                          apps_search GET    /search(.:format)                                     apps#search

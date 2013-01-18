@@ -33,6 +33,7 @@ ru:
       save: Сохранить
       create: Создать
       change_password: Сменить пароль
+      search: Поиск
   helpers:
     submit:
       bundle:
