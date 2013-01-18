@@ -47,6 +47,10 @@ class Bundle < ActiveRecord::Base
       transition [:new, :destroy] => :ready
     end
 
+    after_transition :ready => :destroy do |bundle|
+      bundle.app.update_active_bundle
+    end
+
     after_transition :new => :ready do |bundle, transition|
       bundle.app.activate_bundle bundle
     end
@@ -58,7 +62,6 @@ class Bundle < ActiveRecord::Base
   end
   
   after_create :generate_bundle, :publish
-  after_destroy :set_app_bundle
 
   def generate_bundle
     BundlePacker.new(self).generate

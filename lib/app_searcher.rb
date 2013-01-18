@@ -12,7 +12,7 @@ class AppSearcher
   private
 
   def ransack_search page, per_page
-    App.search( q.ransack_query ).result
+    App.ready.search( q.ransack_query ).result
   end
 
   def sunspot_search page, per_page

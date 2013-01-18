@@ -7,7 +7,8 @@ class AppSearchQuery
   def initialize params={}
     @name = params['name']
     @kind_id = params['kind_id']
-    @kind_id = @king_id.to_i if @kind_id.present?
+    @kind_id = @kind_id.present? ? @kind_id.to_i : nil
+    @kind_id = nil if @kind_id == 0
     @kernel_version = params['kernel_version']
   end
 

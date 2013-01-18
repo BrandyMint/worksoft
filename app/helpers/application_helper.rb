@@ -2,6 +2,10 @@
 module ApplicationHelper
   include BootstrapHelper
 
+  def kindes_collection_for_search
+    [['Любой тип', nil]] + Kind.all.map { |k| [k.to_s, k.id]}
+  end
+
   def span text
     content_tag :span, text
   end

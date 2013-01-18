@@ -54,13 +54,17 @@ class App < ActiveRecord::Base
     bundles.ready.order_by_version.last
   end
 
-  def activate_bundle bundle
-    if bundle
-      update_attribute :active_bundle, bundle
-      publish
+  def update_active_bundle
+    if last_active_bundle.present?
+      activate_bundle last_active_bundle
     else
       update_attribute :active_bundle, nil
       idle
     end
+  end
+
+  def activate_bundle bundle
+    update_attribute :active_bundle, bundle
+    publish
   end
 end

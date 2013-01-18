@@ -12,7 +12,7 @@ class AppsController < ApplicationController
       searcher = AppSearcher.new @query
       @apps = searcher.search params[:page]
     else
-      flash[:alert] = 'Неверный поисковый запрос'
+      # flash[:alert] = 'Неверный поисковый запрос'
       @apps = App.ready
     end
 
