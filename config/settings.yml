@@ -3,8 +3,8 @@ default_url_options:
   port: 80
 
 smtp_settings:
-  host: worksoft.ru
-  port: 1025
+  host: localhost
+  port: 25
 
 deliver_settings:
   from: noreply@worksoft.ru

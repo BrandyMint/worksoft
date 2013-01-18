@@ -1,0 +1,6 @@
+.well
+  = form_for @query, :url => search_apps_url, :method => :get, :html => {:class => 'form-inline'} do |f|
+    = f.select :kind_id, options_from_collection_for_select(Kind.all, "id", "title", @query.kind_id)
+    = f.text_field :name, :placeholder => "Название приложения", :value => @query.name
+    = f.text_field :kernel_version, :placeholder => "Версия 1С", :value => @query.kernel_version, :class => 'input-small'
+    = f.button 'Найти', :class => 'btn btn-primary'

@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def state_label object
-    k = {'new' =>  'label-warning'}
+    k = {'new' =>  'label-warning', 'ready' => 'label-success' }
     content_tag :span, object.human_state_name, :class => "label #{k[object.state]}"
   end
 

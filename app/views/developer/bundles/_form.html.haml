@@ -5,7 +5,7 @@
   .row
     .span6
       = f.input :version
-      = f.input :source_file, :as => :file
+      = f.input :source_file, :as => :file, :hint => "Расширение: #{@app.kind.ext}"
       = f.input :source_file_cache, :as => :hidden
     %fieldset
       = f.input :supported_kernel_versions, :as => :string
