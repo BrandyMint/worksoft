@@ -24,9 +24,15 @@ class Bundle < ActiveRecord::Base
   validates :source_file, :presence => true, :app_kind_extension => true
 
   validates :supported_kernel_versions, :presence => true, :versions => true
+  
+  searchable do
+    text :name
+    integer :kind_id
+    string :supported_kernel_versions
+  end
 
   # composed_of :version, :allow_nil => true
-  delegate :name, :desc, :to => :app
+  delegate :name, :desc, :kind_id, :icon, :to => :app
 
   state_machine :state, :initial => :new do
     state :new
@@ -114,6 +120,11 @@ class Bundle < ActiveRecord::Base
 
   def kernel_version_matchers
     VersionMatchers.new supported_kernel_versions
+  end
+
+  def search_version
+    kernel_version_matchers.to_s
+    7
   end
 
   private

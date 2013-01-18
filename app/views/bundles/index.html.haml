@@ -1,28 +1,5 @@
-%h1 Пакеты
-
-%table.table
-  %tr
-    %th Пакет
-    %th Версия 1С
-    %th Версия конфигурации
-    %th Название конфигурации
-    %th Загрузка
-
-  - @bundles.ready.each do |bundle|
-    %tr
-      %td
-        = image_tag bundle.icon.thumb_24.url
-        = link_to bundle_path(bundle) do
-          = bundle.name
-          = "(#{bundle.version})"
-      %td= bundle.version1c
-      %td= bundle.versionconf
-      %td= bundle.nameconf
-      %td
-        = link_to bundle.bundle_file.url do
-          %span.icon-download-alt
-          = number_to_human_size bundle.bundle_file.file_size
-
-
-%br
-= link_to 'пример', bundles_path( :q=>{:client_id=>'123', :version1c=>'1.2.3', :versionconf=>'1.2.3', :name=>'Бухгалтерия'} )
+.page-header
+  %h1 Пакеты
+  
+=render 'app/search_form'
+=render 'bundles', :bundles => @bundles

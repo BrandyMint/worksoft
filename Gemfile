@@ -75,6 +75,8 @@ gem 'airbrake'
 
 gem 'rvm'
 gem 'unicorn'
+gem 'sunspot_rails'
+gem 'kaminari'
 
 group :development do
   gem 'commands'
@@ -90,6 +92,7 @@ group :development do
   gem 'debugger' unless `whoami`=~/jenkins/
   gem "rspec-rails", ">= 2.11.0"
   gem "factory_girl_rails", ">= 4.0.0"
+  gem 'sunspot_solr'
 end
 
 group :test do

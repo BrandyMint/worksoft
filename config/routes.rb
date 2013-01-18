@@ -33,6 +33,8 @@ Worksoft::Application.routes.draw do
   put "profile/update_password", :to => "users#update_password", :as => :user_update_password
 
   resources :apps, :only => [:index, :show]
+  get "search", :to => "search#new", :as => :search
+  get "search/bundles", :to => "search#search_bundles", :as => :bundle_search_queries
     
   # resources :bundles, :only => [:index, :show]
 end
