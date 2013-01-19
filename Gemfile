@@ -20,6 +20,8 @@ gem 'sorcery', :git => 'git://github.com/NoamB/sorcery.git'
 gem 'uuid'
 gem 'russian'
 
+gem 'authority'
+
 gem 'draper'
 gem 'cells'
 gem 'state_machine'

@@ -4,8 +4,9 @@
   = link_to app, :class => 'pull-left' do
     = image_tag app.icon.thumb_64.url, :class => 'media-object', :size => '64x64'
   .media-body
-    %h4.media-heading
-      = app.name
+    %h4.media-heading.app-name
+      = link_to app, app_url(app, :anchor => "bundle_#{bundle.id}")
+      %span.app-version= "(#{bundle.version})"
     .pull-left
       = developer_link app.developer_profile
     .pull-right

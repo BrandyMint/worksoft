@@ -1,2 +1,11 @@
-%h1 Apps#show
-%p Find me in app/views/apps/show.html.haml
+.page-header
+  %h1= @app.name
+  %small= @app.kind
+
+%p.pull-right
+  = developer_link @app.developer_profile
+%p
+  = simple_format @app.desc
+
+%h3= "Активные версии"
+= render 'bundles', :bundles => @app.bundles.active.reverse_order_by_version

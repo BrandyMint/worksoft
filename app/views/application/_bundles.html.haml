@@ -16,9 +16,10 @@
         %td= download_link bundle
         %td= bundle.changelog
         %td
-          - if bundle.destroy?
-            = link_to restore_developer_app_bundle_path(bundle.app, bundle), :class => 'btn btn-small btn-warning' do
-              = icon 'remove-circle', :white
-              Восстановить
-          - else
-            = destroy_bundle_link bundle
+          - if bundle.updatable_by? current_user
+            - if bundle.destroy?
+              = link_to restore_developer_app_bundle_path(bundle.app, bundle), :class => 'btn btn-small btn-warning' do
+                = icon 'remove-circle', :white
+                Восстановить
+            - else
+              = destroy_bundle_link bundle

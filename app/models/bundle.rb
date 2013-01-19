@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 class Bundle < ActiveRecord::Base
+  include Authority::Abilities
+
   attr_accessible :source_file, :version, :app, :app_id, :changelog,
     :supported_kernel_versions, :supported_configurations_attributes,
     :source_file_cache
