@@ -2,7 +2,7 @@
 class AppsController < ApplicationController
   def index
      @query = AppSearchQuery.new
-     @apps = App.ready
+     @bundles = active_bundles
   end
 
   def search
@@ -10,10 +10,10 @@ class AppsController < ApplicationController
 
     if @query.valid?
       searcher = AppSearcher.new @query
-      @apps = searcher.search params[:page]
+      searcher.search params[:page]
+      @bundles = searcher.filtered_bundles
     else
-      # flash[:alert] = 'Неверный поисковый запрос'
-      @apps = App.ready
+      @bundles = active_bundles
     end
 
     render :index
@@ -21,5 +21,12 @@ class AppsController < ApplicationController
 
   def show
     @app = App.find params[:id]
+  end
+
+  private
+
+  def active_bundles
+    # TODO Bundle.active
+    App.ready.includes(:active_bundle).map {|a| a.active_bundle }
   end
 end

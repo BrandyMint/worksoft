@@ -6,6 +6,10 @@ module ApplicationHelper
     [['Любой тип', nil]] + Kind.all.map { |k| [k.to_s, k.id]}
   end
 
+  def configurations_collection_for_search
+    [['Любая конфигурация', nil]] + Configuration.ordered.map { |c| [c.to_s, c.id] }
+  end
+
   def span text
     content_tag :span, text
   end

@@ -10,7 +10,11 @@ class BundleDecorator < Draper::Base
   end
 
   def bundle_file_link
-    h.link_to bundle.bundle_file.file.filename, bundle.bundle_file.url
+    h.link_to bundle.bundle_file.file.filename, file_url
+  end
+
+  def file_url
+    bundle_file.url
   end
 
   def state

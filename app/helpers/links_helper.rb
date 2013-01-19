@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 module LinksHelper
+  def developer_link developer_profile
+    link_to  developer_profile_url(developer_profile), :class => 'developer_link' do
+      icon(:certificate) << developer_profile.name
+    end
+  end
+
   def upload_bundle_link app
     link_to new_developer_app_bundle_path(app), :class => 'btn btn-small btn-success' do
       icon(:white, :hdd) << ' Загрузить новую версию'

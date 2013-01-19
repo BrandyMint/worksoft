@@ -12,6 +12,7 @@ class Bundle < ActiveRecord::Base
   scope :ready, where(:state=>:ready)
   scope :active, where('state != ?', :destroy)
   scope :destroyed, where(:state=>:destroy)
+  scope :ordered, order(:version_number)
   scope :order_by_version, order(:version_number)
   scope :reverse_order_by_version, order("version_number DESC")
 
@@ -118,20 +119,7 @@ class Bundle < ActiveRecord::Base
     VersionMatchers.new supported_kernel_versions
   end
 
-  def search_version
-    kernel_version_matchers.to_s
-    7
-  end
-
   private
-
-  #def set_version
-    #return unless @version_str.present?
-
-    #self.version = Version.new @version_str
-  #rescue
-    #errors.add(:version, :broken)
-  #end
 
   def kernel_versions
     []

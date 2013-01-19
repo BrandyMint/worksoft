@@ -9,4 +9,8 @@ class DeveloperProfile < ActiveRecord::Base
   scope :order_by_activity, order(:apps_count)
 
   validates :name, :presence => true, :uniqueness => true
+
+  def to_s
+    name
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130116074623) do
+ActiveRecord::Schema.define(:version => 20130119170217) do
 
   add_extension "hstore"
 
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(:version => 20130116074623) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "configurations", ["name"], :name => "index_configurations_on_name", :unique => true
 
   create_table "developer_profiles", :force => true do |t|
     t.string   "name",                      :null => false

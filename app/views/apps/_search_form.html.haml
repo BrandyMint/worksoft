@@ -11,8 +11,11 @@
       .span4
         = f.input :name, :placeholder => "Название приложения", :wrapper => :inline
       .span3
-        = f.input :kernel_version, :wrapper => :inline, :placeholder => "не важно", :input_html => { :class => 'input-small' }
-      .span1
+        = f.input :kernel_version,  :wrapper => :stack, :placeholder => "не важно", :input_html => { :class => 'input-small' }
+        = f.input :configuration_id, :wrapper => :stack, :collection => configurations_collection_for_search, :include_blank => false
+    .row
+      .span2
         = f.button :submit, 'Найти', :class => 'btn btn-primary'
-
-
+      .span2
+        - if f.object.valid?
+          = link_to 'Все приложения', apps_url

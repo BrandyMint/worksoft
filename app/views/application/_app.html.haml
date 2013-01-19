@@ -1,9 +1,20 @@
-.span6
-  .media
-    = link_to app, :class => 'pull-left' do
-      = image_tag app.icon.thumb_64.url, :class => 'media-object'
-    .media-body
-      %h4.media-heading= app.name
-      %small.muted= "#{app.kind.title} (.#{app.kind.ext})"
-      %small= link_to "скачать последний билд", app.active_bundle.bundle_file.to_s if app.active_bundle 
-      = simple_format app.desc
+- bundle = app
+- app = bundle.app
+.media.app-block
+  = link_to app, :class => 'pull-left' do
+    = image_tag app.icon.thumb_64.url, :class => 'media-object', :size => '64x64'
+  .media-body
+    %h4.media-heading
+      = app.name
+    .pull-left
+      = developer_link app.developer_profile
+    .pull-right
+      .app-kind.muted
+        %small
+          %i= app.kind
+    .clearfix
+    .app-desc
+      %small.muted
+        = simple_format app.desc
+    %div.app-download
+      = download_link bundle

@@ -3,6 +3,10 @@ class Configuration < ActiveRecord::Base
 
   has_many :supported_configurations
 
+  scope :ordered, order(:name)
+
+  validates :name, :presence => true, :uniqueness => true
+
   def to_s
     name
   end

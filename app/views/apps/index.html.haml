@@ -1,3 +1,9 @@
 =render 'apps/search_form'
 
-=render 'apps', :apps => @apps
+- if @bundles.present?
+  %h2 Доступные приложения (#{@bundles.count})
+  .row
+    = render :partial => 'app', :collection => @bundles
+- else
+  .alert
+    Приложений удовлетворяющих вашему запросу не найдено

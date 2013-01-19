@@ -67,4 +67,16 @@ class App < ActiveRecord::Base
     update_attribute :active_bundle, bundle
     publish
   end
+
+  # TODO Вынести в presenter
+  def matched_bundles version
+    matched = bundles.ready.ordered
+
+    if version.present?
+      matched.select { |b| b.kernel_version_matchers.match version }
+    else
+      matched
+    end
+
+  end
 end
