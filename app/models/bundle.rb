@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+require 'bundle_authorizer'
+
 class Bundle < ActiveRecord::Base
   include Authority::Abilities
+  self.authorizer_name = 'BundleAuthorizer'
 
   attr_accessible :source_file, :version, :app, :app_id, :changelog,
     :supported_kernel_versions, :supported_configurations_attributes,

@@ -3,6 +3,6 @@ class BundleAuthorizer < ApplicationAuthorizer
   def updatable_by? user
     return false unless user.present?
 
-    resource.user == user
+    resource.app.developer_profile.user == user
   end
 end

@@ -46,7 +46,7 @@ feature 'Регистрация разработчика (создание пр�
     attach_file 'bundle_source_file', Rails.root + 'spec/fixtures/proceed.epf'
     find('.btn-primary').click
     page.body.should have_content "Загружена новая версия"
-    page.body.should have_css('a.download_bundle')
+    page.body.should have_css('a.download-link')
   end
 
   after do

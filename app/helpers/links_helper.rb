@@ -13,7 +13,7 @@ module LinksHelper
   end
 
   def destroy_bundle_link bundle
-    link_to developer_app_bundle_path(bundle.app, bundle), :method => :delete, :class => 'btn btn-small btn-danger download_bundle' do
+    link_to developer_app_bundle_path(bundle.app, bundle), :method => :delete, :class => 'btn btn-small btn-danger' do
       icon(:trash, :white) << ' Удалить'
     end
   end
@@ -26,7 +26,7 @@ module LinksHelper
 
   def download_link bundle
     file = bundle.bundle_file
-    link_to file.url, :class => 'btn btn-small' do
+    link_to file.url, :class => 'btn btn-small download-link' do
       icon(:download) << " Скачать (#{number_to_human_size file.file_size})"
     end
   end
