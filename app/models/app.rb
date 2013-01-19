@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'app_bundle_defaults_extenstion'
 class App < ActiveRecord::Base
-  attr_accessible :name, :icon, :desc, :kind_id
+  attr_accessible :name, :icon, :desc, :kind_id, :kind
 
   belongs_to :developer_profile, :counter_cache => true
   belongs_to :active_bundle, :class_name => 'Bundle'
@@ -31,6 +31,13 @@ class App < ActiveRecord::Base
 
   delegate :version, :to => :active_bundle, :allow_nil => true
 
+  if defined? Sunspot
+    searchable do
+      text :name
+      integer :kind_id
+    end
+  end
+
   def last_bundle
     bundles.order_by_version.last
   end
@@ -47,13 +54,17 @@ class App < ActiveRecord::Base
     bundles.ready.order_by_version.last
   end
 
-  def set_last_bundle
-    if last_active_bundle
-      update_attribute :active_bundle, last_active_bundle
-      publish
+  def update_active_bundle
+    if last_active_bundle.present?
+      activate_bundle last_active_bundle
     else
       update_attribute :active_bundle, nil
       idle
     end
+  end
+
+  def activate_bundle bundle
+    update_attribute :active_bundle, bundle
+    publish
   end
 end

@@ -73,9 +73,11 @@ gem 'mini_magick'
 
 gem 'airbrake'
 
+gem 'ransack'
+
 gem 'rvm'
 gem 'unicorn'
-gem 'sunspot_rails'
+# gem 'sunspot_rails'
 gem 'kaminari'
 
 group :development do

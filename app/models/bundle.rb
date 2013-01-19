@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Bundle < ActiveRecord::Base
   attr_accessible :source_file, :version, :app, :app_id, :changelog,
     :supported_kernel_versions, :supported_configurations_attributes,
@@ -25,19 +26,13 @@ class Bundle < ActiveRecord::Base
 
   validates :supported_kernel_versions, :presence => true, :versions => true
   
-  searchable do
-    text :name
-    integer :kind_id
-    string :supported_kernel_versions
-  end
-
   # composed_of :version, :allow_nil => true
   delegate :name, :desc, :kind_id, :icon, :to => :app
 
   state_machine :state, :initial => :new do
-    state :new
-    state :updating
-    state :ready
+    state :new, :human_name => 'Новый'
+    # state :updating
+    state :ready, :human_name => 'Активен'
     state :destroy
 
     event :set_destroy do
@@ -52,7 +47,13 @@ class Bundle < ActiveRecord::Base
       transition [:new, :destroy] => :ready
     end
 
-    after_transition :new => :ready, :do => :set_app_bundle
+    after_transition :ready => :destroy do |bundle|
+      bundle.app.update_active_bundle
+    end
+
+    after_transition :new => :ready do |bundle, transition|
+      bundle.app.activate_bundle bundle
+    end
   end
 
   before_validation do
@@ -60,15 +61,10 @@ class Bundle < ActiveRecord::Base
     self.uuid = UUID.new.generate
   end
   
-  after_create :generate_bundle, :set_app_bundle
-  after_destroy :set_app_bundle
+  after_create :generate_bundle, :publish
 
   def generate_bundle
     BundlePacker.new(self).generate
-  end
-
-  def set_app_bundle
-    self.app.set_last_bundle
   end
 
   def to_s
