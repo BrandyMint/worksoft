@@ -1,0 +1,18 @@
+.well
+  = simple_form_for @query, :url => search_apps_url, :method => :get, :html => {:class => 'form-inline'} do |f|
+    .row
+      .span7
+        %h3 Поиск приложения
+      .span3
+        %h3 Версия 1С
+    .row
+      .span3
+        = f.input :kind_id, :collection => kindes_collection_for_search, :wrapper => :inline, :include_blank => false
+      .span4
+        = f.input :name, :placeholder => "Название приложения", :wrapper => :inline
+      .span3
+        = f.input :kernel_version, :wrapper => :inline, :placeholder => "не важно", :input_html => { :class => 'input-small' }
+      .span1
+        = f.button :submit, 'Найти', :class => 'btn btn-primary'
+
+

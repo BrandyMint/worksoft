@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20130116074623) do
     t.text     "desc"
     t.string   "icon"
     t.integer  "active_bundle_id"
-    t.integer  "kind_id"
+    t.integer  "kind_id",                                 :null => false
   end
 
   add_index "apps", ["kind_id"], :name => "index_apps_on_kind_id"
