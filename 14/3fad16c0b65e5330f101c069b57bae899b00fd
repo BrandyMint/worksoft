@@ -1,11 +1,11 @@
 {
   "built_on": "master",
-  "duration": 107.487,
-  "full_display_name": "worksoft #126",
-  "id": "2013-01-20_01-17-04",
-  "number": 126,
-  "result": "FAILURE",
+  "duration": 190.346,
+  "full_display_name": "worksoft #127",
+  "id": "2013-01-20_09-24-18",
+  "number": 127,
+  "result": "SUCCESS",
   "status_message": "?",
-  "time": "2013-01-20 00:17:04 +0300",
-  "url": "job/worksoft/126/"
+  "time": "2013-01-20 08:24:18 +0300",
+  "url": "job/worksoft/127/"
 }
