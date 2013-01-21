@@ -124,6 +124,10 @@ class Bundle < ActiveRecord::Base
     VersionMatchers.new supported_kernel_versions
   end
 
+  def active?
+    state == "ready"
+  end
+
   private
 
   def kernel_versions

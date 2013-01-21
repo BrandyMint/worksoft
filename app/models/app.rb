@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 require 'app_bundle_defaults_extenstion'
 class App < ActiveRecord::Base
-  attr_accessible :name, :icon, :desc, :kind_id, :kind
+
+  attr_accessible :name, :icon, :desc, :kind_id, :developer_profile_id
+
 
   belongs_to :developer_profile, :counter_cache => true
   belongs_to :active_bundle, :class_name => 'Bundle'
