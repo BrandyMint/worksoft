@@ -116,4 +116,5 @@ group :test do
   gem 'poltergeist', :git => 'git://github.com/mjtko/poltergeist.git', :branch => 'fix/upload-file-path-should-be-string'
   gem "launchy", ">= 2.1.2"
   gem "factory_girl_rails", ">= 4.0.0"
+  gem "test_active_admin", :git => "git://github.com/BrandyMint/test_active_admin.git"
 end

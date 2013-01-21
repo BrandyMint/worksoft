@@ -6,6 +6,16 @@ GIT
       capistrano (>= 2.0.0)
 
 GIT
+  remote: git://github.com/BrandyMint/test_active_admin.git
+  revision: 68d935e5b62b4f1a45796c33ede83a6f843d8f8b
+  specs:
+    test_active_admin (0.0.1)
+      activesupport
+      capybara
+      factory_girl
+      rspec
+
+GIT
   remote: git://github.com/BrandyMint/twitter-bootstrap-markup-rails.git
   revision: 595f012853dda4611f49e7d42d292b84e5611c43
   specs:
@@ -497,6 +507,7 @@ DEPENDENCIES
   state_machine
   sunspot_rails
   sunspot_solr
+  test_active_admin!
   twitter-bootstrap-markup-rails!
   twitter_bootstrap_helpers
   uglifier (>= 1.0.3)

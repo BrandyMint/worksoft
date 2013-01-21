@@ -8,7 +8,7 @@ ActiveAdmin.register Configuration do
     default_actions
   end
 
-  form do f
+  form do |f|
     f.inputs do
       f.input :name
     end
