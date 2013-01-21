@@ -20,4 +20,13 @@ ActiveAdmin.register App do
     default_actions
   end
 
+  form do |f|
+    f.inputs do
+      f.input :name 
+      f.input :kind
+      f.input :desc
+      f.input :icon, :as => :file, :hint => f.template.image_tag(f.object.icon.thumb_64.url) 
+      f.buttons
+    end
+  end
 end
