@@ -12,7 +12,11 @@ class AppSearcher
   end
 
   def filtered_bundles
-    @results.map { |app| app.matched_bundles( q.kernel_version ).first }.compact
+    if @results.present?
+      @results.map { |app| app.matched_bundles( q.kernel_version ).first }.compact
+    else
+      []
+    end
   end
 
   private
