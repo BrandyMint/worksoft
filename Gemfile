@@ -32,7 +32,7 @@ gem 'postgres_ext'
 
 gem 'redcarpet', :git => 'git://github.com/vmg/redcarpet.git'
 
-gem 'sunspot_rails'
+#gem 'sunspot_rails'
 gem 'select2-rails'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
@@ -96,7 +96,7 @@ group :development do
   gem 'debugger' unless `whoami`=~/jenkins/
   gem "rspec-rails", ">= 2.11.0"
   gem "factory_girl_rails", ">= 4.0.0"
-  gem 'sunspot_solr'
+  #gem 'sunspot_solr'
 end
 
 group :test do
