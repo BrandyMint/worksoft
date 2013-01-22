@@ -2,9 +2,9 @@
 %p.pull-right
   = upload_bundle_link @app
 
-- unless @app.bundles.active.empty?
+- unless @app.bundles.live.empty?
   %h3= "Активные версии"
-  = render 'bundles', :bundles => @app.bundles.active.reverse_order_by_version
+  = render 'bundles', :bundles => @app.bundles.live.reverse_order_by_version
 
 - unless @app.bundles.destroyed.empty?
   %h3= "Неактивные версии"
