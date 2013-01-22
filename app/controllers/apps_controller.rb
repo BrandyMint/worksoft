@@ -2,7 +2,7 @@
 class AppsController < ApplicationController
   def index
      @query = AppSearchQuery.new
-     @bundles = active_bundles
+     @bundles = Bundle.active
   end
 
   def search
@@ -13,7 +13,7 @@ class AppsController < ApplicationController
       searcher.search params[:page]
       @bundles = searcher.filtered_bundles
     else
-      @bundles = active_bundles
+      @bundles = Bundle.active
     end
 
     render :index
@@ -23,10 +23,4 @@ class AppsController < ApplicationController
     @app = App.find params[:id]
   end
 
-  private
-
-  def active_bundles
-    # TODO Bundle.active
-    App.ready.includes(:active_bundle).map {|a| a.active_bundle }
-  end
 end
