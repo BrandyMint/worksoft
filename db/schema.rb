@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130119170217) do
+ActiveRecord::Schema.define(:version => 20130122032652) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -99,10 +99,11 @@ ActiveRecord::Schema.define(:version => 20130119170217) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "supported_configurations", :force => true do |t|
-    t.integer  "bundle_id",        :null => false
-    t.integer  "configuration_id", :null => false
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "bundle_id",                     :null => false
+    t.integer  "configuration_id",              :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "version_number",   :limit => 8
   end
 
   add_index "supported_configurations", ["bundle_id"], :name => "sc_idx2"
