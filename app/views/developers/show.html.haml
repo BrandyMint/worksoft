@@ -1,2 +1,10 @@
-%h1 Developers#show
-%p Find me in app/views/developers/show.html.haml
+.page-header
+  .pull-right= image_tag @developer.avatar.thumb_48.url if @developer.avatar.present?
+  %h1= @developer.name
+  .small "Приложений #{@developer.apps_count}"
+.clearfix
+
+- unless @developer.apps.empty?
+  %h2 Приложения
+  .row
+    = render :partial => 'app', :collection => @active_bundles
