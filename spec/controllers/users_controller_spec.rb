@@ -52,7 +52,7 @@ describe UsersController do
     
     it "активирует пользователя" do
       get :activate, token: @user.activation_token
-      response.should redirect_to(login_path)
+      response.should redirect_to(root_path)
     end
 
     it "генерирует ошибку" do
