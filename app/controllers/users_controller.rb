@@ -19,7 +19,8 @@ class UsersController < ApplicationController
   def activate
     if (@user = User.load_from_activation_token(params[:token]))
       @user.activate!
-      redirect_to login_path, :notice => t('notice.email.confirmed')
+      auto_login @user
+      redirect_to root_path, :notice => t('notice.email.confirmed')
     else
       render :file => "#{Rails.root}/public/404.html", layout: false
     end
