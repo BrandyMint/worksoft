@@ -12,6 +12,9 @@ class BundlePacker
     # Пишем info.yaml
     IO.write info_file, bundle.spec.to_yaml
 
+    # Добавляем иконку
+    FileUtils.cp bundle.icon.file.file, app_logo(bundle) if bundle.icon.present?
+
     # Копируем исходник
     FileUtils.copy bundle.source_file.file.file, app_file
 
@@ -38,6 +41,10 @@ class BundlePacker
 
   def info_file
     dir + 'info.yml'
+  end
+
+  def app_logo bundle  
+    dir + "logo.#{bundle.icon.file.extension.downcase}"
   end
 
   def app_file
