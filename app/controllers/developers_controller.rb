@@ -4,8 +4,7 @@ class DevelopersController < ApplicationController
   end
 
   def show
-    @active_bundles = []
     @developer = DeveloperProfile.find params[:id]
-    @developer.apps.each {|app| @active_bundles << app.active_bundle if app.active_bundle.present?}  
+    @active_bundles = @developer.ready.includes(:active_bundle).map( &:active_bundle )
   end
 end
