@@ -13,8 +13,8 @@ ActiveAdmin.register App do
     column :developer_profile do |app|
       link_to app, admin_developer_profile_path(app.developer_profile)
     end
-    column :active_bundle do |app|
-      link_to app, admin_bundle_path(app.active_bundle) if app.active_bundle.present?
+    column :current_bundle do |app|
+      link_to app, admin_bundle_path(app.current_bundle) if app.current_bundle.present?
     end
 
     default_actions
