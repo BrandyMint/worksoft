@@ -11,9 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122032652) do
-
-  add_extension "hstore"
+ActiveRecord::Schema.define(:version => 20130123104753) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -38,8 +36,8 @@ ActiveRecord::Schema.define(:version => 20130122032652) do
     t.datetime "updated_at",                              :null => false
     t.text     "desc"
     t.string   "icon"
-    t.integer  "active_bundle_id"
-    t.integer  "kind_id",                                 :null => false
+    t.integer  "current_bundle_id"
+    t.integer  "kind_id"
   end
 
   add_index "apps", ["kind_id"], :name => "index_apps_on_kind_id"
@@ -83,8 +81,8 @@ ActiveRecord::Schema.define(:version => 20130122032652) do
   add_index "developer_profiles", ["name"], :name => "index_developer_profiles_on_name", :unique => true
 
   create_table "kinds", :force => true do |t|
-    t.string   "title",      :null => false
-    t.string   "ext",        :null => false
+    t.string   "title"
+    t.string   "ext"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -117,7 +115,6 @@ ActiveRecord::Schema.define(:version => 20130122032652) do
     t.string   "salt"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
-    t.string   "name"
     t.integer  "developer_profile_id"
     t.string   "activation_state"
     t.string   "activation_token"

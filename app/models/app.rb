@@ -5,7 +5,7 @@ class App < ActiveRecord::Base
   attr_accessible :name, :icon, :desc, :kind_id, :developer_profile_id
 
   belongs_to :developer_profile, :counter_cache => true
-  belongs_to :active_bundle, :class_name => 'Bundle'
+  belongs_to :current_bundle, :class_name => 'Bundle'
   belongs_to :kind
   has_many :bundles, :extend => AppBundleDefaultsExtension
 
@@ -32,7 +32,7 @@ class App < ActiveRecord::Base
     end
   end
 
-  delegate :version, :to => :active_bundle, :allow_nil => true
+  delegate :version, :to => :current_bundle, :allow_nil => true
 
   if defined? Sunspot
     searchable do
@@ -53,21 +53,22 @@ class App < ActiveRecord::Base
     name
   end
 
-  def last_active_bundle
+  def last_current_bundle
     bundles.ready.order_by_version.last
   end
 
-  def update_active_bundle
-    if last_active_bundle.present?
-      activate_bundle last_active_bundle
+  def update_current_bundle
+    if last_current_bundle.present?
+      set_current_bundle last_current_bundle  ## Set current bundle
     else
-      update_attribute :active_bundle, nil
+      update_attribute :current_bundle, nil
       idle
     end
   end
 
-  def activate_bundle bundle
-    update_attribute :active_bundle, bundle
+  def set_current_bundle bundle
+    current_bundle.set_ready if current_bundle.present?
+    update_attribute :current_bundle, bundle
     publish
   end
 
