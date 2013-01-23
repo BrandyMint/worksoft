@@ -2,7 +2,7 @@
 class AppsController < ApplicationController
   def index
      @query = AppSearchQuery.new
-     @bundles = Bundle.active
+     @bundles = Bundle.currents
   end
 
   def search
@@ -13,7 +13,7 @@ class AppsController < ApplicationController
       searcher.search params[:page]
       @bundles = searcher.filtered_bundles
     else
-      @bundles = Bundle.active
+      @bundles = Bundle.currents
     end
 
     render :index

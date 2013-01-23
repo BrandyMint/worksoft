@@ -2,8 +2,12 @@
 
 class ImageUploader < CarrierWave::Uploader::Base
 
+  CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
+
   #include CarrierWave::RMagick
   include CarrierWave::MiniMagick
+  include Sprockets::Helpers::RailsHelper
+  include Sprockets::Helpers::IsolatedHelper
   storage :file
 
   def store_dir
@@ -11,8 +15,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    asset_path("fallback/" + [normal, version_name, ".png"].compact.join('_'))
-    # "/assets/fallback/#{version_name}.png"
+    asset_path "fallback/#{model.class.to_s.underscore}/#{version_name}.png"
   end
 
   # Create different versions of your uploaded files:
