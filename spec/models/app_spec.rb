@@ -17,13 +17,13 @@ describe App do
 
       it 'автоматически публикует приложение при добавлении пакета' do
         @app.state.should == "ready"
-        @app.active_bundle.should == @bundle
+        @app.current_bundle.should == @bundle
       end
 
-      it 'устанавливает app state в :new, удаляет active_bundle' do
-        @app.active_bundle.destroy
+      it 'устанавливает app state в :new, удаляет current_bundle' do
+        @app.current_bundle.destroy
         @app.state.should == "new"
-        @app.active_bundle.should be_nil
+        @app.current_bundle.should be_nil
       end
     end
 
@@ -36,7 +36,7 @@ describe App do
         pending "в разработке"
         @app.bundles(true)
 
-        @app.active_bundle.should_receive :update_bundle
+        @app.current_bundle.should_receive :update_bundle
         @app.update_attribute :name, "another name"
       end
 
