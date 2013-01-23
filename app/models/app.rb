@@ -84,6 +84,18 @@ class App < ActiveRecord::Base
 
   end
 
+  def matched_configuration conf_id
+    matched = bundles.ready.ordered
+
+    if conf_id.present?
+      matched.select { |b| b.supported_configurations.map(&:configuration_id).include? conf_id }
+    else
+      matched
+    end
+
+  end
+
+
 private
   def recreate_bundles_files
     bundles.each {|bundle| bundle.update_bundle}  

@@ -14,6 +14,7 @@ class AppSearcher
   def filtered_bundles
     if @results.present?
       @results.map { |app| app.matched_bundles( q.kernel_version ).first }.compact
+      @results.map { |app| app.matched_configuration( q.configuration_id).first }.compact
     else
       []
     end
