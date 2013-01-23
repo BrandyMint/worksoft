@@ -27,7 +27,7 @@ ActiveAdmin.register Bundle do
     end
     column :state
     column :state_mashine do |bundle|
-      link_to "опубликовать", activate_admin_bundle_path(bundle.model) unless bundle.model.active?
+      link_to "опубликовать", activate_admin_bundle_path(bundle.model) unless bundle.model.new?
     end
     column :source_file_link, :order => :source_file
     column :bundle_file_link, :order => :bundle_file
