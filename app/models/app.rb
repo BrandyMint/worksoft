@@ -4,7 +4,6 @@ class App < ActiveRecord::Base
 
   attr_accessible :name, :icon, :desc, :kind_id, :developer_profile_id
 
-
   belongs_to :developer_profile, :counter_cache => true
   belongs_to :active_bundle, :class_name => 'Bundle'
   belongs_to :kind
@@ -16,6 +15,8 @@ class App < ActiveRecord::Base
   validates :kind, :presence => true
 
   scope :ready, where(:state=>:ready)
+
+  after_save :recreate_bundles_files
 
   state_machine :state, :initial => :new do
     state :new, :human_name => 'Готовится'
@@ -80,5 +81,10 @@ class App < ActiveRecord::Base
       matched
     end
 
+  end
+
+private
+  def recreate_bundles_files
+    bundles.each {|bundle| bundle.update_bundle}  
   end
 end

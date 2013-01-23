@@ -8,4 +8,4 @@
   = simple_format @app.desc
 
 %h3= "Активные версии"
-= render 'bundles', :bundles => @app.bundles.active.reverse_order_by_version
+= render 'bundles', :bundles => @app.bundles.live.reverse_order_by_version
