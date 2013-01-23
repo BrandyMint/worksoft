@@ -15,7 +15,7 @@ class Bundle < ActiveRecord::Base
   # serialize :supported_kernel_versions, Hash
 
   scope :ready, where(:state=>:ready)
-  scope :active, where('state != ?', :destroy)
+  scope :live, where('state != ?', :destroy)
   scope :destroyed, where(:state=>:destroy)
   scope :ordered, order(:version_number)
   scope :order_by_version, order(:version_number)
@@ -69,8 +69,18 @@ class Bundle < ActiveRecord::Base
   
   after_create :generate_bundle, :publish
 
+  def self.active
+    # TODO Выбирать bundle по статусу, который устанвливать при их активации
+    App.ready.includes(:active_bundle).map &:active_bundle
+  end
+
   def generate_bundle
     BundlePacker.new(self).generate
+  end
+
+  def update_bundle
+    FileUtils.rm bundle_file.file.file if bundle_file.file.present?
+    generate_bundle
   end
 
   def to_s
