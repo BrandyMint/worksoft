@@ -40,25 +40,30 @@ class Bundle < ActiveRecord::Base
     # state :updating
     state :ready, :human_name => 'Активен'
     state :destroy
+    state :current
 
     event :set_destroy do
       transition all => :destroy
     end
 
     event :publish do
-      transition :new => :ready
+      transition :new => :current
+    end
+
+    event :set_ready do
+      transition :current => :ready    
     end
 
     event :restore do
       transition [:new, :destroy] => :ready
     end
 
-    after_transition :ready => :destroy do |bundle|
-      bundle.app.update_active_bundle
+    after_transition any => :destroy do |bundle|
+      bundle.app.update_current_bundle
     end
 
-    after_transition :new => :ready do |bundle, transition|
-      bundle.app.activate_bundle bundle
+    after_transition :new => :current do |bundle, transition|
+      bundle.app.set_current_bundle bundle
     end
   end
 
@@ -71,7 +76,7 @@ class Bundle < ActiveRecord::Base
 
   def self.active
     # TODO Выбирать bundle по статусу, который устанвливать при их активации
-    App.ready.includes(:active_bundle).map &:active_bundle
+    App.ready.includes(:current_bundle).map &:current_bundle
   end
 
   def generate_bundle
@@ -128,10 +133,6 @@ class Bundle < ActiveRecord::Base
 
   def kernel_version_matchers
     VersionMatchers.new supported_kernel_versions
-  end
-
-  def active?
-    state == "ready"
   end
 
   private
