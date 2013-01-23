@@ -78,6 +78,11 @@ class Bundle < ActiveRecord::Base
     BundlePacker.new(self).generate
   end
 
+  def update_bundle
+    FileUtils.rm bundle_file.file.file
+    generate_bundle
+  end
+
   def to_s
     "#{name} #{version}"
   end

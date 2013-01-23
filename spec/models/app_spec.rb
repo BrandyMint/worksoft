@@ -25,7 +25,24 @@ describe App do
         @app.state.should == "new"
         @app.active_bundle.should be_nil
       end
+    end
 
+    context 'обновление приложения' do
+      before do
+        FactoryGirl.create(:bundle, app: @app)      
+      end
+      
+      it 'обновляет bundle_file при обновлении приложения' do
+        pending "в разработке"
+        @app.bundles(true)
+
+        @app.active_bundle.should_receive :update_bundle
+        @app.update_attribute :name, "another name"
+      end
+
+      after do
+        Bundle.last.destroy      
+      end
     end
 
     after do
