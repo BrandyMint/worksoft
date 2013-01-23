@@ -79,7 +79,7 @@ class Bundle < ActiveRecord::Base
   end
 
   def update_bundle
-    FileUtils.rm bundle_file.file.file
+    FileUtils.rm bundle_file.file.file if bundle_file.file.present?
     generate_bundle
   end
 
