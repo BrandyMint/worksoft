@@ -5,6 +5,6 @@ class DevelopersController < ApplicationController
 
   def show
     @developer = DeveloperProfile.find params[:id]
-    @active_bundles = @developer.ready.includes(:active_bundle).map( &:active_bundle )
+    @current_bundles = @developer.apps.ready.includes(:current_bundle).map &:current_bundle
   end
 end

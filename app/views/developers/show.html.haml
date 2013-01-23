@@ -4,7 +4,7 @@
   .small "Приложений #{@developer.apps_count}"
 .clearfix
 
-- unless @developer.apps.empty?
+- unless @current_bundles.empty?
   %h2 Приложения
   .row
-    = render :partial => 'app', :collection => @active_bundles
+    = render :partial => 'app', :collection => @current_bundles

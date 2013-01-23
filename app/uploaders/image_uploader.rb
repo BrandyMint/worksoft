@@ -5,13 +5,14 @@ class ImageUploader < CarrierWave::Uploader::Base
   #include CarrierWave::RMagick
   include CarrierWave::MiniMagick
   storage :file
-  
+
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   def default_url
-    "/assets/fallback/#{version_name}.png"
+    asset_path("fallback/" + [normal, version_name, ".png"].compact.join('_'))
+    # "/assets/fallback/#{version_name}.png"
   end
 
   # Create different versions of your uploaded files:

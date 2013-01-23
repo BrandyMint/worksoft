@@ -25,7 +25,7 @@
           %span.muted<= index > 0 ? ', '.html_safe : ''
           = link_to bundle.version, developer_app_path(app, :anchor => "bundle_#{bundle.id}")
       %td
-        = link_to "скачать", app.active_bundle.bundle_file.to_s if app.active_bundle
+        = link_to "скачать", app.current_bundle.bundle_file.to_s if app.current_bundle.present?
 
       %td
         = upload_bundle_link app
