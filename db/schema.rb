@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123104753) do
+ActiveRecord::Schema.define(:version => 20130124142754) do
 
   add_extension "hstore"
 
@@ -56,10 +56,14 @@ ActiveRecord::Schema.define(:version => 20130123104753) do
     t.integer  "app_id",                                                                                     :null => false
     t.text     "supported_kernel_versions"
     t.integer  "version_number",            :limit => 8, :default => 10000,                                  :null => false
+    t.string   "name",                                                                                       :null => false
+    t.integer  "kind_id",                                                                                    :null => false
   end
 
   add_index "bundles", ["app_id", "version_number"], :name => "index_bundles_on_app_id_and_version", :unique => true
   add_index "bundles", ["app_id"], :name => "index_bundles_on_app_id"
+  add_index "bundles", ["kind_id"], :name => "index_bundles_on_kind_id"
+  add_index "bundles", ["name"], :name => "index_bundles_on_name"
   add_index "bundles", ["state"], :name => "index_bundles_on_state"
   add_index "bundles", ["uuid"], :name => "index_bundles_on_uuid", :unique => true
 
@@ -101,11 +105,11 @@ ActiveRecord::Schema.define(:version => 20130123104753) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "supported_configurations", :force => true do |t|
-    t.integer  "bundle_id",                     :null => false
-    t.integer  "configuration_id",              :null => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.integer  "version_number",   :limit => 8
+    t.integer  "bundle_id",        :null => false
+    t.integer  "configuration_id", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "versions"
   end
 
   add_index "supported_configurations", ["bundle_id"], :name => "sc_idx2"

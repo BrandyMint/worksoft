@@ -16,7 +16,7 @@ class App < ActiveRecord::Base
 
   scope :ready, where(:state=>:ready)
 
-  after_save :recreate_bundles_files
+  after_save :update_bundles
 
   state_machine :state, :initial => :new do
     state :new
@@ -72,10 +72,9 @@ class App < ActiveRecord::Base
     publish
   end
 
-
 private
 
-  def recreate_bundles_files
-    bundles.each {|bundle| bundle.update_bundle}  
+  def update_bundles
+    bundles.each &:app_updated
   end
 end

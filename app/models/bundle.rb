@@ -7,7 +7,7 @@ class Bundle < ActiveRecord::Base
 
   attr_accessible :source_file, :version, :app, :app_id, :changelog,
     :supported_kernel_versions, :supported_configurations_attributes,
-    :source_file_cache
+    :source_file_cache, :name, :kind_id
 
   mount_uploader :source_file, FileUploader
   mount_uploader :bundle_file, FileUploader
@@ -27,7 +27,7 @@ class Bundle < ActiveRecord::Base
   has_many :supported_configurations
 
   accepts_nested_attributes_for :supported_configurations, :allow_destroy => true
-  
+
   validates :app, :presence => true
   validates :version_number, :presence => true, :uniqueness => { :scope => :app_id }
   validates :source_file, :presence => true, :app_kind_extension => true
@@ -36,6 +36,11 @@ class Bundle < ActiveRecord::Base
   
   # composed_of :version, :allow_nil => true
   delegate :name, :desc, :kind_id, :kind, :icon, :to => :app
+
+  before_save do
+    self.name = app.name
+    self.kind_id = app.kind_id
+  end
 
   state_machine :state, :initial => :new do
     state :new
@@ -73,11 +78,16 @@ class Bundle < ActiveRecord::Base
     self.supported_configurations ||= SupportedConfigurations.new
     self.uuid = UUID.new.generate
   end
-  
+
   after_create :generate_bundle, :publish
 
   def generate_bundle
     BundlePacker.new(self).generate
+  end
+
+  def app_updated
+    update_attributes :name => app.name, :kind_id => app.kind_id
+    update_bundle
   end
 
   def update_bundle

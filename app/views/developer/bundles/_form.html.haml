@@ -16,7 +16,7 @@
             -#= sc.error :'supported_configurations.configuration_id'
             = sc.association :configuration, :label => '', :include_blank => false
           .span1
-            = sc.input :version, :as => :string, :input_html => { :class => 'input-mini' }
+            = sc.input :versions, :as => :string, :input_html => { :class => 'input-mini' }
           .span1
             = sc.link_to_remove :class => 'btn btn-danger btn-small' do
               = icon 'minus-sign', :white

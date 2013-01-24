@@ -1,5 +1,6 @@
 - bundle = app
 - app = bundle.app
+- db = BundleDecorator.new bundle
 .media.app-block
   = link_to app, :class => 'pull-left' do
     = image_tag app.icon.thumb_64.url, :class => 'media-object', :size => '64x64'
@@ -17,5 +18,8 @@
     .app-desc
       %small.muted
         = simple_format app.desc
-    %div.app-download
+    %div.app-download.pull-right
       = download_link bundle
+    .app-supported-configurations
+      Версии 1С:
+      = db.support

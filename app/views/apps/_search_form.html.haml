@@ -13,6 +13,7 @@
       .span3
         = f.input :kernel_version,  :wrapper => :stack, :placeholder => "не важно", :input_html => { :class => 'input-small' }
         = f.input :configuration_id, :wrapper => :stack, :collection => configurations_collection_for_search, :include_blank => false
+        = f.input :configuration_version, :wrapper => :stack, :placeholder => 'версия конфигурации', :input_html => { :class => 'input-small' }
     .row
       .span2
         = f.button :submit, 'Найти', :class => 'btn btn-primary'

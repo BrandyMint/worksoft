@@ -13,19 +13,30 @@ class AppSearcher
   private
 
   # Конвертирует app в bundle и фильтрует по запросу
-  def convert_and_filter_to_bundles apps
-    apps.map do |app|
-      bundles = app.bundles.active.ordered
-      result_bundle = bundles.first
+  def convert_and_filter_to_bundles bundles
+    bundles.map do |app|
       if q.kernel_version.present?
-        result_bundle = bundles.select { |b| b.kernel_version_matchers.match version }.first
+        bundles.select! { |b| b.kernel_version_matchers.match version }
       end
-      result_bundle
+
+      if q.configuration_id.present? && q.configuration_version.present?
+        sc = bundles.supported_configurations.where(:configuration_id => q.configuration_id).first
+        bundles.select! { |b| b.sc.match q.configuration_version }
+      end
+
+      bundles.first
     end.compact
   end
 
   def ransack_search page, per_page
-    App.ready.search( q.ransack_query ).result
+    scope = Bundle.active.ordered
+
+    if q.configuration_id.present?
+      scope = scope.joins(:supported_configurations).
+        where( :supported_configurations => { :configuration_id => q.configuration_id } )
+    end
+
+    scope = scope.search( q.ransack_query ).result
   end
 
   # broken
