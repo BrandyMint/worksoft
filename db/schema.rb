@@ -13,6 +13,8 @@
 
 ActiveRecord::Schema.define(:version => 20130123104753) do
 
+  add_extension "hstore"
+
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
     t.string   "resource_type", :null => false
@@ -37,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20130123104753) do
     t.text     "desc"
     t.string   "icon"
     t.integer  "current_bundle_id"
-    t.integer  "kind_id"
+    t.integer  "kind_id",                                 :null => false
   end
 
   add_index "apps", ["kind_id"], :name => "index_apps_on_kind_id"
@@ -81,8 +83,8 @@ ActiveRecord::Schema.define(:version => 20130123104753) do
   add_index "developer_profiles", ["name"], :name => "index_developer_profiles_on_name", :unique => true
 
   create_table "kinds", :force => true do |t|
-    t.string   "title"
-    t.string   "ext"
+    t.string   "title",      :null => false
+    t.string   "ext",        :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -115,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20130123104753) do
     t.string   "salt"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
+    t.string   "name"
     t.integer  "developer_profile_id"
     t.string   "activation_state"
     t.string   "activation_token"

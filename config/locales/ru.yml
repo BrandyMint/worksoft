@@ -247,6 +247,19 @@ ru:
   activerecord:
     errors:
       <<: *errors
+    state_machines:
+      bundle:
+        state:
+          states:
+            new: 'Новый'
+            ready: 'Действующая'
+            current: 'Текущая'
+            destory: 'Удален'
+      app:
+        state:
+          states:
+            new: 'Готовится'
+            ready: 'Действующее'
   simple_form:
     labels:
       app:

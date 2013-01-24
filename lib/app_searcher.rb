@@ -7,24 +7,21 @@ class AppSearcher
   end
 
   def search page, per_page = 20
-    @results = ransack_search page, per_page
-    @results = filter_by_kenerl_versions @results
-  end
-
-  def filtered_bundles
-    if @results.present?
-      @results.map { |app| app.matched_bundles( q.kernel_version ).first }.compact
-    else
-      []
-    end
+    @results = convert_and_filter_to_bundles ransack_search( page, per_page )
   end
 
   private
 
-  # Оставляем только те app, у которых есть bundles удовлетворяющие kernel_version.
-  def filter_by_kenerl_versions list
-    return list unless q.kernel_version.present?
-
+  # Конвертирует app в bundle и фильтрует по запросу
+  def convert_and_filter_to_bundles apps
+    apps.map do |app|
+      bundles = app.bundles.active.ordered
+      result_bundle = bundles.first
+      if q.kernel_version.present?
+        result_bundle = bundles.select { |b| b.kernel_version_matchers.match version }.first
+      end
+      result_bundle
+    end.compact
   end
 
   def ransack_search page, per_page

@@ -19,9 +19,9 @@ class App < ActiveRecord::Base
   after_save :recreate_bundles_files
 
   state_machine :state, :initial => :new do
-    state :new, :human_name => 'Готовится'
+    state :new
     #state :updating
-    state :ready, :human_name => 'Опубликовано'
+    state :ready
 
     event :publish do
       transition :new => :ready
@@ -54,7 +54,7 @@ class App < ActiveRecord::Base
   end
 
   def last_current_bundle
-    bundles.ready.order_by_version.last
+    bundles.active.order_by_version.last
   end
 
   def update_current_bundle
@@ -72,19 +72,9 @@ class App < ActiveRecord::Base
     publish
   end
 
-  # TODO Вынести в presenter
-  def matched_bundles version
-    matched = bundles.ready.ordered
-
-    if version.present?
-      matched.select { |b| b.kernel_version_matchers.match version }
-    else
-      matched
-    end
-
-  end
 
 private
+
   def recreate_bundles_files
     bundles.each {|bundle| bundle.update_bundle}  
   end

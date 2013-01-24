@@ -10,9 +10,9 @@ class AppsController < ApplicationController
 
     if @query.valid?
       searcher = AppSearcher.new @query
-      searcher.search params[:page]
-      @bundles = searcher.filtered_bundles
+      @bundles = searcher.search params[:page]
     else
+      flash[:notice] = 'Неверный поисковый запрос'
       @bundles = Bundle.currents
     end
 

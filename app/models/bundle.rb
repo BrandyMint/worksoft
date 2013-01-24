@@ -16,6 +16,7 @@ class Bundle < ActiveRecord::Base
 
   scope :currents, where(:state=>:current)
   scope :ready, where(:state=>:ready)
+  scope :active, where(:state => [:ready, :current])
   scope :live, where('state != ?', :destroy)
   scope :destroyed, where(:state=>:destroy)
   scope :ordered, order(:version_number)
@@ -37,11 +38,11 @@ class Bundle < ActiveRecord::Base
   delegate :name, :desc, :kind_id, :kind, :icon, :to => :app
 
   state_machine :state, :initial => :new do
-    state :new, :human_name => 'Новый'
+    state :new
     # state :updating
-    state :ready, :human_name => 'Активен'
-    state :destroy
+    state :ready
     state :current
+    state :destroy
 
     event :set_destroy do
       transition all => :destroy

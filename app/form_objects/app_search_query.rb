@@ -5,6 +5,7 @@ class AppSearchQuery
   attr_reader :name, :kind_id, :kernel_version, :configuration_id
 
   def initialize params={}
+    params = {} unless params.is_a? Hash
     @name = params['name']
 
     @kind_id = params['kind_id']
@@ -25,7 +26,7 @@ class AppSearchQuery
 
   def ransack_query
     h = {}
-    h[:name_containts] = name if @name.present?
+    h[:name_cont] = name if @name.present?
     h[:kind_id_eq] = kind_id if @kind_id.present?
     h[:configuration_id_eq] = configuration_id if @configuration_id.present?
 
