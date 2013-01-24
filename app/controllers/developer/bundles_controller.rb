@@ -8,10 +8,10 @@ class Developer::BundlesController < Developer::BaseController
 
   def new
     @bundle ||= app.bundles.build
-    # @bundle.supported_configurations.build
   end
 
   def create
+    debugger
     @bundle = app.bundles.build( params[:bundle] )
     if @bundle.save
       redirect_to developer_app_path(@app), :notice => "Загружена новая версия #{@bundle.version} приложения #{app}"

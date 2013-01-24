@@ -21,7 +21,7 @@ describe App do
       end
 
       it 'устанавливает app state в :new, удаляет current_bundle' do
-        @app.current_bundle.destroy
+        @app.current_bundle.set_destroy
         @app.state.should == "new"
         @app.current_bundle.should be_nil
       end
