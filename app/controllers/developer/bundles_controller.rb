@@ -21,13 +21,16 @@ class Developer::BundlesController < Developer::BaseController
   end
 
   def destroy
-    bundle.destroy
+    bundle.set_destroy
     redirect_to developer_app_path(bundle.app), :notice => "Версия #{bundle} дезактивирована"
   end
 
   def restore
-    bundle.restore
-    redirect_to developer_app_path(bundle.app), :notice => "Версия #{bundle} активирована"
+    if bundle.restore
+      redirect_to developer_app_path(bundle.app), :notice => "Версия #{bundle} активирована"
+    else
+      redirect_to developer_app_path(bundle.app), :alert => "Ошибка восстановления #{bundle}!"
+    end
   end
 
   private

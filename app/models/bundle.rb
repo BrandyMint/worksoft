@@ -44,10 +44,6 @@ class Bundle < ActiveRecord::Base
     state :current
     state :destroy
 
-    event :set_destroy do
-      transition all => :destroy
-    end
-
     event :publish do
       transition :new => :current
     end
@@ -124,12 +120,12 @@ class Bundle < ActiveRecord::Base
     self.version_number = value.to_i
   end
 
-  def destroy
-    set_destroy
-  end
-
   def kernel_version_matchers
     VersionMatchers.new supported_kernel_versions
+  end
+
+  def set_destroy
+    update_column :state, 'destroy'
   end
 
   private

@@ -254,7 +254,7 @@ ru:
             new: 'Новый'
             ready: 'Действующая'
             current: 'Текущая'
-            destory: 'Удален'
+            destroy: 'Удален'
       app:
         state:
           states:
