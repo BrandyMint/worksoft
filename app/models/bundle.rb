@@ -48,6 +48,10 @@ class Bundle < ActiveRecord::Base
       transition :new => :current
     end
 
+    event :set_destroy do
+      transition any => :destroy
+    end
+
     event :set_ready do
       transition :current => :ready    
     end
@@ -124,9 +128,9 @@ class Bundle < ActiveRecord::Base
     VersionMatchers.new supported_kernel_versions
   end
 
-  def set_destroy
-    update_column :state, 'destroy'
-  end
+  #def set_destroy
+    #update_column :state, 'destroy'
+  #end
 
   private
 
