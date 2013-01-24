@@ -32,11 +32,10 @@ class BundleDecorator < Draper::Base
   def supported_configurations
     h.content_tag :div do
       h.content_tag :small, :class => :muted do
-        bundle.supported_configurations.map(&:configuration).join(', ')
+        bundle.supported_configurations.join(', ')
       end
     end
   end
-
   # Accessing Helpers
   #   You can access any helper via a proxy
   #

@@ -14,4 +14,12 @@ class SupportedConfiguration < ActiveRecord::Base
   def version= value
     self.version_number = Version.new(value).to_i
   end
+
+  def to_s
+    if version.to_s.present?
+      configuration.to_s + " (#{version})"
+    else
+      configuration.to_s
+    end
+  end
 end

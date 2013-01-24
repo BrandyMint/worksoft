@@ -16,7 +16,10 @@ class Version
       self.major = value.major
       self.minor = value.minor
       self.patch = value.patch
-    #elsif value.is_a? NilClass
+    elsif value.is_a? NilClass
+      self.major = nil
+      self.minor = nil
+      self.patch = nil
     else
       raise "Unknown type #{value.class} of #{value}"
     end
@@ -32,7 +35,11 @@ class Version
   end
 
   def to_s
-    [major, minor, patch==0 ? nil : patch].compact.join('.')
+    if major.nil?
+      ''
+    else
+      [major, minor, patch==0 ? nil : patch].compact.join('.')
+    end
   end
 
   # Сериализация
@@ -41,7 +48,11 @@ class Version
   end
 
   def to_i
-    major*Precision*Precision + minor*Precision + patch
+    if major.nil?
+      nil
+    else
+      major*Precision*Precision + minor*Precision + patch
+    end
   end
 
   # Возвращает новый Version с изменениями из параметров
@@ -57,9 +68,15 @@ class Version
   private
 
   def from_fixnum value
-    @major = value / (Precision * Precision) % Precision
-    @minor = value / Precision % Precision
-    @patch = value % Precision
+    if value == 0
+      @major = nil
+      @minor = nil
+      @patch = nil
+    else
+      @major = value / (Precision * Precision) % Precision
+      @minor = value / Precision % Precision
+      @patch = value % Precision
+    end
   end
 
   def from_array value
