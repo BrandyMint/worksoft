@@ -3,12 +3,14 @@ production:
     hostname: localhost
     port: 8983
     log_level: WARNING
+    path: /solr/worksoft-production
 
 development:
   solr:
     hostname: localhost
     port: 8984
     log_level: INFO
+    path: /solr/worksoft-production
 
 test:
   solr:
