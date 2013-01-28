@@ -1,5 +1,5 @@
 class SupportedConfiguration < ActiveRecord::Base
-  attr_accessible :configuration_id, :bundle_id, :version
+  attr_accessible :configuration_id, :bundle_id, :versions
 
   belongs_to :configuration
   belongs_to :bundle

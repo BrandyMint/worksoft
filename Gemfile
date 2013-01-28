@@ -116,9 +116,9 @@ group :test do
   gem 'guard-bundler'
   gem 'guard-ctags-bundler'
   gem "database_cleaner"
-  gem "capybara"
+  gem "capybara", ">= 2.0.1"
   gem 'capybara-screenshot'
-  gem 'poltergeist', :git => 'git://github.com/mjtko/poltergeist.git', :branch => 'fix/upload-file-path-should-be-string'
+  gem 'poltergeist', :git => 'git://github.com/jonleighton/poltergeist.git'
   gem "launchy", ">= 2.1.2"
   gem "factory_girl_rails", ">= 4.0.0"
   gem "test_active_admin", :git => "git://github.com/BrandyMint/test_active_admin.git"

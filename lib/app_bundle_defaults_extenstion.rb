@@ -10,7 +10,7 @@ module AppBundleDefaultsExtension
         :supported_configurations_attributes =>
         app.last_bundle.supported_configurations.map do |sc|
           { :configuration_id => sc.configuration_id,
-            :version => sc.version }
+            :versions => sc.versions }
         end
       )
     else
