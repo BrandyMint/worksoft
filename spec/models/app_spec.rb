@@ -29,7 +29,7 @@ describe App do
 
     context 'обновление приложения' do
       before do
-        FactoryGirl.create(:bundle, app: @app)      
+        FactoryGirl.create(:bundle, app: @app)
       end
       
       it 'обновляет bundle_file при обновлении приложения' do
@@ -39,6 +39,17 @@ describe App do
         @app.current_bundle.should_receive :update_bundle
         @app.update_attribute :name, "another name"
       end
+
+      it 'обновляет kind приложения, если у него нет ни одного bundle' do
+        kind = FactoryGirl.create(:kind)
+        @app.stub(:bundles) {[]}
+        @app.update_attributes({:kind_id => kind.id}).should be_true
+      end
+
+      it 'не обновляет kind приложения, если у него есть хотя бы один bundle' do
+        @app.update_attributes({:kind_id => 3}).should be_false
+      end
+
 
       after do
         Bundle.last.destroy      
