@@ -84,7 +84,12 @@ gem 'kaminari'
 
 group :development do
   gem 'commands'
-  gem 'rb-inotify'
+
+  gem 'rb-fsevent', :require => false
+  gem 'growl', :require => false
+  gem 'libnotify', :require => false
+  gem 'rb-inotify', :require => false
+  
   gem "haml-rails", ">= 0.3.5"
   gem "hpricot", ">= 0.8.6"
   gem "ruby_parser", ">= 2.3.1"
