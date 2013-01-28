@@ -2,7 +2,7 @@
 
 - if @bundles.present?
   %h2 Доступные приложения (#{@bundles.count})
-  .row
+  .row{ :rel => 'freetile-container' }
     = render :partial => 'app', :collection => @bundles
 - else
   .alert
