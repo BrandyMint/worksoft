@@ -1,5 +1,4 @@
 config/settings/development.yml
-config/settings/development.local.yml
 .yardoc
 tags
 public/assets/
