@@ -202,6 +202,7 @@ GEM
     girl_friday (0.11.2)
       connection_pool (~> 1.0)
       rubinius-actor
+    growl (1.0.3)
     guard (1.6.1)
       listen (>= 0.6.0)
       lumberjack (>= 1.0.2)
@@ -255,6 +256,8 @@ GEM
     kgio (2.7.4)
     launchy (2.1.2)
       addressable (~> 2.3)
+    libnotify (0.8.0)
+      ffi (>= 1.0.11)
     libwebsocket (0.1.7.1)
       addressable
       websocket
@@ -342,6 +345,7 @@ GEM
       actionpack (~> 3.0)
       activerecord (~> 3.0)
       polyamorous (~> 0.5.0)
+    rb-fsevent (0.9.3)
     rb-inotify (0.8.8)
       ffi (>= 0.5.0)
     rdoc (3.12)
@@ -457,6 +461,7 @@ DEPENDENCIES
   draper
   email_spec (>= 1.2.1)
   factory_girl_rails (>= 4.0.0)
+  growl
   guard
   guard-bundler
   guard-ctags-bundler
@@ -471,6 +476,7 @@ DEPENDENCIES
   kaminari
   kaminari-bootstrap
   launchy (>= 2.1.2)
+  libnotify
   mini_magick
   nested_form
   omniauth-identity
@@ -480,6 +486,7 @@ DEPENDENCIES
   rails (>= 3.2.8)
   rails_config
   ransack
+  rb-fsevent
   rb-inotify
   redcarpet!
   rolify (>= 3.2.0)
