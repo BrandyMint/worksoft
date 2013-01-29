@@ -22,11 +22,12 @@ class BundlePacker
     #file = Archive::Zip.archive File.expand_path('public/',bundle_file), dir
     file = Archive::Zip.archive bundle_file, dir
 
-    FileUtils.rm_rf dir
-
     # TODO Сохранять сразу в нужный каталог
     bundle.bundle_file.store! bundle_file
     bundle.save
+
+    FileUtils.rm_rf dir
+    FileUtils.rm_rf bundle_file
 
     #bundle.write_attribute :bundle_file, bundle_file
     #bundle.save
