@@ -122,7 +122,7 @@ class Bundle < ActiveRecord::Base
   end
 
   def bundle_file_name
-    uuid
+    "#{app.name.parameterize}_#{version}"
   end
 
   def version

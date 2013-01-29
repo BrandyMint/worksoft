@@ -12,7 +12,7 @@ class App < ActiveRecord::Base
   mount_uploader :icon, ImageUploader
 
   validates :name, :presence => true
-  validates :kind, :presence => true
+  validates :kind, :presence => true, :have_not_bundles => true
 
   scope :ready, where(:state=>:ready)
 
