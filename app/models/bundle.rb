@@ -108,7 +108,7 @@ class Bundle < ActiveRecord::Base
       'app' => {
         'uuid' => app.uuid,
         'name' => app.name,
-        'kind' => ext
+        'kind' => kind.kind_type
       },
       'bundle' => {
         'uuid' => uuid,
@@ -150,7 +150,10 @@ class Bundle < ActiveRecord::Base
 
   def configurations
     confs = []
-    supported_configurations.each{|sc| confs << sc.configuration.name}
-    confs.join(", ")
+    supported_configurations.each do |sc|
+     confs << {'name' => sc.configuration.name, 'versions' => sc.versions }
+    end
+
+    confs
   end
 end
