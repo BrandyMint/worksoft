@@ -33,4 +33,8 @@ module ApplicationHelper
   def developer_profile
     current_user.developer_profile
   end
+
+  def fontello icon, size, custom_class = '' 
+    content_tag :i, '', :class => "fontello-icon-#{icon} icon-size-#{size} #{custom_class}"
+  end
 end

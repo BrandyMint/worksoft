@@ -1,25 +1,24 @@
 - bundle = app
 - app = bundle.app
 - db = BundleDecorator.new bundle
-.media.app-block
-  = link_to app, :class => 'pull-left' do
-    = image_tag app.icon.thumb_64.url, :class => 'media-object', :size => '64x64'
-  .media-body
-    %h4.media-heading.app-name
-      = link_to app, app_url(app, :anchor => "bundle_#{bundle.id}")
-      %span.app-version= "(#{bundle.version})"
-    .pull-left
+
+.app-block
+  .row-fluid
+    .span2
+      = link_to app, :class => 'pull-left' do
+        = image_tag app.icon.thumb_64.url, :class => 'media-object', :size => '64x64'
+    .app-block-content.span10
+      %h4.media-heading.app-name
+        = link_to app, app_url(app, :anchor => "bundle_#{bundle.id}")
+        %span.app-version= "(#{bundle.version})"
       = developer_link app.developer_profile
-    .pull-right
-      .app-kind.muted
-        %small
-          %i= app.kind
-    .clearfix
-    .app-desc
-      %small.muted
+      .app-desc
         = simple_format app.desc
-    %div.app-download.pull-right
-      = download_link bundle
-    .app-supported-configurations
-      Версии 1С:
+  .row-fluid
+    .span8
       = db.support
+      %span{ :class => "app-kind app-kind-#{app.kind.kind_type} label"}= app.kind
+    .span4
+      %span.pull-right= download_link bundle
+  %hr.app-block-divider
+

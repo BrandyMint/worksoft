@@ -22,18 +22,19 @@ class BundleDecorator < Draper::Base
   end
 
   def supported_kernel_version
-    content_tag(:div, bundle.supported_kernel_versions)
+    content_tag(:span, bundle.supported_kernel_versions, :class => 'version-support-kernel')
   end
 
   def support
-    (supported_kernel_versions.to_s << supported_configurations.to_s).html_safe
+    h.content_tag :span, :class => 'version-support-label' do
+      supported_kernel_version + supported_configurations
+      #(supported_kernel_versions.to_s << supported_configurations.to_s).html_safe
+    end
   end
 
   def supported_configurations
-    h.content_tag :div do
-      h.content_tag :small, :class => :muted do
-        bundle.supported_configurations.join(', ')
-      end
+    h.content_tag :span, :class => 'version-support-configs' do
+      bundle.supported_configurations.join(', ')
     end
   end
   # Accessing Helpers
