@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 module LinksHelper
   def developer_link developer_profile
-    link_to  developer_profile_url(developer_profile), :class => 'developer_link' do
+    link_to  developer_url(developer_profile), :class => 'developer_link' do
       icon(:certificate) << developer_profile.name
     end
   end
