@@ -138,6 +138,10 @@ class Bundle < ActiveRecord::Base
     VersionMatchers.new supported_kernel_versions
   end
 
+  def supported_configuration configuration_id
+    supported_configurations.where(:configuration_id => configuration_id).first
+  end
+
   #def set_destroy
     #update_column :state, 'destroy'
   #end
