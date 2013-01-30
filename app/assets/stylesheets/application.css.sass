@@ -1,3 +1,5 @@
+@charset "UTF-8"
+
 // require formtastic-bootstrap
 // require select2
 // require_self
@@ -5,6 +7,13 @@
 
 @import bootstrap_and_overrides
 @import login
+@import variables
+@import fontello/fontello
+@import fontello/fontello-codes
+@import fontello/fontello-ie7
+@import fontello/fontello-ie7-codes
+@import icons
+@import apps
 
 .footer
   border-top: 1px dashed #ccc
@@ -27,27 +36,3 @@ a.developer_link
   //.controls
     //+tableColumns(4)
     //float: left
-
-.app-name
-  a
-    color: $black
-
-.app-download
-  margin-top: 8px
-
-.app-desc
-  margin-top: 8px
-
-.app-version
-  color: $gray
-  font-weight: normal
-
-.app-block.media
-  margin-top: 15px
-  margin-bottom: 15px
-  // #border: 1px dashed #eee
-  float: left
-  +makeColumn(6)
-  padding-bottom: 8px
-  &:hover
-    background-color: #fcfcfc
