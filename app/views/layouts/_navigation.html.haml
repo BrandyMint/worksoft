@@ -4,6 +4,13 @@
 
 .nav-collapse
   = render_navigation  :expand_all => true, :renderer => :bootstrap
+  %ul.nav
+    %li
+      = link_to '#', :class => 'user-versions-link' do
+        %span.version-support-kernel
+          8.2
+        %span.version-support-configs БухгалтерияПредприятия
+        = fontello 'cog', 18
   -#= bootstrap_navigation :type=>'' do |nav|
     -#- nav.link_to "Пакеты", root_path, :active_nav => controller.is_a?(BundlesController)
     -#- nav.link_to 'Панель разработчика', developer_dashboard_path

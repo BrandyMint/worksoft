@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
-    primary.item :apps, 'Приложения', apps_path
     primary.item :developers, 'Разработчики', developers_path
     primary.item :dashboard, 'Панель разработчика',
       developer_dashboard_path,
