@@ -1,7 +1,11 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
+# -*- coding: utf-8 -*-
 
 FactoryGirl.define do
+  sequence :conf_name do |n|
+    "БухгалтеряПредприятия_#{n}"  
+  end
+
   factory :configuration do
-    name "MyString"
+    name {generate(:conf_name)}
   end
 end
