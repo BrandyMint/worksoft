@@ -297,6 +297,7 @@ ru:
       create: Создать
       change_password: Сменить пароль
       search: Поиск
+      reset_password: Сбросить пароль
   helpers:
     submit:
       bundle:
@@ -316,6 +317,12 @@ ru:
     password_changed: Пароль успешно изменен.
     current_password_wrong: Неправильно указан текущий пароль.
     passwords_mistmach: Новый пароль и подтверждение не совпадают.
+    reset_password:
+      instructions_sent: Инструкции по смене пароля были высланы на %{email}.
+      user_email_didnt_exist: Пользователь с адресом электронной почты %{email} не найден. Проверьте правильность ввода адреса.
+      password_updated: Пароль был успешно обновлен.
+      password_update_fail: "Возникла ошибка при смене пароля: пароли пустые, либо не совпадают."
+      reset_link_fail: Ссылка для смены пароля устарела, попробуйте запросить еще раз через 2 минуты.
   developer:
     dashboard: Профиль разработчика
   email:
@@ -323,6 +330,7 @@ ru:
       welcome: Вы успешно зарегистрировались на сайте %{site}
       confirmation: Подтверждение адреса электронной почты
       confirmed: Ваш адрес электронной почты подтвержден
+      password_reset: Смена пароля на сайте %{site}  
   errors:
     messages:
       carrierwave_processing_error: "Невозможно изменить размер файла."

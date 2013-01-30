@@ -21,4 +21,9 @@ class UserMailer < ActionMailer::Base
     #mail(:to => user.email, :subject => t('email.subject.confirmed'))
   end
 
+  def reset_password_email(user)
+    @user = user
+    mail(:to => user.email,
+         :subject => t('email.subject.password_reset', site: Settings.application.title))
+  end
 end
