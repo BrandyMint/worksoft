@@ -14,11 +14,11 @@ class AppSearcher
 
   # Конвертирует app в bundle и фильтрует по запросу
   def convert_and_filter_to_bundles bundles
-    bundles.map do |app|
-      if q.kernel_version.present?
-        bundles.select! { |b| b.kernel_version_matchers.match version }
-      end
+    if q.kernel_version.present?
+      bundles.select! { |b| b.kernel_version_matchers.match q.kernel_version }
+    end
 
+    bundles.map do |app|
       if q.configuration_id.present? && q.configuration_version.present?
         sc = bundles.supported_configurations.where(:configuration_id => q.configuration_id).first
         bundles.select! { |b| b.sc.match q.configuration_version }
