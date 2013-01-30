@@ -261,6 +261,8 @@ ru:
             new: 'Готовится'
             ready: 'Действующее'
   simple_form:
+    error_notification:
+      default_message: "Возникли ошибки:"
     labels:
       app:
         name: Название приложения
