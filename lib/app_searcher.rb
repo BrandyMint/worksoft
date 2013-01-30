@@ -1,32 +1,17 @@
 class AppSearcher
-  attr_reader :q, :results, :kernel_version
+  attr_reader :results
   
   def initialize q
     @q = q
     @results = nil
+    @filter = BundleFilter.new q
   end
 
   def search page, per_page = 20
-    @results = convert_and_filter_to_bundles ransack_search( page, per_page )
+    @results = @filter.apply ransack_search( page, per_page )
   end
 
   private
-
-  # Конвертирует app в bundle и фильтрует по запросу
-  def convert_and_filter_to_bundles bundles
-    bundles.map do |app|
-      if q.kernel_version.present?
-        bundles.select! { |b| b.kernel_version_matchers.match version }
-      end
-
-      if q.configuration_id.present? && q.configuration_version.present?
-        sc = bundles.supported_configurations.where(:configuration_id => q.configuration_id).first
-        bundles.select! { |b| b.sc.match q.configuration_version }
-      end
-
-      bundles.first
-    end.compact
-  end
 
   def ransack_search page, per_page
     scope = Bundle.active.ordered
