@@ -6,6 +6,8 @@ class SupportedConfiguration < ActiveRecord::Base
 
   validates :versions, :versions => true
 
+  delegate :match, :to => :version_matchers
+
   def to_s
     if versions.to_s.present?
       configuration.to_s + " (#{versions})"
