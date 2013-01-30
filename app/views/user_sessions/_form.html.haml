@@ -1,8 +1,9 @@
-= simple_form_for :session, :url => user_sessions_path, :method => :post do |f|
-  = f.input :email
-  = f.input :password
-  %p
-    = "Нет аккаунта?"  
-    = link_to t('simple_form.hints.registration.new'), new_user_path, :class => 'new_registration'
+= simple_form_for :session, :url => user_sessions_path, :method => :post, :html => { class: 'login-block-form' } do |f|
+  = f.input :email, :label => false, :placeholder => 'email'
+  = f.input :password, :label => false, :placeholder => 'пароль'
   .actions
     = f.button :submit, :class => "btn btn-primary", :value => t('simple_form.buttons.login')
+  %hr
+    = "Нет аккаунта?"  
+    = link_to t('simple_form.hints.registration.new'), new_user_path, :class => 'new_registration'
+
