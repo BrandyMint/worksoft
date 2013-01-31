@@ -4,15 +4,13 @@
 -# Там только разработчики, не вижу пока смысла их показывать
 -# = render_navigation  :expand_all => true, :renderer => :bootstrap
 .nav-collapse
-  = render_navigation  :expand_all => true, :renderer => :bootstrap
   %ul.nav
     %li
       = link_to '#', :class => 'user-versions-link' do
-        %span.version-support-kernel
-          8.2
+        %span.version-support-kernel 8.2
         %span.version-support-configs БухгалтерияПредприятия
-        = fontello 'cog', 18
-
+        &nbsp;
+        %small.v-align-top изменить
 -# Характеристики пользовательской системы
   
 = render_navigation  :expand_all => true, :renderer => :bootstrap, :context => :user

@@ -1,4 +1,13 @@
-.navbar
+.navbar .nav > li
+  & > a.user-versions-link
+    //+gradient-vertical(lighten(desaturate($blue,20%),40%), lighten(desaturate($blue,20%),30%))
+    +gradient-vertical($grayLight, darken($grayLight,20%))
+    margin-bottom: -1px
+    color: $grayLightest
+    text-shadow: 0 1px 1px rgba($black,.2)
+    &:hover
+      color: $white
+      
   .version-support-kernel, .version-support-configs
     margin:
       top: -3px
