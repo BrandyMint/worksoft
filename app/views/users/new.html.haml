@@ -4,8 +4,8 @@
 
     = simple_form_for @user, :html => { class: 'login-block-form' } do |f|
       = f.error_notification
-      = f.input :email, :label => false, :placeholder => 'email'
-      = f.input :password, :label => false, :placeholder => 'пароль'
-      = f.input :password_confirmation, :label => false, :placeholder => 'подтверждение пароль'
+      = f.input :email, :label => false, :placeholder => 'Еmail'
+      = f.input :password, :label => false, :placeholder => 'Пароль'
+      = f.input :password_confirmation, :label => false, :placeholder => 'Подтверждение пароля'
       .actions
         = f.button :submit, :class => 'btn btn-primary', :value => t('simple_form.buttons.registration')
