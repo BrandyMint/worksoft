@@ -6,4 +6,5 @@
   %hr
     = "Нет аккаунта?"  
     = link_to t('simple_form.hints.registration.new'), new_user_path, :class => 'new_registration'
-
+  %hr
+    = link_to "Забыли пароль?", new_password_reset_path, :class => 'forgot_password'

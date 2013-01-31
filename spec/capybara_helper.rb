@@ -9,7 +9,7 @@ RSpec.configure do |config|
       raise( "Установи Settings.capybara.port согласно http://wiki.brandymint.ru/wiki/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5" )
 
   Capybara.register_driver :poltergeist do |app|
-    if Settings.try(:phantomjs).path
+    if Settings.try(:phantomjs)
       Capybara::Poltergeist::Driver.new(app, {
         # важно указать в своем test.local.yml правильный путь к phantomjs
         :phantomjs => Settings.phantomjs.path ,
