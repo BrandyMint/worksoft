@@ -1,10 +1,10 @@
 class AppSearcher
-  attr_reader :results
+  attr_reader :results, :q
   
   def initialize q
     @q = q
     @results = nil
-    @filter = BundleFilter.new q
+    @filter = BundleFilter.new @q
   end
 
   def search page, per_page = 20

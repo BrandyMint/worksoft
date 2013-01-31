@@ -13,6 +13,8 @@
 
 ActiveRecord::Schema.define(:version => 20130124142754) do
 
+  add_extension "hstore"
+
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
     t.string   "resource_type", :null => false
