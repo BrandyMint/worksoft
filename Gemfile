@@ -81,6 +81,7 @@ gem 'rvm'
 gem 'unicorn'
 # gem 'sunspot_rails'
 gem 'kaminari'
+gem "validate_email"
 
 group :development do
   gem 'commands'

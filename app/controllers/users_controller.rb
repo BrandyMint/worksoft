@@ -8,10 +8,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new params[:user]
-    if @user.save
+    if passwords_match_and_not_empy? && @user.save
       auto_login @user
-      redirect_to root_url, :notice => t('notice.registred')
+      redirect_to root_url, :notice => t('notice.registration.success_registred')
     else
+      flash.now[:error] = t("notice.registration.passwords_mystmatch_or_blank")
       render :new
     end
   end
@@ -73,7 +74,12 @@ class UsersController < ApplicationController
 
 private
   def can_change_password?
-    !params[:user][:password].empty? && params[:user][:password] == params[:user][:password_confirmation] && current_user == User.authenticate(@user.email, params[:current_password])
+    passwords_match_and_not_empy? && current_user == User.authenticate(@user.email, params[:current_password])
+  end
+
+  def passwords_match_and_not_empy?
+    !params[:user][:password].empty? && 
+    params[:user][:password] == params[:user][:password_confirmation]
   end
 
 end
