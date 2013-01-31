@@ -4,8 +4,10 @@ require 'spec_helper'
 describe UsersController do
 
   describe "POST 'create'" do
+
     it "рендерит шаблон :new" do
-      post :create
+      user = {email: '', password: '', password_confirmation: ''}  
+      post :create, {user: user.to_hash }
       response.should render_template(:new)      
     end
 
