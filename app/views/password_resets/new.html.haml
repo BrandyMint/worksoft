@@ -1,0 +1,7 @@
+.page-header
+  %h2 Сброс пароля
+
+= form_tag password_resets_path, :method => :post do
+  = email_field_tag :email, nil, :placeholder => t('simple_form.labels.user.email'), :required => true
+  %br
+  = submit_tag t('simple_form.buttons.reset_password'), :class => "btn btn-primary"

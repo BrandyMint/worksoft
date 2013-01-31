@@ -20,6 +20,7 @@ Worksoft::Application.routes.draw do
   resources :developers, :only => [:index, :show]
 
   resources :user_sessions
+  resources :password_resets
 
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout

@@ -58,8 +58,6 @@ class UsersController < ApplicationController
     @user = current_user
 
     if can_change_password?
-      # для работы этого метода, подключен модуль :reset_password, проведена миграция
-      # чтобы полностью подключить функционал, надо сделать по мануалу https://github.com/NoamB/sorcery/wiki/Reset-password
       @user.change_password!(params[:user][:password])
       flash[:notice] = t('notice.password_changed')
       redirect_to profile_path

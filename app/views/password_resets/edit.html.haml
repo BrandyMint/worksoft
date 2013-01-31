@@ -1,0 +1,9 @@
+.page-header
+  %h2 Введите новый пароль
+
+= simple_form_for @user, :url => password_reset_path(@user), :html => {:method => :put} do |f|
+  = f.input :password, :required => true
+  = f.input :password_confirmation, :required => true
+  = f.input :reset_password_token, :as => :hidden
+  .actions
+    = f.button :submit, :class => 'btn btn-primary', :value => t('simple_form.buttons.save')
