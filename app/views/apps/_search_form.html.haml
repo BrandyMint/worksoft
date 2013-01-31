@@ -1,24 +1,5 @@
-.well
-  .row
-    .search-block.span8.offset2
-      %h3 Поиск приложения
-      = simple_form_for @query, :url => search_apps_url, :method => :get, :html => {:class => 'form-inline'} do |f|
-        -#.span3
-          = f.input :kind_id, :collection => kindes_collection_for_search, :wrapper => :inline, :include_blank => false
-        %ul.nav.nav-tabs 
-          - Kind.all.each do |kind|
-            %li
-              = active_link_to '', :active => :exclusive do
-                = kind.to_s
-        .input-append
-          = f.input :name, :placeholder => "Название приложения", :wrapper => :inline
-          = f.button :submit, 'Найти', :class => 'btn btn-primary'
+= simple_form_for @query, :url => search_apps_url, :method => :get, :html => {:class => 'form-inline'} do |f|
+  .input-append
+    = f.input :name, :placeholder => "Название приложения", :wrapper => :inline
+    = f.button :submit, 'Найти', :class => 'btn btn-primary'
 
-        -# Версии 1С и конфигураций
-        -#.span3
-          = f.input :kernel_version,  :wrapper => :stack, :placeholder => "не важно", :input_html => { :class => 'input-small' }
-          = f.input :configuration_id, :wrapper => :stack, :collection => configurations_collection_for_search, :include_blank => false
-          = f.input :configuration_version, :wrapper => :stack, :placeholder => 'версия конфигурации', :input_html => { :class => 'input-small' }
-        -#.span2
-          - if f.object.valid?
-            = link_to 'Все приложения', apps_url

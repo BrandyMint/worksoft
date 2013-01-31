@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124142754) do
+ActiveRecord::Schema.define(:version => 20130131085103) do
 
   add_extension "hstore"
 
@@ -114,6 +114,18 @@ ActiveRecord::Schema.define(:version => 20130124142754) do
 
   add_index "supported_configurations", ["bundle_id"], :name => "sc_idx2"
   add_index "supported_configurations", ["configuration_id", "bundle_id"], :name => "sc_idx"
+
+  create_table "user_systems", :force => true do |t|
+    t.integer  "user_id",                      :null => false
+    t.string   "name"
+    t.integer  "kernel_version_number",        :null => false
+    t.integer  "configuration_id"
+    t.integer  "configuration_version_number"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  add_index "user_systems", ["user_id"], :name => "index_user_systems_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                           :null => false

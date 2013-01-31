@@ -1,10 +1,13 @@
 class AppSearcher
-  attr_reader :results, :q
+  attr_reader :results, :q, :kind, :user_system
   
-  def initialize q
+  def initialize q, user_system, kind
     @q = q
+    @kind = kind
+    @user_system = user_system
+
     @results = nil
-    @filter = BundleFilter.new @q
+    @filter = BundleFilter.new user_system
   end
 
   def search page, per_page = 20
@@ -16,12 +19,20 @@ class AppSearcher
   def ransack_search page, per_page
     scope = Bundle.active.ordered
 
-    if q.configuration_id.present?
+    if user_system.configuration_id.present?
       scope = scope.joins(:supported_configurations).
-        where( :supported_configurations => { :configuration_id => q.configuration_id } )
+        where( :supported_configurations => { :configuration_id => user_system.configuration_id } )
     end
 
-    scope = scope.search( q.ransack_query ).result
+    scope = scope.search( ransack_query ).result
+  end
+
+  def ransack_query
+    h = {}
+    h[:name_cont] = q.name if q.name.present?
+    h[:kind_id_eq] = kind.id if kind.present?
+
+    return h
   end
 
   # broken

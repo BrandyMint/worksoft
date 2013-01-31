@@ -1,26 +1,50 @@
 # -*- coding: utf-8 -*-
 class AppsController < ApplicationController
+
+  before_filter :kind
+
+  before_filter do
+    @all_kindes = { nil => OpenStruct.new( :title => 'Все', :active => !kind ) }
+
+    Kind.ordered.each do |k|
+      @all_kindes[k.id] = OpenStruct.new :title => k.title, :active => k==kind
+    end
+  end
+
   def index
      @query = AppSearchQuery.new
-     @bundles = Bundle.currents
+     @bundles = matched_bundles.by_user_system( current_user_system )
   end
 
   def search
     @query = AppSearchQuery.new params[:app_search_query]
 
+    @bundles = matched_bundles
+
     if @query.valid?
-      searcher = AppSearcher.new @query
-      @bundles = searcher.search params[:page]
+      @bundles = @bundles.by_name @query.name
     else
       flash[:notice] = 'Неверный поисковый запрос'
-      @bundles = Bundle.currents
     end
+
+    @bundles = @bundles.by_user_system( current_user_system )
 
     render :index
   end
 
   def show
     @app = App.find params[:id]
+  end
+
+  private
+
+  def matched_bundles
+    Bundle.currents.by_kind( kind )
+  end
+
+  def kind
+    return @kind if defined? @kind
+    @kind = params[:kind_id].present? ? Kind.find( params[:kind_id] ) : nil
   end
 
 end

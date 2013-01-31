@@ -4,15 +4,7 @@
 -# Там только разработчики, не вижу пока смысла их показывать
 -# = render_navigation  :expand_all => true, :renderer => :bootstrap
 
--# Характеристики пользовательской системы
-.nav-collapse
-  %ul.nav
-    %li
-      = link_to '#versionsChangeModal', :role => 'button',  'data-toggle' => 'modal', :class => 'user-versions-link' do
-        %span.version-support-kernel 8.2
-        %span.version-support-configs БухгалтерияПредприятия
-        &nbsp;
-        %small.v-align-top изменить
+= render :partial => 'user_system'
 
 = render_navigation  :expand_all => true, :renderer => :bootstrap, :context => :user
 

@@ -23,6 +23,27 @@ class Bundle < ActiveRecord::Base
   scope :order_by_version, order(:version_number)
   scope :reverse_order_by_version, order("version_number DESC")
 
+  scope :by_configuration_id, lambda { |configuration_id|
+    if configuration_id.present?
+      joins(:supported_configurations).
+        where( :supported_configurations => { :configuration_id => configuration_id } )
+    else
+      scoped
+    end
+  }
+
+  scope :by_kind, lambda { |kind| kind.present? ? where(:kind_id=>kind.id) : scoped }
+  scope :by_name, lambda { |name| name.present? ? where("name ilike ? ", name) : scoped }
+  scope :by_user_system, lambda { |user_system|
+    if user_system.present?
+      BundleFilter.new( user_system ).apply(
+        scoped.by_configuration_id user_system.configuration_id
+      )
+    else
+      scoped
+    end
+  }
+
   belongs_to :app
   has_many :supported_configurations
 

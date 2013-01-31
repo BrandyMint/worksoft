@@ -1,0 +1,9 @@
+- if @bundles.present?
+  %h2 Доступные приложения (#{@bundles.count})
+  .apps-list
+    .row{ :rel => 'freetile-container' }
+      = render :partial => 'app', :collection => @bundles
+- else
+  .alert
+    Приложений удовлетворяющих вашему запросу не найдено
+

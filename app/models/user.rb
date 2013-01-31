@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   rolify
   authenticates_with_sorcery!
 
+  has_one :user_system
   belongs_to :developer_profile, :class_name => 'DeveloperProfile'
   #TODO валидатор адреса электронной почты
   validates :email, :presence => true, :email => true, :uniqueness => true
