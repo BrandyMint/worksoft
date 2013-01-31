@@ -429,6 +429,9 @@ GEM
       raindrops (~> 0.7)
     uuid (2.3.6)
       macaddr (~> 1.0)
+    validate_email (0.1.6)
+      activemodel (>= 3.0)
+      mail (>= 2.2.5)
     warden (1.2.1)
       rack (>= 1.0)
     websocket (1.0.7)
@@ -510,3 +513,4 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   unicorn
   uuid
+  validate_email

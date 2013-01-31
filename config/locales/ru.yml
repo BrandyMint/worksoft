@@ -246,6 +246,11 @@ ru:
       <<: *errors
   activerecord:
     errors:
+      models:
+        user:
+          attributes:
+            email:
+              email: Неверный формат email.
       <<: *errors
     state_machines:
       bundle:
@@ -310,7 +315,9 @@ ru:
       already_confirmed: Ваш адрес электронной почты %{email} уже был подтвержден.
     logged_in: Вы успешно авторизовались.
     logged_out: Вы вышли из системы.
-    registred: Вы успешно зарегистрировались.
+    registration:
+      success_registred: Вы успешно зарегистрировались.
+      passwords_mystmatch_or_blank: Пароли пустые, либо не совпадают.
     auth_failed: Неверная пара логин/пароль.
     you_need_to_be_developer: Для управления профилем разработчика его необходимо сначала создать.
     profile_updated: Ваш профиль успешно обновлен.
