@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   belongs_to :developer_profile, :class_name => 'DeveloperProfile'
   #TODO валидатор адреса электронной почты
-  validates :email, :presence => true, :uniqueness => true
+  validates :email, :presence => true, :email => true, :uniqueness => true
 
   def to_s
     email
