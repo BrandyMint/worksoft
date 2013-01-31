@@ -20,7 +20,8 @@ feature 'Регистрация разработчика (создание пр�
     @user.activate!
     capybara_sign_in_user @user
 
-    find('#dashboard').click
+    #TODO заменить на клик, когда появится страница *зарегистрировать как разработчик*
+    visit developer_dashboard_path
     page.body.should have_content I18n.t('notice.you_need_to_be_developer')
 
     fill_in 'developer_profile_name', :with => 'developer_username'
