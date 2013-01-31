@@ -1,19 +1,9 @@
-= link_to root_url, :class => 'brand' do
-  -# = render 'layouts/logo'
-  = 'WORKSOFT'
+= link_to Settings.app.title, root_url, :class => 'brand'
 
-.nav-collapse
-  = render_navigation  :expand_all => true, :renderer => :bootstrap
-  -#= bootstrap_navigation :type=>'' do |nav|
-    -#- nav.link_to "Пакеты", root_path, :active_nav => controller.is_a?(BundlesController)
-    -#- nav.link_to 'Панель разработчика', developer_dashboard_path
-    -#- nav.link_to 'Админка', admin_dashboard_path
+-# .nav-collapse
+-# Там только разработчики, не вижу пока смысла их показывать
+-# = render_navigation  :expand_all => true, :renderer => :bootstrap
 
-  -#%ul.nav.pull-right
-    -#- if logged_in?
-      -#%li
-        -#= link_to current_user, "/profile"
-      -#%li
-        -#= link_to 'выход', logout_path, :method => :delete
-    -#- else
-      -#-# %li= link_to 'вход', new_user_session_path
+-# Характеристики пользовательской системы
+  
+= render_navigation  :expand_all => true, :renderer => :bootstrap, :context => :user

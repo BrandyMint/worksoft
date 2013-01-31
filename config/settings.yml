@@ -2,6 +2,9 @@ default_url_options:
   host: qikup.ru
   port: 80
 
+app:
+  title: WORKSOFT
+
 smtp_settings:
   host: localhost
   port: 25

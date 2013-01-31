@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
     email
   end
 
+  def developer?
+    developer_profile.present?
+  end
+
   def activated?
     activation_state == 'active'
   end
