@@ -1,0 +1,23 @@
+#versionsChangeModal.modal.hide.fade{ :tabindex => '-1', :role => 'dialog', 'aria-labelledby' => 'versionsChangeModalLabel', 'aria-hidden' => 'true'  }
+  .modal-header
+    %button{ :type => 'button', :class => 'close', 'data-dismiss' => 'modal', 'aria-hidden' => 'true' }
+      &times;
+    %h3#versionsChangeModalLabel
+      Настройки вашей конфигурации
+  .modal-body
+    .row-fluid
+      -#TODO сделать из этого форму для сохранения версии и конфигураций пользователя
+      -# скрыл форму, чтобы не падали тесты
+
+      -#= simple_form_for @query, :url => search_apps_url, :method => :get, :html => {:class => 'form-inline versions-change-form span8 offset2'} do |f|
+        %br
+        -# Версии 1С и конфигураций
+        = f.input :kernel_version,  :required => true, :wrapper => :stack, :placeholder => "версия 1С", :input_html => { :class => 'input-block-level' }
+        = f.input :configuration_id, :required => true, :wrapper => :stack, :collection => configurations_collection_for_search, :include_blank => false, :input_html => { :class => 'input-block-level' }
+        = f.input :configuration_version, :required => true, :wrapper => :stack, :placeholder => 'версия конфигурации', :input_html => { :class => 'input-block-level' }
+        .actions
+          = f.button :submit, 'Сохранить', :class => 'btn btn-primary span12'
+        %br
+        %br
+
+
