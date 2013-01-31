@@ -1,20 +1,29 @@
+.apps-list
+
 .app-name
   a
     color: $grayDarker
 
-.app-block
+.app-block-container
   +makeColumn(6)
   margin:
-    top: 0.5em
-    bottom: 0.5em
-  // #border: 1px dashed #eee
-  padding-bottom: 8px
+    top: 0.75em
+    bottom: 0.75em
   &:hover
     background-color: #fcfcfc 
-  .app-name
-    font-size: 1.2em
-    margin-top: 0
 
+.app-block
+  padding: $appBlockMargin
+  +border-radius(6px)
+  +box-shadow(0 1px 7px rgba($black, .15))
+  background: $white
+
+.app-block-info
+  margin-bottom: 0.5em
+
+.app-name
+  font-size: 1.2em
+  margin-top: 0
 
 .app-block-divider
   margin: 0.5em 0
