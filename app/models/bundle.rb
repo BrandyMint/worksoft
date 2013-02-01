@@ -51,7 +51,7 @@ class Bundle < ActiveRecord::Base
 
   validates :app, :presence => true
   validates :version_number, :presence => true, :uniqueness => { :scope => :app_id }
-  validates :version, :versions => true
+
   validates :source_file, :presence => true, :app_kind_extension => true
   validates :supported_kernel_versions, :presence => true, :versions => true
   
@@ -151,8 +151,16 @@ class Bundle < ActiveRecord::Base
   end
 
   def version= value
-    value = Version.new value unless value.is_a? Version
-    self.version_number = value.to_i
+    if value.is_a? Version
+      version_number = value.to_i
+    else
+      begin
+        value = Version.new value
+        version_number = value.to_i
+      rescue StandardError => e
+        self.errors['version'] << "Неверный формат версии: #{e}"
+      end
+    end
   end
 
   def kernel_version_matchers
