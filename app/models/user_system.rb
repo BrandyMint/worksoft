@@ -27,4 +27,8 @@ class UserSystem < ActiveRecord::Base
     value = Version.new value unless value.is_a? Version
     self.kernel_version_number = value.to_i
   end
+
+  def complete?
+    kernel_version.present? && configuration.present? && configuration_version.present?
+  end
 end

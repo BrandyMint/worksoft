@@ -36,6 +36,10 @@ class Version
     anOther.to_i == to_i
   end
 
+  def present?
+    !to_s.blank?
+  end
+
   def to_s
     if major.nil?
       ''

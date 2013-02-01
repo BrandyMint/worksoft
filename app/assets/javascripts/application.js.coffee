@@ -5,6 +5,9 @@
 #= require jquery.freetile.min
 
 $ ->
+  $('[rel*="dropdown"]').dropdown()
+  $('[rel*="tooltip"]').tooltip()
+
   $('[rel*="freetile-container"]').each ->
     target = $(this).attr('data-target')
     if target && target.length > 0

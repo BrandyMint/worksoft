@@ -1,10 +1,14 @@
-%ul.nav
-  %li
-    %span.version-support-kernel= current_user_system.kernel_version
-    %span.version-support-configs
-      = current_user_system.configuration
-      = current_user_system.configuration_version
-    &nbsp;
-    = link_to current_user_system.persisted? ? edit_user_system_path(current_user_system) : new_user_system_path(:user_system => current_user_system), :class => 'user-versions-link' do
-      %small.v-align-top изменить
-
+- d = UserSystemDecorator.new current_user_system
+%ul.nav.pull-right
+  %li.divider-vertical
+  %li.dropdown{:class => controller.is_a?( UserSystemsController) ? :active : '' }
+    = link_to '#', :class => 'dropdown-toggle', :data => { :toggle => :dropdown } do
+      - if d.complete?
+        = d.kernel_version
+        = d.configuration_detailed
+      - else
+        %span.label.label-important Конфигурация 1C не установлена
+      %b.caret
+    %ul.dropdown-menu
+      %li.divier
+      %li= link_to d.action, d.edit_url, :class => 'user-versions-link'
