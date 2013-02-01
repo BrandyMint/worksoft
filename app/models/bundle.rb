@@ -33,7 +33,7 @@ class Bundle < ActiveRecord::Base
   }
 
   scope :by_kind, lambda { |kind| kind.present? ? where(:kind_id=>kind.id) : scoped }
-  scope :by_name, lambda { |name| name.present? ? where("name ilike ? ", name) : scoped }
+  scope :by_name, lambda { |name| name.present? ? where("name ilike ? ", "%#{name}%") : scoped }
   scope :by_user_system, lambda { |user_system|
     if user_system.present?
       BundleFilter.new( user_system ).apply(
