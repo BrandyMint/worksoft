@@ -3,7 +3,7 @@
 class Version
   include Comparable
   Precision = 10000
-  attr_accessor :major, :minor, :major_patch, :minor_patch
+  attr_accessor :major, :minor, :patch, :build
 
   def initialize value
     if value.is_a? Array
@@ -15,13 +15,13 @@ class Version
     elsif value.is_a? Version
       self.major = value.major
       self.minor = value.minor
-      self.major_patch = value.major_patch
-      self.minor_patch = value.minor_patch
+      self.patch = value.patch
+      self.build = value.build
     elsif value.is_a? NilClass
       self.major = nil
       self.minor = nil
-      self.major_patch = nil
-      self.minor_patch = nil
+      self.patch = nil
+      self.build = nil
     else
       raise "Unknown type #{value.class} of #{value}"
     end
@@ -42,8 +42,8 @@ class Version
     else
       [major,
       minor,
-      major_patch == 0 ? nil : major_patch,
-      minor_patch == 0 ? nil : minor_patch
+      patch == 0 ? nil : patch,
+      build == 0 ? nil : build
       ].compact.join('.')
     end
   end
@@ -57,18 +57,18 @@ class Version
     if major.nil?
       nil
     else
-      major*Precision*Precision*Precision + minor*Precision*Precision + major_patch*Precision + minor_patch
+      major*Precision*Precision*Precision + minor*Precision*Precision + patch*Precision + build
     end
   end
 
   # Возвращает новый Version с изменениями из параметров
   #
-  def change mjd, mid=0, mj_pd=0, mn_pd = 0
-    Version.new [major+mjd, minor+mid, major_patch+mj_pd, minor_patch+mn_pd]
+  def change mjd, mid = 0, pt = 0, bd = 0
+    Version.new [ major + mjd, minor + mid, patch + pt, build + bd ]
   end
 
   def next
-    change 0, 0, 0, 1
+    change 0, 0, 1, 0
   end
 
   private
@@ -77,13 +77,13 @@ class Version
     if value == 0
       @major = nil
       @minor = nil
-      @major_patch = nil
-      @minor_patch = nil
+      @patch = nil
+      @build = nil
     else
       @major = value / (Precision * Precision * Precision) % Precision
       @minor = value / (Precision * Precision) % Precision
-      @major_patch = value / Precision % Precision
-      @minor_patch = value % Precision
+      @patch = value / Precision % Precision
+      @build = value % Precision
     end
   end
 
@@ -91,12 +91,12 @@ class Version
     raise "Слишком большая длинна #{value.length} массива #{value}" if value.length > 4
     value.each {|ver| raise "Слишком большое значение версии #{value}" if ver > 999}
 
-    @major, @minor, @major_patch, @minor_patch = value
+    @major, @minor, @patch, @build = value
 
     @major||=0
     @minor||=0
-    @major_patch||=0
-    @minor_patch||=0
+    @patch||=0
+    @build||=0
   end
   
   def from_str str
