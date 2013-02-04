@@ -4,12 +4,6 @@
 
 .app-block-container
   .app-block
-    .row-fluid.app-block-info
-      .span8
-        = db.support
-        %span{ :class => "app-kind app-kind-#{app.kind.kind_type} label"}= app.kind
-      .span4
-        %span.pull-right= download_link bundle
     .row-fluid.app-block-content
       .span2
         = link_to app, :class => 'pull-left' do
@@ -21,4 +15,12 @@
         = developer_link app.developer_profile
         .app-desc
           = simple_format app.desc
+    .row-fluid.app-block-info
+      .span8
+        %span{ :class => "app-kind app-kind-#{app.kind.kind_type} label"}
+          = link_to app.kind, apps_path(:kind_id => app.kind.id)
+        %span{ :class => "app-support-button", :rel => "popover", 'data-content' => "#{db.support}", 'data-original-title' => 'Совместимость'}
+          = fontello 'dot-3', 12, 'v-align-baseline'
+      .span4
+        %span.pull-right= download_link bundle
 

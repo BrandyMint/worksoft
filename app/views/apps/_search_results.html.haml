@@ -1,5 +1,9 @@
 - if @bundles.present?
-  %h2 Доступные приложения (#{@bundles.count})
+  %h2.search-results-title.pull-left Доступные приложения (#{@bundles.count})
+  %nav.nav.nav-pills.search-configs-nav.pull-right
+    %li.active= link_to 'для текущей конфигурации', '#'
+    %li= link_to 'все', '#'
+  .clearfix
   .apps-list
     .row{ :rel => 'freetile-container' }
       = render :partial => 'app', :collection => @bundles

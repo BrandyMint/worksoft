@@ -1,4 +1,22 @@
-.apps-list
+.kinds-nav
+  li
+    margin:
+      right: 1em
+    a
+      +border-radius(6px 6px 0 0)
+      background: lighten($grayLightest,3%)
+      border-bottom: 2px solid $grayLight
+      color: $textColor
+      margin-bottom: 0
+    &.active a
+      border-bottom-color: darken($linkColor,10%)
+      text-shadow: 0 1px 1px rgba($black,.3)
+      color: $white
+    a:hover
+      text-shadow: none
+      background: darken($grayLightest,5%)
+      border-bottom-color: $gray
+
 
 .app-name
   a
@@ -19,7 +37,8 @@
   background: $white
 
 .app-block-info
-  margin-bottom: 0.5em
+  a:hover
+    text-decoration: none
 
 .app-name
   font-size: 1.2em
@@ -33,14 +52,25 @@
   line-height: $baseLineHeight
   @extend .v-align-top
 
-@each $kind in (epf $epfColor), (epftab $epftabColor), (epfprint $epfprintColor), (erf $erfColor)
-  .app-kind-#{nth($kind, 1)}
-    color: nth($kind, 2)
-  .label.app-kind-#{nth($kind, 1)}
+@each $kind in (2 epf $epfColor), (3 epftab $epftabColor), (4 epfprint $epfprintColor), (1 erf $erfColor)
+  .app-kind-#{nth($kind, 2)}
+    color: nth($kind, 3)
+  .label.app-kind-#{nth($kind, 2)}
     color: $white
-    background-color: desaturate(nth($kind, 2),10%)
-  //.app-block.app-kind-#{nth($kind, 1)}
-    border-bottom: 2px solid nth($kind, 2)
+    background-color: desaturate(nth($kind, 3),10%)
+    a
+      color: $white
+    &:hover
+      background-color: nth($kind, 3)
+  .kinds-nav .app-kind-#{nth($kind, 1)} a
+    border-bottom-color: lighten(nth($kind, 3),10%)
+    &:hover
+      color: $white
+      border-bottom-color: darken(nth($kind, 3),10%)
+      background-color: nth($kind,3)
+  .kinds-nav .active.app-kind-#{nth($kind, 1)} a
+    background-color: nth($kind,3)
+    border-bottom-color: darken(nth($kind, 3),10%)
 
 .app-desc
   margin: 0.5em 0
@@ -77,4 +107,6 @@
   margin:
     bottom: 4px
 
+.app-support-button
+  @extend .version-support-configs
 
