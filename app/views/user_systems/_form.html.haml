@@ -1,9 +1,8 @@
-.well
-  .row
-    = simple_form_for @user_system, :html => {:class => 'form-inline'} do |f|
-      .span3
-        = f.input :kernel_version,  :wrapper => :stack, :placeholder => "не важно", :input_html => { :class => 'input-small' }
-        = f.input :configuration_id, :wrapper => :stack, :collection => configurations_collection_for_search, :include_blank => false
-        = f.input :configuration_version, :wrapper => :stack, :placeholder => 'версия конфигурации', :input_html => { :class => 'input-small' }
+.row-fluid
+  = simple_form_for @user_system, :html => {:class => 'form-inline '} do |f|
+    .span4.offset4
+      = f.input :kernel_version,  :wrapper => :stack, :placeholder => "не важно", :input_html => { :class => 'input-block-level' }
+      = f.input :configuration_id, :wrapper => :stack, :collection => configurations_collection_for_search, :include_blank => false, :input_html => { :class => 'input-block-level'}
+      = f.input :configuration_version, :wrapper => :stack, :placeholder => 'версия конфигурации', :input_html => { :class => 'input-block-level' }
       .actions
-        = f.button :submit, :class => 'btn primary'
+      = f.button :submit, :class => 'btn btn-primary input-block-level'
