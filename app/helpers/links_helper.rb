@@ -27,7 +27,7 @@ module LinksHelper
   def download_link bundle
     file = bundle.bundle_file
     link_to file.url, :class => 'btn btn-small download-link' do
-      icon(:download) << " Скачать (#{number_to_human_size file.file_size})"
+      fontello('download','14','v-align-baseline') << " Скачать (#{number_to_human_size file.file_size})"
     end
   end
 end

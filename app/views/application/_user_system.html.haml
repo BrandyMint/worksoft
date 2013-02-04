@@ -1,8 +1,7 @@
 - d = UserSystemDecorator.new current_user_system
 %ul.nav.pull-right
-  %li.divider-vertical
   %li.dropdown{:class => controller.is_a?( UserSystemsController) ? :active : '' }
-    = link_to '#', :class => 'dropdown-toggle', :data => { :toggle => :dropdown } do
+    = link_to '#', :class => 'dropdown-toggle user-versions-link', :data => { :toggle => :dropdown } do
       - if d.complete?
         = d.kernel_version
         = d.configuration_detailed
@@ -10,5 +9,4 @@
         %span.label.label-important Конфигурация 1C не установлена
       %b.caret
     %ul.dropdown-menu
-      %li.divier
-      %li= link_to d.action, d.edit_url, :class => 'user-versions-link'
+      %li= link_to d.action, d.edit_url
