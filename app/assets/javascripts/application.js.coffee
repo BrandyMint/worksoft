@@ -7,7 +7,7 @@
 $ ->
   $('[rel*="dropdown"]').dropdown()
   $('[rel*="tooltip"]').tooltip()
-
+  $('[rel*="popover"]').popover({ html: true, placement: "top", trigger: "hover" })
   $('[rel*="freetile-container"]').each ->
     target = $(this).attr('data-target')
     if target && target.length > 0

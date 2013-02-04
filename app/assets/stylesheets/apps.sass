@@ -37,7 +37,8 @@
   background: $white
 
 .app-block-info
-  margin-bottom: 0.5em
+  a:hover
+    text-decoration: none
 
 .app-name
   font-size: 1.2em
@@ -51,12 +52,16 @@
   line-height: $baseLineHeight
   @extend .v-align-top
 
-@each $kind in (1 epf $epfColor), (2 epftab $epftabColor), (3 epfprint $epfprintColor), (4 erf $erfColor)
+@each $kind in (2 epf $epfColor), (3 epftab $epftabColor), (4 epfprint $epfprintColor), (1 erf $erfColor)
   .app-kind-#{nth($kind, 2)}
     color: nth($kind, 3)
   .label.app-kind-#{nth($kind, 2)}
     color: $white
     background-color: desaturate(nth($kind, 3),10%)
+    a
+      color: $white
+    &:hover
+      background-color: nth($kind, 3)
   .kinds-nav .app-kind-#{nth($kind, 1)} a
     border-bottom-color: lighten(nth($kind, 3),10%)
     &:hover
@@ -102,4 +107,6 @@
   margin:
     bottom: 4px
 
+.app-support-button
+  @extend .version-support-configs
 
