@@ -1,13 +1,7 @@
-%ul.nav.nav-tabs
+%ul.nav.nav-pills.kinds-nav
   - @all_kindes.each_pair do |id, tab|
-    = active_link_to tab.title, apps_path(:kind_id => id), :wrap_tag => :li, :active => tab.active
+    = active_link_to tab.title, apps_path(:kind_id => id), :wrap_tag => :li, :active => tab.active, :class => "app-kind-#{id}"
 
 = render 'apps/search_form'
+%hr
 = render 'apps/search_results'
-
--#= nav_tabs do |tabs|
-  -#- Kind.ordered.each do |kind|
-    -#= tabs.pane kind.id, kind.to_s, :tooltip => kind.kind_type do
-      -#= render 'apps/search_form', :kind => kind
-      -#= render 'apps/search_results', :kind => kind
-
