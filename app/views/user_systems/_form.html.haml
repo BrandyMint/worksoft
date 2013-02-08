@@ -1,11 +1,12 @@
+%h1 Конфигурация системы пользователя
 = simple_form_for @user_system, :html => {:class => 'form-inline '} do |f|
   .row-fluid
     .span3
-      = f.input :kernel_version,  :wrapper => :stack, :placeholder => "не важно", :input_html => { :class => 'input-block-level' }
+      = f.input :kernel_version,  :wrapper => :stack, :placeholder => "не важно", :input_html => { :class => 'input-block-level' }, hint: 'Версия 1С'
     .span3
-      = f.input :configuration_id, :wrapper => :stack, :collection => configurations_collection_for_search, :include_blank => false, :input_html => { :class => 'input-block-level'}
+      = f.input :configuration_id, :wrapper => :stack, :collection => configurations_collection_for_search, :include_blank => false, :input_html => { :class => 'input-block-level'}, hint: 'Конфигурация'
     .span3
-      = f.input :configuration_version, :wrapper => :stack, :placeholder => 'версия конфигурации', :input_html => { :class => 'input-block-level' }
+      = f.input :configuration_version, :wrapper => :stack, :placeholder => 'версия конфигурации', :input_html => { :class => 'input-block-level' }, hint: 'Версия конфигурации'
     .span3
       .actions
         = f.button :submit, :class => 'btn btn-primary input-block-level'
