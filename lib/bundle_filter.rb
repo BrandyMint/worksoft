@@ -33,7 +33,7 @@ class BundleFilter
       add_to_apps b
     end
 
-    @apps
+    bundles.where(id: @apps.values.map(&:id))
   end
 
   private
