@@ -30,7 +30,7 @@ class UserSystemDecorator < Draper::Base
   def configuration_detailed
     if model.configuration.present? && model.configuration_version.present?
       h.content_tag :span, :class => 'version-support-configs' do
-        model.configuration.to_s + ' ' + model.configuration_version.to_s
+        "#{h.truncate(model.configuration.to_s)} #{model.configuration_version}"
       end
     else
       h.content_tag :span, '???', :class => 'version-support-kernel',
