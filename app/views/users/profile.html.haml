@@ -2,6 +2,7 @@
   %h1 Ваш профиль
   %p= @user.email
   %p
+    =gravatar_image_tag('@user.email', :gravatar => { :default => 'https://assets.github.com/images/gravatars/gravatar-140.png' })
     =link_to user_edit_profile_path do
       Редактировать
       %i.icon-edit
