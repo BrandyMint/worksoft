@@ -52,6 +52,10 @@ gem 'activeadmin'
 
 gem 'carrierwave'
 
+# Gravatar
+# https://github.com/mdeering/gravatar_image_tag
+gem 'gravatar_image_tag'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
