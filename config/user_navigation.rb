@@ -8,7 +8,7 @@ SimpleNavigation::Configuration.run do |navigation|
         :highlights_on => Proc.new { controller.is_a? Developer::BaseController },
         :if => Proc.new { current_user.developer? }
 
-      primary.item :profile, current_user, profile_path
+      primary.item :profile, gravatar_image_tag(@user.email, :size => 30, :gravatar => { :size => 40 }), profile_path
       primary.item :logout, 'Выйти', logout_path, :method=>'delete'
     else
       primary.item :login, 'Войти', login_path
