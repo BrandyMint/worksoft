@@ -5,6 +5,7 @@ class VersionMatcher
               '>' => :more,
               '>=' => :more_or_eql,
               '!' => :not_eql,
+              '*' => :star,
               '-' => :range}
 
   attr_accessor :version1, :version2, :matcher
@@ -22,13 +23,22 @@ class VersionMatcher
 
   def initialize matcher, version1, version2=nil
     matcher = '=' if matcher.blank?
+
+    @version1 = Version.new version1
+
+    matcher = '*' if matcher == '=' && !@version1.full?
+
     raise "Unknown matcher #{matcher}" unless Matchers.has_key? matcher
-    @matcher, @version1 = matcher, Version.new(version1)
+
+    @matcher = matcher
+
     if @matcher == '-'
       raise "No second version number in range" if !version2.present?
       @version2 = Version.new version2
 
-      raise "Second version must be more than first" unless version2>version1
+      raise "Second version must be more than first" unless @version2>@version1
+    elsif @matcher == '*'
+      @version2 = @version1.last_period
     end
   end
 
@@ -67,4 +77,7 @@ class VersionMatcher
     version1 <= version and version <= version2
   end
 
+  def star version
+    range version
+  end
 end

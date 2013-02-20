@@ -7,7 +7,13 @@ describe VersionMatcher do
     it { (version_matcher =~ version).should be_true }
   end
 
+  context do
+    subject { VersionMatcher.new '1.2' }
+  end
+
   context 'parsed matches' do
+    it_behaves_like 'parsed_match', '1.2.3', '1.2'
+    it_behaves_like 'parsed_match', '1.2.3.4', '1.2.3'
     it_behaves_like 'parsed_match', '1.2.3', '1.2.3'
     it_behaves_like 'parsed_match', '1.2.3', '=1.2.3'
     it_behaves_like 'parsed_match', '1.2.3', '>=1.2.3'

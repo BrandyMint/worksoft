@@ -18,26 +18,35 @@ describe Version do
       v.should == '1.2.3.4'
     end
 
-    it 'в цифру и обратно'do
+    it 'в цифру и обратно' do
       v = Version.new '1.100.234.3'
       Version.new(v.to_i).should == v
     end
+
   end
 
   context 'плюшки' do
     it 'сокращает major_patch если он 0' do
-      v = Version.new '0.1.0'
-      v.to_s.should == '0.1'
+      v = Version.new '0.1.0.0'
+      v.to_s.should == '0.1.0.0'
     end
 
-    it 'сокращает major_patch и minor_patch если они равны 0' do
+    it 'не сокращает major_patch и minor_patch если они равны 0' do
       v = Version.new '0.1.0.0'
-      v.to_s.should == '0.1'
+      v.to_s.should == '0.1.0.0'
     end
 
     it 'арифметика с версией' do
       v = Version.new '0.1.0.7'
       v.change(1,2,3,1).should == '1.3.3.8'
     end
+
+  end
+
+  context 'устанавливает границы периода' do
+    subject { Version.new '0.1' }
+
+    its(:first_period) { should == '0.1.0.0' }
+    its(:last_period) { should == '0.1.9999.9999' }
   end
 end

@@ -5,6 +5,10 @@ class Version
   Precision = 10000
   attr_accessor :major, :minor, :patch, :build
 
+  def self.from_array *args
+    allocate.send :from_array, args
+  end
+
   def initialize value
     if value.is_a? Array
       from_array value
@@ -36,8 +40,20 @@ class Version
     anOther.to_i == to_i
   end
 
+  def full?
+    major && minor && patch && build
+  end
+
   def present?
     !to_s.blank?
+  end
+
+  def first_period
+    self.class.from_array major || 0, minor || 0, patch || 0, build || 0
+  end
+
+  def last_period
+    self.class.from_array major || (Precision-1), minor || (Precision-1), patch || (Precision-1), build || (Precision-1)
   end
 
   def to_s
@@ -46,8 +62,8 @@ class Version
     else
       [major,
       minor,
-      patch == 0 ? nil : patch,
-      build == 0 ? nil : build
+      patch,
+      build
       ].compact.join('.')
     end
   end
@@ -61,7 +77,7 @@ class Version
     if major.nil?
       nil
     else
-      major*Precision*Precision*Precision + minor*Precision*Precision + patch*Precision + build
+      major_num*Precision*Precision*Precision + minor_num*Precision*Precision + patch_num*Precision + build_num
     end
   end
 
@@ -76,6 +92,11 @@ class Version
   end
 
   private
+
+  def major_num; major || 0; end
+  def minor_num; minor || 0; end
+  def patch_num; patch || 0; end
+  def build_num; build || 0; end
 
   def from_fixnum value
     if value == 0
@@ -93,14 +114,16 @@ class Version
 
   def from_array value
     raise "Слишком большая длинна #{value.length} массива #{value}" if value.length > 4
-    value.each {|ver| raise "Слишком большое значение версии #{value}" if ver > 999}
+    value.each {|ver| raise "Слишком большое значение версии #{value}" if ver > Precision-1}
 
     @major, @minor, @patch, @build = value
 
-    @major||=0
-    @minor||=0
-    @patch||=0
-    @build||=0
+    #@major||=0
+    #@minor||=0
+    #@patch||=0
+    #@build||=0
+
+    self
   end
   
   def from_str str
