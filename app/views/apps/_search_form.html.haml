@@ -1,3 +1,7 @@
+.btn-group
+- Configuration.all.each do |c|
+  %button.btn=link_to c, url_for(params.merge :configuration_id=>c.id)
+
 .apps-search-form
   = simple_form_for @query, :url => search_apps_url, :method => :get, :html => {:class => 'form-inline'} do |f|
     .row-fluid
@@ -5,4 +9,3 @@
         .input-append
           = f.input :name, :placeholder => "Название приложения", :wrapper => :inline, :input_html => { :class => 'input-block-level' }
           = f.button :submit, 'Найти', :class => 'btn btn-primary'
-
