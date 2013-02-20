@@ -2,6 +2,10 @@
 module ApplicationHelper
   include BootstrapHelper
 
+  def query_app_path prms
+    apps_path params.merge prms
+  end
+
   def kindes_collection_for_search
     [['Любой тип', nil]] + Kind.all.map { |k| [k.to_s, k.id]}
   end
