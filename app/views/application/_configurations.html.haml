@@ -1,0 +1,3 @@
+.btn-group
+- Configuration.all.each do |c|
+  =link_to c, url_for(params.merge :configuration_id=>c.id), :class => 'btn btn-mini'

@@ -1,0 +1,3 @@
+%ul.nav.nav-pills.kinds-nav
+  - @all_kindes.each_pair do |id, tab|
+    = active_link_to tab.title, apps_path(:kind_id => id), :wrap_tag => :li, :active => tab.active, :class => "app-kind-#{id}"

@@ -8,6 +8,10 @@ class Configuration < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
 
   def to_s
-    name
+    title
+  end
+
+  def title
+    name # Ставить пробелы перед заглавными
   end
 end

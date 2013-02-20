@@ -9,7 +9,6 @@ class AppsController < ApplicationController
     Kind.ordered.each do |k|
       @all_kindes[k.id] = OpenStruct.new :title => k.title, :active => k==kind
     end
-    
   end
 
   def index
