@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Configuration < ActiveRecord::Base
   attr_accessible :name
 
@@ -12,6 +13,6 @@ class Configuration < ActiveRecord::Base
   end
 
   def title
-    name # Ставить пробелы перед заглавными
+  	name.mb_chars.gsub(/[А-Я]/, ' \0').strip.capitalize
   end
 end
