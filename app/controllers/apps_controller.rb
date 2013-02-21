@@ -12,8 +12,8 @@ class AppsController < ApplicationController
   end
 
   def index
-     @query = AppSearchQuery.new params[:app_search_query]
-     @bundles = matched_bundles.by_user_system( current_user_system )
+    @query = AppSearchQuery.new params[:app_search_query]
+    @bundles = matched_bundles.by_user_system( current_user_system )
   end
 
   def search
