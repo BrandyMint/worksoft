@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+# OpenBill
+gem 'sequel'
+
+# end OpenBill
+
 gem 'rails', '>= 3.2.8'
 
 gem 'omniauth-identity'

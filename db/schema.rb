@@ -11,7 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131085103) do
+ActiveRecord::Schema.define(:version => 20130224141340) do
+
+  add_extension "hstore"
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -90,6 +92,26 @@ ActiveRecord::Schema.define(:version => 20130131085103) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "openbill_accounts", :force => true do |t|
+    t.decimal  "balance",    :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.string   "user_key",                                                   :null => false
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
+  end
+
+  add_index "openbill_accounts", ["user_key"], :name => "index_openbill_accounts_on_user_key", :unique => true
+
+  create_table "openbill_transactions", :force => true do |t|
+    t.integer  "from_account_id",                                                 :null => false
+    t.integer  "to_account_id",                                                   :null => false
+    t.decimal  "amount",          :precision => 12, :scale => 2, :default => 0.0, :null => false
+    t.text     "details",                                                         :null => false
+    t.datetime "created_at",                                                      :null => false
+  end
+
+  add_index "openbill_transactions", ["from_account_id", "to_account_id"], :name => "ot_ft"
+  add_index "openbill_transactions", ["to_account_id", "from_account_id"], :name => "ot_tf"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
