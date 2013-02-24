@@ -1,0 +1,9 @@
+.page-header
+  %h1 Headers
+
+%table.table.table-condensed
+  - request.headers.each_pair do |k,v|
+    %tr
+      %th=k
+      %td=v
+
