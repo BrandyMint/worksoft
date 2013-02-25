@@ -13,7 +13,11 @@ class AppsController < ApplicationController
 
   def index
     @query = AppSearchQuery.new params[:app_search_query]
-    @bundles = matched_bundles.by_user_system( current_user_system )
+    if params[:configuration_id].present?
+      @bundles = matched_bundles.by_configuration_id( params[:configuration_id] )
+    else
+      @bundles = matched_bundles.by_user_system( current_user_system )
+    end
   end
 
   def search
