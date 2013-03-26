@@ -1,9 +1,9 @@
 = link_to Settings.app.title, root_url, :class => 'brand'
-
+-#.pull-left
+  -#= render :partial => 'user_system'
 -# .nav-collapse
 -# Там только разработчики, не вижу пока смысла их показывать
 -# = render_navigation  :expand_all => true, :renderer => :bootstrap
 
 
 = render_navigation  :expand_all => true, :renderer => :bootstrap, :context => :user
-= render :partial => 'user_system'

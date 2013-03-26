@@ -13,7 +13,7 @@ class AppsController < ApplicationController
 
   def index
      @query = AppSearchQuery.new params[:app_search_query]
-     @bundles = matched_bundles.by_user_system( current_user_system )
+     @bundles = matched_bundles.by_user_system( current_system )
   end
 
   def search
@@ -27,7 +27,7 @@ class AppsController < ApplicationController
       flash[:notice] = 'Неверный поисковый запрос'
     end
 
-    @bundles = @bundles.by_user_system( current_user_system )
+    @bundles = @bundles.by_user_system( current_system )
 
     render :index
   end

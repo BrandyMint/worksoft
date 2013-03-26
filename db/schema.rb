@@ -11,7 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131085103) do
+ActiveRecord::Schema.define(:version => 20130326154555) do
+
+  add_extension "hstore"
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -91,6 +93,22 @@ ActiveRecord::Schema.define(:version => 20130131085103) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "openbill_accounts", :force => true do |t|
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "user_key",   :limit => 64,                  :null => false
+    t.decimal  "balance",                  :default => 0.0, :null => false
+  end
+
+  add_index "openbill_accounts", ["user_key"], :name => "openbill_accounts_user_key_key", :unique => true
+
+  create_table "openbill_transactions", :force => true do |t|
+    t.datetime "created_at",                  :null => false
+    t.integer  "account_src_id", :limit => 8
+    t.integer  "account_dst_id", :limit => 8
+    t.decimal  "amount",                      :null => false
+  end
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -114,16 +132,13 @@ ActiveRecord::Schema.define(:version => 20130131085103) do
   add_index "supported_configurations", ["configuration_id", "bundle_id"], :name => "sc_idx"
 
   create_table "user_systems", :force => true do |t|
-    t.integer  "user_id",                      :null => false
     t.string   "name"
-    t.integer  "kernel_version_number",        :null => false
+    t.integer  "kernel_version_number",        :limit => 8, :null => false
     t.integer  "configuration_id"
-    t.integer  "configuration_version_number"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.integer  "configuration_version_number", :limit => 8
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
-
-  add_index "user_systems", ["user_id"], :name => "index_user_systems_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                           :null => false
