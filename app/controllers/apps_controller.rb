@@ -39,7 +39,7 @@ class AppsController < ApplicationController
   private
 
   def matched_bundles
-    Bundle.currents.by_kind( kind )
+    Bundle.active.by_kind( kind )
   end
 
   def kind

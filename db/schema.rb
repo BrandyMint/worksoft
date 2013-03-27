@@ -93,22 +93,6 @@ ActiveRecord::Schema.define(:version => 20130326154555) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "openbill_accounts", :force => true do |t|
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.string   "user_key",   :limit => 64,                  :null => false
-    t.decimal  "balance",                  :default => 0.0, :null => false
-  end
-
-  add_index "openbill_accounts", ["user_key"], :name => "openbill_accounts_user_key_key", :unique => true
-
-  create_table "openbill_transactions", :force => true do |t|
-    t.datetime "created_at",                  :null => false
-    t.integer  "account_src_id", :limit => 8
-    t.integer  "account_dst_id", :limit => 8
-    t.decimal  "amount",                      :null => false
-  end
-
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.integer  "resource_id"
