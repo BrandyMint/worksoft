@@ -18,14 +18,26 @@ class ApplicationController < ActionController::Base
   end
 
   def current_system
-    system || session[:system] || UserSystem.new
+    self.current_system= param_system || session_system || UserSystem.new
+  end
+
+  def session_system
+    if session[:system_id].blank?
+      return nil
+    else
+      UserSystem.find_by_id session[:system_id]
+    end
   end
 
   def current_system= value
-    session[:system] = value
+    if value.blank?
+      session[:system_id] = nil
+    else
+      session[:system_id] = value.id
+    end
   end
 
-  def system
+  def param_system
     if params[:system]
       UserSystem.find_or_create_by_system params[:system]
     else

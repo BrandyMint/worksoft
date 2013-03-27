@@ -2,6 +2,8 @@
   .row
     .span12
       = f.error_notification
+      .alert
+        = f.error :base
   .row
     .span6
       = f.input :version
@@ -14,7 +16,8 @@
         %div.supported_configurations.row
           .span4
             -#= sc.error :'supported_configurations.configuration_id'
-            = sc.association :configuration, :label => '', :include_blank => false
+            -#= sc.association :configuration, :label => '', :include_blank => false
+            = sc.input :configuration_id, :required => true, :wrapper => :stack, :collection => configurations_collection_for_search, :include_blank => false, :input_html => { :class => 'input-block-level' }
           .span1
             = sc.input :versions, :as => :string, :input_html => { :class => 'input-mini' }
           .span1

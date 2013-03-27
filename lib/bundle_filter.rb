@@ -16,24 +16,39 @@ class BundleFilter
   end
 
   # Конвертирует app в bundle и фильтрует по запросу
-  def apply bundles
-    bundles.each do |b|
-      # Отсеиваем бандлы у которых не подходящая версия ядря
-      if user_system.kernel_version.present?
-        next unless b.kernel_version_matchers.match user_system.kernel_version
+  def perform bundles
+    if user_system && user_system.complete?
+
+      if user_system.configuration_id.present?
+        bundles = bundles.joins(:supported_configurations).
+          where("supported_configurations.configuration_id = #{user_system.configuration_id} or supported_configurations.configuration_id is null")
+      else
+        bundles = bundles.joins(:supported_configurations).
+          where("supported_configurations.configuration_id is null")
       end
 
-      # Отсеиваем бандлы у которых не подходящая верси конфигурации
-      # Именно версия, потому что саму конфигурацию мы отфильтровали на стадии
-      # выборки через ransack
-      if user_system.configuration_id.present? && user_system.configuration_version.present?
-        next unless b.supported_configuration( user_system.configuration_id ).match user_system.configuration_version
-      end
+      bundles.each do |b|
+        # Отсеиваем бандлы у которых не подходящая версия ядря
+        if user_system.kernel_version.present?
+          next unless b.kernel_version_matchers.match user_system.kernel_version
+        end
 
-      add_to_apps b
+        # Отсеиваем бандлы у которых не подходящая верси конфигурации
+        # Именно версия, потому что саму конфигурацию мы отфильтровали на стадии
+        # выборки через ransack
+        if user_system.configuration_id.present? && user_system.configuration_version.present?
+          next unless b.supported_configuration( user_system.configuration_id ).match user_system.configuration_version
+        end
+
+        add_to_apps b
+      end
+    else
+      bundles.each do |b|
+        add_to_apps b
+      end
     end
 
-    bundles.where(id: @apps.values.map(&:id))
+    bundles.where id: @apps.values.map(&:id)
   end
 
   private

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class SupportedConfiguration < ActiveRecord::Base
   attr_accessible :configuration_id, :bundle_id, :versions
 
@@ -8,11 +9,19 @@ class SupportedConfiguration < ActiveRecord::Base
 
   delegate :match, :to => :version_matchers
 
+  before_validation do
+    self.versions='' unless configuration.present?
+  end
+
   def to_s
-    if versions.to_s.present?
-      configuration.to_s + " (#{versions})"
+    if configuration.present?
+      if versions.to_s.present?
+        configuration.to_s + " (#{versions})"
+      else
+        configuration.to_s
+      end
     else
-      configuration.to_s
+      'любая конфигурация'
     end
   end
 
