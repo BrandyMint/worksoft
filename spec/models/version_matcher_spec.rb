@@ -14,5 +14,6 @@ describe VersionMatcher do
     it_behaves_like 'parsed_match', '1.2.3', '>1.2'
     it_behaves_like 'parsed_match', '1.2.3', '!1.2.4'
     it_behaves_like 'parsed_match', '1.2.3', '1.2-1.3'
+    it_behaves_like 'parsed_match', '1.2.3', ''
   end
 end

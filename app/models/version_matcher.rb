@@ -2,6 +2,7 @@
 # ValueObject
 class VersionMatcher
   Matchers = {'=' => :eql,
+              '*' => :any,
               '>' => :more,
               '>=' => :more_or_eql,
               '!' => :not_eql,
@@ -15,6 +16,8 @@ class VersionMatcher
       new $1, $2
     elsif /([0-9\.]+)\-([0-9\.]+)/.match str
       new '-', $1, $2
+    elsif str.blank? || str == '*'
+      new '*', 0, 0
     else
       raise "Неизвестный формат матчера версий '#{str}'"
     end
@@ -37,6 +40,8 @@ class VersionMatcher
       version1.to_s
     elsif matcher == '-'
       version1.to_s + '-' + version2.to_s
+    elsif matcher =='*'
+      '*'
     else
       matcher + version1.to_s
     end
@@ -45,6 +50,10 @@ class VersionMatcher
   def =~ version
     version = Version.new version unless version.is_a? Version
     send Matchers[matcher], version
+  end
+
+  def any version
+    true
   end
 
   def eql version

@@ -23,7 +23,7 @@ class BundleFilter
         next unless b.kernel_version_matchers.match user_system.kernel_version
       end
 
-      # Отсеиваем бандля у которых не подходящая верси конфигурации
+      # Отсеиваем бандлы у которых не подходящая верси конфигурации
       # Именно версия, потому что саму конфигурацию мы отфильтровали на стадии
       # выборки через ransack
       if user_system.configuration_id.present? && user_system.configuration_version.present?
