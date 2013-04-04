@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '>= 3.2.8'
+gem 'rails', '~> 3.2.13'
 
 gem 'omniauth-identity'
 # gem 'versionub'
@@ -80,7 +80,6 @@ gem 'airbrake'
 
 gem 'ransack'
 
-gem 'rvm'
 gem 'unicorn'
 # gem 'sunspot_rails'
 gem 'kaminari'
@@ -101,11 +100,11 @@ group :development do
   gem 'capistrano-recipes0', '>= 1.1.0', :git => 'git://github.com/BrandyMint/capistrano-recipes0.git'
   gem "better_errors"
   gem "binding_of_caller"
-  gem 'rvm-capistrano'
   gem 'debugger' unless `whoami`=~/jenkins/
   gem "rspec-rails", ">= 2.11.0"
   gem "factory_girl_rails", ">= 4.0.0"
   gem 'guard-livereload'
+  gem 'holepicker', :require => false
   #gem 'sunspot_solr'
 end
 

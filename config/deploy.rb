@@ -12,7 +12,6 @@ set :application, "worksoft.ru"
 set :scm, :git
 set :repository,  "git@github.com:BrandyMint/worksoft.git"
 set :deploy_via, :remote_cache
-set :git_enable_submodules, 0
 set :scm_verbose, true
 #Используем локальные ключи для приватных репозиториев на github
 #В ~/.ssh/config на локальной машине должен быть прописан ForwardAgent yes
@@ -28,23 +27,19 @@ set :use_sudo,   false
 set :keep_releases, 5
 set :shared_children, fetch(:shared_children) + %w(public/uploads)
 
-set :rvm_ruby_string, ENV['GEM_HOME'].gsub(/.*\//,"") # Read from local system
-set :rvm_type, :user
+set :bundle_flags, "--deployment --quiet --binstubs"
 
-before 'deploy:setup', 'rvm:install_rvm'
-before 'deploy:setup', 'rvm:install_ruby'
 before 'deploy:restart', 'deploy:migrate'
 after 'deploy:restart', "deploy:cleanup"
 
 #RVM, Bundler
-require "rvm/capistrano"
+load 'deploy/assets'
 require "bundler/capistrano"
+require "holepicker/capistrano"
 require "recipes0/database_yml"
 require "recipes0/db/pg"
-require "recipes0/assets"
-require "recipes0/nginx"
 require "recipes0/init_d/unicorn"
-#require "recipes0/init_d/delayed_job"
+require "recipes0/nginx"
 
 namespace :app do
   desc "Загружает uploads с удаленного сервера на локальный"
