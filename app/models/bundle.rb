@@ -12,8 +12,6 @@ class Bundle < ActiveRecord::Base
   mount_uploader :source_file, FileUploader
   mount_uploader :bundle_file, FileUploader
 
-  # serialize :supported_kernel_versions, Hash
-
   scope :currents, where(:state=>:current)
   scope :ready, where(:state=>:ready)
   scope :active, where(:state => [:ready, :current])
@@ -38,7 +36,6 @@ class Bundle < ActiveRecord::Base
 
   validates_with SupportedConfigurationsValidator
   
-  # composed_of :version, :allow_nil => true
   delegate :name, :desc, :kind_id, :kind, :icon, :to => :app
 
   before_save do
@@ -48,7 +45,6 @@ class Bundle < ActiveRecord::Base
 
   state_machine :state, :initial => :new do
     state :new
-    # state :updating
     state :ready
     state :current
     state :destroy
@@ -79,7 +75,7 @@ class Bundle < ActiveRecord::Base
   end
 
   before_validation do
-    self.supported_configurations ||= SupportedConfigurations.new
+    self.supported_configurations ||= SupportedConfiguration.new
     self.uuid = UUID.new.generate
   end
 
@@ -153,10 +149,6 @@ class Bundle < ActiveRecord::Base
   def supported_configuration configuration_id
     supported_configurations.where("configuration_id = ? or configuration_id is null", configuration_id).first
   end
-
-  #def set_destroy
-    #update_column :state, 'destroy'
-  #end
 
   private
 
