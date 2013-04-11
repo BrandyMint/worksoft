@@ -131,11 +131,11 @@ class Bundle < ActiveRecord::Base
 
   def version= value
     if value.is_a? Version
-      version_number = value.to_i
+      self.version_number = value.to_i
     else
       begin
         value = Version.new value
-        version_number = value.to_i
+        self.version_number = value.to_i
       rescue StandardError => e
         self.errors['version'] << "Неверный формат версии: #{e}"
       end

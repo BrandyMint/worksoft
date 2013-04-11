@@ -2,8 +2,9 @@
   .row
     .span12
       = f.error_notification
-      .alert
-        = f.error :base
+      - if f.error(:base).present?
+        .alert
+          = f.error :base
   .row
     .span6
       = f.input :version
