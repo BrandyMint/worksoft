@@ -16,7 +16,7 @@ class AppsController < ApplicationController
     if params[:configuration_id].present?
       @bundles = matched_bundles.by_configuration_id( params[:configuration_id] )
     else
-      @bundles = matched_bundles.by_user_system( current_user_system )
+      @bundles = BundleFilter.new(current_system).perform matched_bundles
     end
   end
 
