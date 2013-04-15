@@ -11,5 +11,6 @@ FactoryGirl.define do
     version
     source_file {Rack::Test::UploadedFile.new('spec/fixtures/proceed.epf', 'file/epf')}
     association :app, factory: :app
+    supported_configurations {|sc| [sc.association(:supported_configuration)]}
   end
 end

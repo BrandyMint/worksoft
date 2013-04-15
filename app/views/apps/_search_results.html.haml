@@ -1,13 +1,18 @@
 - if @bundles.present?
   %h2.search-results-title.pull-left Доступные приложения (#{@bundles.count})
-  %nav.nav.nav-pills.search-configs-nav.pull-right
-    %li.active= link_to 'для текущей конфигурации', '#'
-    %li= link_to 'все', '#'
+
+  = render :partial => 'system_switch'
+
   .clearfix
+
   .apps-list
     .row{ :rel => 'freetile-container' }
       = render :partial => 'app', :collection => @bundles
 - else
-  .alert
-    Приложений удовлетворяющих вашему запросу не найдено
+  .row
+    .span9
+      .alert
+        Приложений удовлетворяющих вашему запросу не найдено
+    .span3
+      = render :partial => 'system_switch'
 

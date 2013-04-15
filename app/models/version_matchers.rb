@@ -2,6 +2,10 @@ class VersionMatchers
   attr_accessor :list
 
   def initialize str
+    if str.is_a? String
+      str.strip!
+      str = '*' if str.blank?
+    end
     @list = str.to_s.split(',').map { |s| VersionMatcher.parse s }
   end
 

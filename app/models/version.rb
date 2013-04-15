@@ -2,7 +2,7 @@
 # ValueObject для версий
 class Version
   include Comparable
-  Precision = 10000
+  PRECISION = 10000
   attr_accessor :major, :minor, :patch, :build
 
   def initialize value
@@ -27,13 +27,13 @@ class Version
     end
   end
 
-  def <=>(anOther)
-    to_i <=> anOther.to_i
+  def <=>(another)
+    to_i <=> another.to_i
   end
 
-  def == anOther
-    anOther = Version.new(anOther) unless anOther.is_a? Version
-    anOther.to_i == to_i
+  def ==(another)
+    another = Version.new(another) unless another.is_a? Version
+    another.to_i == to_i
   end
 
   def present?
@@ -61,7 +61,7 @@ class Version
     if major.nil?
       nil
     else
-      major*Precision*Precision*Precision + minor*Precision*Precision + patch*Precision + build
+      major * PRECISION * PRECISION * PRECISION + minor * PRECISION * PRECISION + patch * PRECISION + build
     end
   end
 
@@ -72,7 +72,15 @@ class Version
   end
 
   def next
-    change 0, 0, 1, 0
+    if build > 0 || (major == 0 && minor == 0 && patch == 0)
+      change 0, 0, 0, 1
+    elsif patch > 0
+      change 0, 0, 1
+    elsif minor > 0
+      change 0, 1
+    elsif major > 0
+      change 1
+    end
   end
 
   private
@@ -84,10 +92,10 @@ class Version
       @patch = nil
       @build = nil
     else
-      @major = value / (Precision * Precision * Precision) % Precision
-      @minor = value / (Precision * Precision) % Precision
-      @patch = value / Precision % Precision
-      @build = value % Precision
+      @major = value / (PRECISION * PRECISION * PRECISION) % PRECISION
+      @minor = value / (PRECISION * PRECISION) % PRECISION
+      @patch = value / PRECISION % PRECISION
+      @build = value % PRECISION
     end
   end
 

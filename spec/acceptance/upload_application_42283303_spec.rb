@@ -17,6 +17,7 @@ feature 'Регистрация разработчика (создание пр�
   before do
     @user = FactoryGirl.create(:developer)
     FactoryGirl.create(:kind)
+    @supported_configuration = FactoryGirl.create(:supported_configuration)
     capybara_sign_in_user @user
   end
 
@@ -37,6 +38,8 @@ feature 'Регистрация разработчика (создание пр�
     #Приложение не загружается, на экране выводится сообщение о неверном типе файла
     fill_in 'bundle_supported_kernel_versions', :with => '7'
     attach_file 'bundle_source_file', Rails.root + 'spec/fixtures/upic.gif'
+    find('.add_nested_fields').click
+    find(:xpath, '(//select[starts-with(@name, "bundle[supported_configurations_attributes][new_")])[1]').find(:option, @supported_configuration.configuration.name).select_option
     find('.btn-primary').click
     page.body.should have_content "расширение файла .gif не совпадает с указаным типом приложения .#{App.last.kind.ext}"
     

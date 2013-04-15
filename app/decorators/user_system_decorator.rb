@@ -2,6 +2,16 @@
 class UserSystemDecorator < Draper::Base
   decorates :user_system
 
+  def to_s
+    if model.complete?
+      kernel_version << configuration_detailed
+    else
+      h.content_tag :span, :class => 'label label-important' do
+        'Конфигурация 1C не установлена'
+      end
+    end
+  end
+
   def edit_url
     persisted? ? h.edit_user_system_path(model) : h.new_user_system_path(:user_system => model)
   end

@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :supported_configuration do
+    bundle_id 1
+    association :configuration
   end
 end

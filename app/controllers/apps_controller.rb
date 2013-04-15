@@ -31,7 +31,7 @@ class AppsController < ApplicationController
       flash[:notice] = 'Неверный поисковый запрос'
     end
 
-    @bundles = @bundles.by_user_system( current_user_system )
+    @bundles = BundleFilter.new(current_system).perform @bundles
 
     render :index
   end
@@ -43,7 +43,7 @@ class AppsController < ApplicationController
   private
 
   def matched_bundles
-    Bundle.currents.by_kind( kind )
+    Bundle.active.by_kind( kind )
   end
 
   def kind

@@ -1,14 +1,48 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user_system
+  before_filter :prepare_system
 
-  def current_user_system
-    session[:user_system] ||= UserSystem.new :kernel_version => '8.1.34', :configuration => ::Configuration.first, :configuration_version => '1.2.3.4'
+  helper_method :current_system
+
+  private
+
+  def prepare_system
+    if params[:system]
+      params[:system] = {
+        :configuration  => ::Configuration.find_or_create_by_name( params[:system][:configuration] ),
+        :kernel_version => Version.new( params[:system][:kernel_version] ),
+        :configuration_version => Version.new( params[:system][:configuration_version] )
+      }
+    end
   end
 
-  def current_user_system= value
-    session[:user_system] = value
+  def current_system
+    self.current_system= param_system || session_system || UserSystem.new
+  end
+
+  def session_system
+    if session[:system_id].blank?
+      return nil
+    else
+      UserSystem.find_by_id session[:system_id]
+    end
+  end
+
+  def current_system= value
+    if value.blank?
+      session[:system_id] = nil
+    else
+      session[:system_id] = value.id
+    end
+  end
+
+  def param_system
+    if params[:system]
+      UserSystem.find_or_create_by_system params[:system]
+    else
+      return nil
+    end
   end
 
   def authenticate_admin_user!

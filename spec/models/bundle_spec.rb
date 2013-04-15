@@ -17,9 +17,11 @@ describe Bundle do
 
   it 'валидный, если расширение загружаемого файла соответствует указанному в приложении' do
     bundle = Bundle.new(
-              source_file: Rack::Test::UploadedFile.new('spec/fixtures/proceed.epf', 'file/epf'),
-              app: @app,
-              supported_kernel_versions: "7.0")
+        source_file: Rack::Test::UploadedFile.new('spec/fixtures/proceed.epf', 'file/epf'),
+        app: @app,
+        supported_kernel_versions: "7.0",
+        supported_configurations_attributes: [configuration_id: 1]
+    )
     bundle.should be_valid
   end
 

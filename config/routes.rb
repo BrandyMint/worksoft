@@ -7,6 +7,7 @@ Worksoft::Application.routes.draw do
 
   namespace :developer do
     get :dashboard, :to => 'dashboard#show'
+    get :show_headers, :to => 'dashboard#show_headers'
     resource :profile, :controller => :profile, :only => [:new, :create, :edit, :update]
     resources :apps do
       resources :bundles do 
