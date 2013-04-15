@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   sequence :conf_name do |n|
-    "БухгалтеряПредприятия_#{n}"  
+    "Бухгалтерия предприятия #{n}"
   end
 
   factory :configuration do

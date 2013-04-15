@@ -16,7 +16,7 @@ feature 'Регистрация разработчика (создание пр�
 
   before do
     @user = FactoryGirl.create(:developer)
-    FactoryGirl.create(:kind)
+    @kind = FactoryGirl.create(:kind)
     @supported_configuration = FactoryGirl.create(:supported_configuration)
     capybara_sign_in_user @user
   end
@@ -53,6 +53,8 @@ feature 'Регистрация разработчика (создание пр�
   end
 
   after do
+    @supported_configuration.destroy
+    @kind.destroy
     @user.destroy
   end
 
