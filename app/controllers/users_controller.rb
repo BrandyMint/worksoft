@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class UsersController < ApplicationController
-  before_filter :require_login, :only => :resend_activation
+  before_filter :require_login, only: [:edit_profile, :profile, :resend_activation]
 
   def new
     @user ||= User.new
