@@ -159,7 +159,8 @@ class Bundle < ActiveRecord::Base
   def configurations
     confs = []
     supported_configurations.each do |sc|
-      confs << {'name' => sc.configuration.name, 'versions' => sc.versions }
+      configuration_name = sc.configuration.present? ? sc.configuration.name : 'ЛюбаяКонфигурация'
+      confs << {'name' => configuration_name, 'versions' => sc.versions }
     end
 
     confs
