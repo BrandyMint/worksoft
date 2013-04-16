@@ -2,7 +2,7 @@
 
 require 'acceptance/acceptance_helper'
 
-feature '', js: true do
+feature 'Автоматическое увеличение версии бандла при закачке новой версии', js: true do
   before do
     @user = FactoryGirl.create(:developer)
     @kind = FactoryGirl.create(:kind)
@@ -10,7 +10,7 @@ feature '', js: true do
     capybara_sign_in_user @user
   end
 
-  scenario '' do
+  scenario 'Пользователь создаёт новое приложение и закачивает новые версии приложения. Номер версии увеличивается автоматически' do
     visit new_developer_app_path
     fill_in 'app_name', :with => 'Awsome report'
     select 'Обработка', :from => 'app_kind_id'
