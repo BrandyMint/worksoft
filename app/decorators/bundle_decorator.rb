@@ -34,7 +34,7 @@ class BundleDecorator < Draper::Base
 
   def supported_configurations
     h.content_tag :span, :class => 'version-support-configs' do
-      bundle.supported_configurations.join(', ')
+      bundle.supported_configurations.map(&:to_s).join(', ')  # join использует какой-то другой #to_s
     end
   end
   # Accessing Helpers
