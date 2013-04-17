@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_system
 
+  def current_system
+    self.current_system = param_system || session_system || UserSystem.new
+  end
+
   private
 
   def prepare_system
@@ -15,10 +19,6 @@ class ApplicationController < ActionController::Base
         :configuration_version => Version.new( params[:system][:configuration_version] )
       }
     end
-  end
-
-  def current_system
-    self.current_system= param_system || session_system || UserSystem.new
   end
 
   def session_system
