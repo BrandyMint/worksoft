@@ -47,15 +47,11 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin_user!
     if logged_in? && current_user.has_role?( :admin )
-      return true
+      true
     else
-      authenticate!
+      session[:return_to_url] = request.url if Config.save_return_to_url && request.get?
+      self.send(Config.not_authenticated_action)
     end
-  end
-
-  def authenticate!
-    require_login
-    # require_login_from_http_basic unless logged_in?
   end
 
   def realm_name_by_controller
