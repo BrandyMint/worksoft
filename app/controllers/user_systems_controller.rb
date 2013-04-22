@@ -4,7 +4,7 @@ class UserSystemsController < ApplicationController
   end
 
   def create
-    self.current_system = UserSystem.new params[:user_system]
+    self.current_system = UserSystem.create(params[:user_system])
 
     redirect_to root_url
   end

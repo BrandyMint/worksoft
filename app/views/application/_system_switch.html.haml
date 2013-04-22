@@ -1,7 +1,7 @@
 
 %nav.nav.nav-pills.search-configs-nav.pull-right
   %li.active
-    = UserSystemDecorator.new(current_system)
+    = link_to UserSystemDecorator.new(current_system), new_user_system_path
   -#%li
     -#= link_to 'Любая конфигурация', '#'
 

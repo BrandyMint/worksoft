@@ -1,5 +1,5 @@
 %h1 Конфигурация системы пользователя
-= simple_form_for @user_system, :html => {:class => 'form-inline '} do |f|
+= simple_form_for UserSystem.new, :html => {:class => 'form-inline '} do |f|
   .row-fluid
     .span3
       = f.input :kernel_version,  :wrapper => :stack, :placeholder => "не важно", :input_html => { :class => 'input-block-level' }, hint: 'Версия 1С'
