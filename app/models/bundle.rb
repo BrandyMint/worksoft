@@ -146,8 +146,8 @@ class Bundle < ActiveRecord::Base
     VersionMatchers.new supported_kernel_versions
   end
 
-  def supported_configuration configuration_id
-    supported_configurations.where("configuration_id = ? or configuration_id is null", configuration_id).first
+  def supported_configuration(configuration)
+    supported_configurations.where("configuration_id = ? or configuration_id is null", configuration.id).first
   end
 
   private
