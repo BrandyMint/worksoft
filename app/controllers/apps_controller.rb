@@ -52,7 +52,7 @@ class AppsController < ApplicationController
     return @kind if defined? @kind
     if params[:kind_id].present?
       @kind = Kind.find(params[:kind_id])
-    elsif params[:app_search_query][:kind_id].present?
+    elsif params[:app_search_query].present? && params[:app_search_query][:kind_id].present?
       @kind = Kind.find(params[:app_search_query][:kind_id])
     else
       @kind = nil
