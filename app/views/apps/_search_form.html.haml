@@ -3,5 +3,6 @@
     .row-fluid
       .span6
         .input-append
+          = f.hidden_field :kind_id, value: @kind_id
           = f.input :name, :placeholder => "Название приложения", :wrapper => :inline, :input_html => { :class => 'input-block-level' }
           = f.button :submit, 'Найти', :class => 'btn btn-primary'

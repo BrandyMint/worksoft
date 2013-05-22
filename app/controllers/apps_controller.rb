@@ -12,6 +12,7 @@ class AppsController < ApplicationController
   end
 
   def index
+    @kind_id = kind.present? ? kind.id : nil
     @query = AppSearchQuery.new params[:app_search_query]
     if params[:configuration_id].present?
       @bundles = matched_bundles.by_configuration_id( params[:configuration_id] )
@@ -21,6 +22,7 @@ class AppsController < ApplicationController
   end
 
   def search
+    @kind_id = kind.present? ? kind.id : nil
     @query = AppSearchQuery.new params[:app_search_query]
 
     @bundles = matched_bundles
@@ -48,7 +50,13 @@ class AppsController < ApplicationController
 
   def kind
     return @kind if defined? @kind
-    @kind = params[:kind_id].present? ? Kind.find( params[:kind_id] ) : nil
+    if params[:kind_id].present?
+      @kind = Kind.find(params[:kind_id])
+    elsif params[:app_search_query][:kind_id].present?
+      @kind = Kind.find(params[:app_search_query][:kind_id])
+    else
+      @kind = nil
+    end
   end
 
 end
