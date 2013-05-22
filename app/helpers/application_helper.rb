@@ -3,6 +3,8 @@ module ApplicationHelper
   include BootstrapHelper
 
   def query_app_path prms
+    params.delete(:kind_id)
+    params[:app_search_query].delete(:kind_id) if params[:app_search_query].present?
     apps_path params.merge prms
   end
 
