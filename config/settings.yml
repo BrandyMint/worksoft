@@ -1,5 +1,5 @@
 default_url_options:
-  host: qikup.ru
+  host: worksoft.ru
   port: 80
 
 app:
@@ -10,7 +10,7 @@ smtp_settings:
   port: 25
 
 deliver_settings:
-  from: noreply@qikup.ru
+  from: noreply@worksoft.ru
 
 application:
   title: WORKSOFT
