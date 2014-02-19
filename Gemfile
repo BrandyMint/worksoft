@@ -98,9 +98,6 @@ group :development do
   gem "ruby_parser", ">= 2.3.1"
   gem 'capistrano'
   gem 'capistrano-recipes0', '>= 1.1.0', :git => 'git://github.com/BrandyMint/capistrano-recipes0.git'
-  gem "better_errors"
-  gem "binding_of_caller"
-  gem 'debugger' unless `whoami`=~/jenkins/
   gem "rspec-rails", ">= 2.11.0"
   gem "factory_girl_rails", ">= 4.0.0"
   gem 'guard-livereload'
@@ -113,7 +110,6 @@ group :test do
   gem "email_spec", ">= 1.2.1"
   gem "cucumber-rails", ">= 1.3.0", :require => false
   gem 'guard'
-  gem 'debugger' unless `whoami`=~/jenkins/
   gem 'guard-spork'
   gem 'guard-rspec'
   gem 'guard-rails'

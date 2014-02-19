@@ -101,10 +101,6 @@ GEM
     authority (2.3.2)
       rails (>= 3.0.0)
     bcrypt-ruby (3.0.1)
-    better_errors (0.8.0)
-      coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
-    binding_of_caller (0.6.8)
     bootstrap-datepicker-rails (0.6.35)
       railties (>= 3.0)
     bootstrap-sass (2.2.2.0)
@@ -144,7 +140,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
-    columnize (0.3.6)
     commands (0.2.0)
       rails (>= 3.0.0)
     connection_pool (1.0.0)
@@ -158,13 +153,6 @@ GEM
       cucumber (>= 1.1.8)
       nokogiri (>= 1.5.0)
     database_cleaner (0.9.1)
-    debugger (1.2.3)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.1.1)
-      debugger-ruby_core_source (~> 1.1.5)
-    debugger-linecache (1.1.2)
-      debugger-ruby_core_source (>= 1.1.1)
-    debugger-ruby_core_source (1.1.6)
     devise (2.2.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -449,8 +437,6 @@ DEPENDENCIES
   airbrake
   archive-zip
   authority
-  better_errors
-  binding_of_caller
   bootstrap-datepicker-rails
   bootstrap-sass (>= 2.1.0.0)
   capistrano
@@ -463,7 +449,6 @@ DEPENDENCIES
   commands
   cucumber-rails (>= 1.3.0)
   database_cleaner
-  debugger
   draper
   email_spec (>= 1.2.1)
   factory_girl_rails (>= 4.0.0)
